@@ -18,8 +18,8 @@ export const theme = {
   },
   font: {
     family: {
-      primary: '"Open Sans", sans-serif',
-      headings: '"IBM Plex Mono", monospace'
+      primary: '"Roboto", sans-serif',
+      headings: '"Montserrat", monospace'
     },
     size: {
       h1: '2rem',
@@ -67,6 +67,7 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     background: ${color('black')};
     color: ${color('primary')};
+    line-height: 1.3em;
   }
 
   .gutter-horizontal {
