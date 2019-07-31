@@ -10,5 +10,5 @@ export const Flex = styled.div`
 `;
 
 export const FlexItem = styled.div`
-  flex: ${props => props.flex};
+  flex: ${props => props.grow};
 `;

@@ -7,7 +7,9 @@ function NoteItem({ title, description }) {
   return (
     <React.Fragment>
       <Typography as="h4">{title}</Typography>
-      <Typography as="p">{description}</Typography>
+      <Typography as="p" mt="sm">
+        {description}
+      </Typography>
       <Separator />
     </React.Fragment>
   );

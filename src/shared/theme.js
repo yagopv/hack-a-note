@@ -1,6 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
+  breakpoints: {
+    xs: '(max-width: 576px)',
+    sm: '(min-width: 576px)',
+    md: '(min-width: 768px)',
+    lg: '(min-width: 992px)',
+    xl: '(min-width: 1140px)'
+  },
   colors: {
     primary: 'rgb(171, 173, 146)',
     accent: 'rgb(248, 197, 29)',
@@ -18,9 +25,9 @@ export const theme = {
       h1: '2rem',
       h2: '1.8rem',
       h3: '1.6rem',
-      h4: '1.4rem',
-      h5: '1.2rem',
-      h6: '1rem',
+      h4: '1.2rem',
+      h5: '1rem',
+      h6: '0.8rem',
       p: '0.8rem'
     }
   },

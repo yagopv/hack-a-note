@@ -23,12 +23,12 @@ const notes = [
   }
 ];
 
-function NoteList() {
+function NoteList({ onClick }) {
   return (
     <Box pt="md" pr="sm" pl="sm">
       <List>
         {notes.map(note => (
-          <ListItem key={note.id}>
+          <ListItem key={note.id} onClick={onClick}>
             <NoteItem {...note} />
           </ListItem>
         ))}
