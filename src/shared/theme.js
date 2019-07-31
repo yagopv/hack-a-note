@@ -18,8 +18,8 @@ export const theme = {
   },
   font: {
     family: {
-      primary: '"Roboto", sans-serif',
-      headings: '"Montserrat", monospace'
+      primary: '"Open Sans", sans-serif',
+      headings: '"Roboto", monospace'
     },
     size: {
       h1: '2rem',
