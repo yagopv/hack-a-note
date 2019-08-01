@@ -1,5 +1,5 @@
-const TOGGLE_CATEGORY_MENU = '[UI] TOGGLE_CATEGORY_MENU';
-const TOGGLE_NOTELIST_MENU = '[UI] TOGGLE_NOTELIST_MENU';
+const TOGGLE_CATEGORY_MENU = '[UI] Toggle Category Menu';
+const TOGGLE_NOTELIST_MENU = '[UI] Toggle NoteList Menu';
 
 const initialState = {
   isCategoryMenuOpened: false,

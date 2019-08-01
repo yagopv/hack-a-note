@@ -1,8 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Flex, Typography } from '../../components/ui';
 import { LoginForm } from '../../components/forms';
+import { login } from '../../store/auth';
 
-function Login() {
+function Login({ history }) {
+  const dispatch = useDispatch();
+
   return (
     <Flex
       alignItems="center"
@@ -11,7 +15,12 @@ function Login() {
       fullHeight
     >
       <Typography as="h3">Please login</Typography>
-      <LoginForm onSubmit={() => console.log('login')} />
+      <LoginForm
+        onSubmit={() => {
+          dispatch(login());
+          history.push('/');
+        }}
+      />
     </Flex>
   );
 }

@@ -1,8 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Flex, Typography } from '../../components/ui';
 import { RegisterForm } from '../../components/forms';
+import { register } from '../../store/auth';
 
-function Register() {
+function Register({ history }) {
+  const dispatch = useDispatch();
+
   return (
     <Flex
       alignItems="center"
@@ -11,7 +15,12 @@ function Register() {
       fullHeight
     >
       <Typography as="h3">Please register</Typography>
-      <RegisterForm onSubmit={() => console.log('register')} />
+      <RegisterForm
+        onSubmit={() => {
+          dispatch(register());
+          history.push('/');
+        }}
+      />
     </Flex>
   );
 }
