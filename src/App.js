@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Dashboard } from './pages/dashboard';
 import { About } from './pages/about';
 import { store } from './store';
+import { Register } from './pages/register';
+import { Login } from './pages/login';
+import { PrivateRoute } from './components/auth';
 
 function App() {
   return (
@@ -15,8 +18,10 @@ function App() {
           <GlobalStyle />
           <Router>
             <Switch>
-              <Route exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/" component={Dashboard} />
               <Route path="/about" component={About} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
             </Switch>
           </Router>
         </React.Fragment>

@@ -7,6 +7,7 @@ export const Flex = styled.div`
   flex-direction: ${props => props.direction};
   padding: ${props => props.padding};
   margin: ${props => props.margin};
+  height: ${props => (props.fullHeight ? '100%' : 'auto')};
 `;
 
 export const FlexItem = styled.div`
