@@ -15,7 +15,7 @@ export const theme = {
     separator: 'rgb(27, 27, 27)',
     black: 'rgb(0, 0, 0)',
     white: 'rgba(255, 255, 255)',
-    error: 'rgb(235, 39, 31)'
+    error: 'rgb(166, 58, 54)'
   },
   font: {
     family: {

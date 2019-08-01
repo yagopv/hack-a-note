@@ -1,12 +1,18 @@
 import React from 'react';
 import { useForm, useField } from 'react-final-form-hooks';
 import { loginFormValidation } from './validation';
-import { FormControl, Input, ValidationMessage, Button } from '../ui';
+import {
+  FormControl,
+  Input,
+  ValidationMessage,
+  Button,
+  Typography
+} from '../ui';
 
 function LoginForm({ onSubmit }) {
   const { form, handleSubmit, pristine, submitting } = useForm({
     onSubmit,
-    loginFormValidation
+    validate: loginFormValidation
   });
   const email = useField('email', form);
   const password = useField('password', form);
@@ -18,7 +24,7 @@ function LoginForm({ onSubmit }) {
     >
       <FormControl>
         <Input id="email" type="text" {...email.input} placeholder="Email" />
-        <ValidationMessage>
+        <ValidationMessage as="span">
           {email.meta.touched && email.meta.error}
         </ValidationMessage>
       </FormControl>
@@ -29,13 +35,11 @@ function LoginForm({ onSubmit }) {
           {...password.input}
           placeholder="Password"
         />
-        <ValidationMessage>
+        <ValidationMessage as="span">
           {password.meta.touched && password.meta.error}
         </ValidationMessage>
       </FormControl>
-      <Button type="submit" disabled={pristine || submitting}>
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }

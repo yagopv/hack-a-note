@@ -6,7 +6,7 @@ import { FormControl, Input, ValidationMessage, Button } from '../ui';
 function RegisterForm({ onSubmit }) {
   const { form, handleSubmit, pristine, submitting } = useForm({
     onSubmit,
-    registerFormValidation
+    validate: registerFormValidation
   });
 
   const fullName = useField('fullName', form);
@@ -25,13 +25,13 @@ function RegisterForm({ onSubmit }) {
           {...fullName.input}
           placeholder="Enter your name"
         />
-        <ValidationMessage>
+        <ValidationMessage as="span">
           {fullName.meta.touched && fullName.meta.error}
         </ValidationMessage>
       </FormControl>
       <FormControl>
         <Input id="email" type="text" {...email.input} placeholder="Email" />
-        <ValidationMessage>
+        <ValidationMessage as="span">
           {email.meta.touched && email.meta.error}
         </ValidationMessage>
       </FormControl>
@@ -42,13 +42,11 @@ function RegisterForm({ onSubmit }) {
           {...password.input}
           placeholder="Password"
         />
-        <ValidationMessage>
+        <ValidationMessage as="span">
           {password.meta.touched && password.meta.error}
         </ValidationMessage>
       </FormControl>
-      <Button type="submit" disabled={pristine || submitting}>
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }
