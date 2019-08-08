@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Typography } from '../ui/Typography';
+import { Text } from '../ui/Text';
 import { Separator } from '../ui';
 
 function NoteItem({ title, description }) {
   return (
     <React.Fragment>
-      <Typography as="h4">{title}</Typography>
-      <Typography as="p" mt="sm">
+      <Text as="h4">{title}</Text>
+      <Text as="p" mt="sm">
         {description}
-      </Typography>
+      </Text>
       <Separator />
     </React.Fragment>
   );

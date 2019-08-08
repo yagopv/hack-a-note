@@ -8,7 +8,7 @@ import { Menu } from '../../components/ui/Menu';
 import { ThemeContext } from 'styled-components';
 import { useMedia } from '../../shared/hooks/useMedia';
 import { Header } from '../../components/ui/Header';
-import { FlexItem, Typography } from '../../components/ui';
+import { FlexItem, Text } from '../../components/ui';
 import { toggleCategoryMenu, toggleNoteListMenu } from '../../store/ui';
 
 function Dashboard() {
@@ -83,9 +83,9 @@ function Dashboard() {
             🍔
           </span>
         </FlexItem>
-        <Typography as="p">
+        <Text as="p">
           Yago <span>😀</span>
-        </Typography>
+        </Text>
       </Header>
     </React.Fragment>
   );

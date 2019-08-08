@@ -3,7 +3,7 @@ import { Menu } from './Menu';
 import { List, ListItem } from './List';
 import { Separator } from './Separator';
 import { Box } from './Box';
-import { Typography } from './Typography';
+import { Text } from './Text';
 import { Button } from './Button';
 import { FormControl } from './FormControl';
 import { ValidationMessage } from './ValidationMessage';
@@ -18,7 +18,7 @@ export {
   ListItem,
   Separator,
   Box,
-  Typography,
+  Text,
   Button,
   FormControl,
   ValidationMessage,

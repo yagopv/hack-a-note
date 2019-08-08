@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Typography, Box, List, ListItem } from '../ui';
+import { Text, Box, List, ListItem } from '../ui';
 import { color } from '../../shared/theme';
 
 const Tag = styled.span`
@@ -13,13 +13,13 @@ function CategoryList({ onClick }) {
     <Box m="md">
       <List>
         <ListItem onClick={onClick}>
-          <Tag>#</Tag> <Typography as="span">Work notes</Typography>
+          <Tag>#</Tag> <Text as="span">Work notes</Text>
         </ListItem>
         <ListItem onClick={onClick}>
-          <Tag>#</Tag> <Typography as="span">Family</Typography>
+          <Tag>#</Tag> <Text as="span">Family</Text>
         </ListItem>
         <ListItem onClick={onClick}>
-          <Tag>#</Tag> <Typography as="span">Read List</Typography>
+          <Tag>#</Tag> <Text as="span">Read List</Text>
         </ListItem>
       </List>
     </Box>

@@ -9,18 +9,18 @@ export const theme = {
     xl: '(min-width: 1140px)'
   },
   colors: {
-    primary: 'rgb(171, 173, 146)',
-    accent: 'rgb(248, 197, 29)',
-    alternative: 'rgb(200, 104, 24)',
-    separator: 'rgb(27, 27, 27)',
-    black: 'rgb(0, 0, 0)',
-    white: 'rgba(255, 255, 255)',
-    error: 'rgb(166, 58, 54)'
+    primary: '#ABAD92',
+    accent: '#F8C51D',
+    alternative: '#C86818',
+    separator: '#1B1B1B',
+    black: '#000',
+    white: '#FFF',
+    error: '#E92119'
   },
   font: {
     family: {
-      primary: '"Open Sans", sans-serif',
-      headings: '"Roboto", monospace'
+      primary: '"Raleway", sans-serif',
+      headings: '"Oswald", sans-serif'
     },
     size: {
       h1: '2rem',
@@ -63,7 +63,7 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
-
+ 
   body, #root {
     height: 100%;
     background: ${color('black')};

@@ -6,7 +6,7 @@ import {
   Input,
   ValidationMessage,
   Button,
-  Typography
+  Text
 } from '../ui';
 
 function LoginForm({ onSubmit }) {

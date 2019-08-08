@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Flex, Typography } from '../../components/ui';
+import { Flex, Text } from '../../components/ui';
 import { LoginForm } from '../../components/forms';
 import { login } from '../../store/auth';
 
@@ -14,7 +14,7 @@ function Login({ history }) {
       direction="column"
       fullHeight
     >
-      <Typography as="h3">Please login</Typography>
+      <Text as="h3">Please login</Text>
       <LoginForm
         onSubmit={() => {
           dispatch(login());

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Typography } from '../ui/Typography';
+import { Text } from '../ui/Text';
 import { Box } from '../ui';
 
 function Note({ title, description }) {
   return (
     <Box p="md">
-      <Typography as="h2">Lorem ipsum dolor sit amet</Typography>
-      <Typography as="p" pt="md">
+      <Text as="h2">Lorem ipsum dolor sit amet</Text>
+      <Text as="p" pt="md">
         Cras vitae lorem bibendum, finibus risus a, elementum ex. Quisque luctus
         eros felis, id imperdiet orci porta ac. Nulla pellentesque, metus eu
         accumsan ultricies, nisi risus blandit quam, sed sollicitudin mauris
@@ -21,11 +21,11 @@ function Note({ title, description }) {
         tempor porttitor quam. Curabitur dapibus urna vestibulum, auctor orci
         at, finibus mi. In hac habitasse platea dictumst. Vivamus venenatis vel
         erat at laoreet. Pellentesque et metus id felis placerat consectetur.
-      </Typography>
-      <Typography as="h5" pt="md">
+      </Text>
+      <Text as="h5" pt="md">
         Ut cursus mauris at tincidunt venenatis
-      </Typography>
-      <Typography as="p" pt="sm">
+      </Text>
+      <Text as="p" pt="sm">
         Aenean vel turpis at nunc blandit commodo quis a urna. Vivamus
         consequat, libero nec laoreet egestas, orci lacus luctus ligula, in
         sodales ligula magna ac nibh. Mauris iaculis ligula vel semper blandit.
@@ -38,7 +38,7 @@ function Note({ title, description }) {
         vulputate cursus. Fusce gravida ex a libero viverra, a iaculis sapien
         suscipit. Vivamus lectus felis, elementum sed dignissim non, tempor sed
         lectus. Mauris vel egestas sapien.
-      </Typography>
+      </Text>
     </Box>
   );
 }

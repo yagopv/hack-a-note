@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Flex, Typography } from '../../components/ui';
+import { Flex, Text } from '../../components/ui';
 import { RegisterForm } from '../../components/forms';
 import { register } from '../../store/auth';
 
@@ -14,7 +14,7 @@ function Register({ history }) {
       direction="column"
       fullHeight
     >
-      <Typography as="h3">Please register</Typography>
+      <Text as="h3">Please register</Text>
       <RegisterForm
         onSubmit={() => {
           dispatch(register());

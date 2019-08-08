@@ -21,7 +21,7 @@ function getColor(type, colors) {
   return colors['primary'];
 }
 
-export const Typography = styled(Box)`
+export const Text = styled(Box)`
   color: ${props => getColor(props.as, props.theme.colors)};
   font-family: ${props => getFamily(props.as, props.theme.font.family)};
   font-size: ${props => getSize(props.as, props.theme.font.size)};
