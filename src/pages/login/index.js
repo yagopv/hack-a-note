@@ -8,20 +8,22 @@ function Login({ history }) {
   const dispatch = useDispatch();
 
   return (
-    <Flex
-      alignItems="center"
-      justifyContent="center"
-      direction="column"
-      fullHeight
-    >
-      <Text as="h3">Please login</Text>
-      <LoginForm
-        onSubmit={() => {
-          dispatch(login());
-          history.push('/');
-        }}
-      />
-    </Flex>
+    <React.Fragment>
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        direction="column"
+        fullHeight
+      >
+        <Text as="h3">Please login</Text>
+        <LoginForm
+          onSubmit={() => {
+            dispatch(login());
+            history.push('/');
+          }}
+        />
+      </Flex>
+    </React.Fragment>
   );
 }
 

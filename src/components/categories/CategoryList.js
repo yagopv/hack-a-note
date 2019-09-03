@@ -5,7 +5,7 @@ import { Text, Box, List, ListItem } from '../ui';
 import { color } from '../../shared/theme';
 
 const Tag = styled.span`
-  color: ${color('alternative')};
+  color: ${color('secondary')};
 `;
 
 function CategoryList({ onClick }) {

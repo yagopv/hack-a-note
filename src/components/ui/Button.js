@@ -1,22 +1,25 @@
 import styled from 'styled-components';
+import { color, fontFamily } from '../../shared/theme';
 
 export const Button = styled.button`
-  font-family: ${props => props.theme.font.family.primary};
-  transition: all 0.3s;
-  width: auto;
+  font-family: ${fontFamily('secondary')};
+  transition: all 0.2s;
+  min-width: 100px;
   padding: 10px 20px;
   font-size: 1rem;
-  background: transparent;
-  border-radius: 5px;
-  border: 2px solid ${props => props.theme.colors.accent};
-  color: ${props => props.theme.colors.accent};
+  background: ${color('secondary')};
+  text-transform: uppercase;
+  color: ${color('bright')};
   outline: none;
   cursor: pointer;
+  height: 50px;
   :hover {
-    background: ${props => props.theme.colors.accent};
-    color: ${props => props.theme.colors.black};
+    background: ${color('bright')};
+    color: ${color('secondary')};
+    border: 2px solid ${color('secondary')};
+    font-weight: bold;
   }
   :active {
-    transform: scale(1.05);
+    transform: translateY(2px);
   }
 `;

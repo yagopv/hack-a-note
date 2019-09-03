@@ -1,28 +1,16 @@
 import styled from 'styled-components';
 import { Box } from './Box';
+import { color, fontFamily, fontSize } from '../../shared/theme';
 
-function getFamily(type, families) {
-  if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(type)) {
-    return families.headings;
-  }
-
-  return families.primary;
-}
-
-function getSize(type, sizes) {
-  return sizes[type] || '1rem';
-}
-
-function getColor(type, colors) {
-  if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(type)) {
-    return colors['accent'];
-  }
-
-  return colors['primary'];
+function isHeading(type) {
+  return ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(type);
 }
 
 export const Text = styled(Box)`
-  color: ${props => getColor(props.as, props.theme.colors)};
-  font-family: ${props => getFamily(props.as, props.theme.font.family)};
-  font-size: ${props => getSize(props.as, props.theme.font.size)};
+  color: ${props => (isHeading(props.as) ? color('primary') : color('text'))};
+  font-weight: ${props => (isHeading(props.as) ? '900' : '400')}
+  font-family: ${props =>
+    isHeading(props.as) ? fontFamily('secondary') : fontFamily('primary')};
+  font-size: ${props => fontSize(props.as) || '0.8rem'};
+  text-transform: ${props => (isHeading(props.as) ? 'uppercase' : 'none')};
 `;

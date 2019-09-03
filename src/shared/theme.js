@@ -9,18 +9,20 @@ export const theme = {
     xl: '(min-width: 1140px)'
   },
   colors: {
-    primary: '#ABAD92',
-    accent: '#F8C51D',
-    alternative: '#C86818',
+    primary: '#F8C51D',
+    secondary: '#C86818',
+    text: '#AABBAA',
     separator: '#1B1B1B',
-    black: '#000',
-    white: '#FFF',
-    error: '#E92119'
+    medium: '#999999',
+    dark: '#000',
+    bright: '#FFF',
+    ko: '#E92119',
+    ok: '#3C8C20'
   },
   font: {
     family: {
       primary: '"Raleway", sans-serif',
-      headings: '"Oswald", sans-serif'
+      secondary: '"Oswald", sans-serif'
     },
     size: {
       h1: '2rem',
@@ -41,10 +43,10 @@ export const theme = {
   }
 };
 
-export const color = color => props => props.theme.colors[color];
-export const fontFamily = family => props => props.theme.font.family[family];
-export const fontSize = size => props => props.theme.font.size[size];
-export const spacing = size => props => props.theme.spacing[size];
+export const color = color => theme.colors[color];
+export const fontFamily = family => theme.font.family[family];
+export const fontSize = size => theme.font.size[size];
+export const spacing = size => theme.spacing[size];
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -58,15 +60,12 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
     margin: 0;
     padding: 0;
-    border: 0;
     font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
   }
  
   body, #root {
     height: 100%;
-    background: ${color('black')};
+    background: ${color('dark')};
     color: ${color('primary')};
     line-height: 1.3em;
   }
@@ -76,6 +75,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: ${color('headings')};
+    color: ${color('primary')};
   }
 `;

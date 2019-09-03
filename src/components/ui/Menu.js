@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from '../../shared/theme';
 
 export const Menu = styled.section`
   ${props => `
@@ -8,7 +9,7 @@ export const Menu = styled.section`
       height: 100%;
       transition: transform 0.3s ease-out;
       transform: ${props.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
-      background: ${props.theme.colors.black};
+      background: ${color('black')};
     }
     @media ${props.theme.breakpoints.md} {
       position: inherit;

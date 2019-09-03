@@ -1,12 +1,15 @@
 import React from 'react';
 import { useForm, useField } from 'react-final-form-hooks';
-import { loginFormValidation } from './validation';
+import { loginFormValidation, getValidationColor } from './validation';
 import {
   FormControl,
+  Label,
   Input,
   ValidationMessage,
   Button,
-  Text
+  Box,
+  Link,
+  Flex
 } from '../ui';
 
 function LoginForm({ onSubmit }) {
@@ -18,28 +21,38 @@ function LoginForm({ onSubmit }) {
   const password = useField('password', form);
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ width: '300px', textAlign: 'right' }}
-    >
-      <FormControl>
-        <Input id="email" type="text" {...email.input} placeholder="Email" />
+    <form onSubmit={handleSubmit} style={{ width: '300px' }}>
+      <FormControl color={getValidationColor(email.meta)}>
+        <Label>Email</Label>
+        <Input
+          id="email"
+          type="text"
+          {...email.input}
+          placeholder="Introduce tu email"
+        />
         <ValidationMessage as="span">
           {email.meta.touched && email.meta.error}
         </ValidationMessage>
       </FormControl>
-      <FormControl>
+      <FormControl color={getValidationColor(password.meta)}>
+        <Label>Password</Label>
         <Input
           id="password"
           type="password"
           {...password.input}
-          placeholder="Password"
+          placeholder="Enter your password"
         />
         <ValidationMessage as="span">
           {password.meta.touched && password.meta.error}
         </ValidationMessage>
       </FormControl>
-      <Button type="submit">Submit</Button>
+      <Flex direction="column" alignItems="flex-end">
+        <Button type="submit">Submit</Button>
+        <Box mt="md">
+          <Link to="/register">Register </Link> |
+          <Link to="/forgot-password"> Forgot Password</Link>
+        </Box>
+      </Flex>
     </form>
   );
 }

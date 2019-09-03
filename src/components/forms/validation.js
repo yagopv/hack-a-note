@@ -1,3 +1,5 @@
+import { color } from '../../shared/theme';
+
 export function loginFormValidation({ email, password }) {
   const errors = {};
   if (!email) {
@@ -41,4 +43,15 @@ export function registerFormValidation({ email, password, fullName }) {
   }
 
   return errors;
+}
+
+export function getValidationColor(field) {
+  if (!field.touched) {
+    return color('primary');
+  } else {
+    if (field.error) {
+      return color('ko');
+    }
+    return color('ok');
+  }
 }

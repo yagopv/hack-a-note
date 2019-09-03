@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Box } from './Box';
 
-export const Flex = styled.div`
+export const Flex = styled(Box)`
   display: flex;
   align-items: ${props => props.alignItems};
   justify-content: ${props => props.justifyContent};
@@ -10,6 +11,6 @@ export const Flex = styled.div`
   height: ${props => (props.fullHeight ? '100%' : 'auto')};
 `;
 
-export const FlexItem = styled.div`
+export const FlexItem = styled(Box)`
   flex: ${props => props.grow};
 `;
