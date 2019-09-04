@@ -1,14 +1,23 @@
+import React from 'react';
 import styled from 'styled-components';
-import { color } from '../../shared/theme';
+import { color, fontFamily, fontSize } from '../../shared/theme';
 
-export const Header = styled.header`
-  position: fixed;
+const Container = styled.header`
   display: flex;
   align-items: center;
-  padding: 0 10px;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  height: 50px;
-  border-bottom: 1px solid ${color('separator')};
+  padding: 1.4rem 1rem;
+  color: ${color('primary')};
 `;
+
+const Title = styled.h1`
+  font-family: ${fontFamily('special')};
+  font-size: ${fontSize('h3')};
+`;
+
+export function Header({ title }) {
+  return (
+    <Container>
+      <Title>{title}</Title>
+    </Container>
+  );
+}

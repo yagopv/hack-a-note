@@ -22,7 +22,8 @@ export const theme = {
   font: {
     family: {
       primary: '"Raleway", sans-serif',
-      secondary: '"Oswald", sans-serif'
+      secondary: '"Oswald", sans-serif',
+      special: '"Press Start 2P"'
     },
     size: {
       h1: '2rem',
@@ -68,6 +69,8 @@ export const GlobalStyle = createGlobalStyle`
     background: ${color('dark')};
     color: ${color('primary')};
     line-height: 1.3em;
+    display: flex;
+    flex-direction: column;
   }
 
   .gutter-horizontal {

@@ -9,6 +9,7 @@ import { FormControl, Label, Input } from './Forms';
 import { ValidationMessage } from './ValidationMessage';
 import { Textarea } from './Textarea';
 import { Link } from './Link';
+import { Header } from './Header';
 
 export {
   Flex,
@@ -25,5 +26,6 @@ export {
   ValidationMessage,
   Input,
   Textarea,
-  Link
+  Link,
+  Header
 };
