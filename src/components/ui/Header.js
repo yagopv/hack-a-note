@@ -2,6 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { color, fontFamily, fontSize } from '../../shared/theme';
 
+export function Header({ title }) {
+  return (
+    <Container>
+      <Title>{title}</Title>
+    </Container>
+  );
+}
+
 const Container = styled.header`
   display: flex;
   align-items: center;
@@ -13,11 +21,3 @@ const Title = styled.h1`
   font-family: ${fontFamily('special')};
   font-size: ${fontSize('h3')};
 `;
-
-export function Header({ title }) {
-  return (
-    <Container>
-      <Title>{title}</Title>
-    </Container>
-  );
-}

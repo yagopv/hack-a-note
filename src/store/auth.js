@@ -6,7 +6,7 @@ const REGISTER_SUCCESS = '[AUTH] Register Success';
 const REGISTER_FAILED = '[AUTH] Register Failed';
 
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: true
 };
 
 export function login() {
