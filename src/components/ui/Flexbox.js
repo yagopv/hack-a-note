@@ -6,8 +6,6 @@ export const Flex = styled(Box)`
   align-items: ${props => props.alignItems};
   justify-content: ${props => props.justifyContent};
   flex-direction: ${props => props.direction};
-  padding: ${props => props.padding};
-  margin: ${props => props.margin};
   height: ${props => (props.fullHeight ? '100%' : 'auto')};
 `;
 
