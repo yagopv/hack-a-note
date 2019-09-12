@@ -17,4 +17,6 @@ export const Box = styled.div`
   ${({ mx }) => mx && `margin: 0 ${spacing(mx)};`}
   ${({ my }) => my && `margin: ${spacing(my)} 0;`}
   ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
+  ${({ overflowX }) => overflowX && `overflow-y: ${overflowX};`}
+  ${({ overflowY }) => overflowY && `overflow-y: ${overflowY};`}
 `;

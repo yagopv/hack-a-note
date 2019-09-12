@@ -10,8 +10,8 @@ export const DashboardLayout = styled.div`
   ${props => `
     @media ${props.theme.breakpoints.xs} {
       grid-template-columns: 50vw 100vw 100vw;
-      transform: translateX(-50vw);
-      transition: transform 0.5s ease;
+      transition: transform 0.33s ease;
+      transform: translateX(${props.isMenuOpened ? 0 : '-50vw'});
     }
   `}
 `;

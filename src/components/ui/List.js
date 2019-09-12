@@ -9,13 +9,6 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   padding: 0.5rem 1rem;
-  ${props =>
-    props.isSelected
-      ? `
-    color: ${color('bright')};
-    background: ${color('dark')};
-  `
-      : `
-    color:  ${color('dark')};
-  `}
+  background: ${props => props.bg};
+  color: ${props => props.color};
 `;

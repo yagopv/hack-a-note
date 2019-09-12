@@ -10,6 +10,7 @@ import { ValidationMessage } from './ValidationMessage';
 import { Textarea } from './Textarea';
 import { Link } from './Link';
 import { Header } from './Header';
+import { OpacityContainer } from './OpacityContainer';
 
 export {
   Flex,
@@ -27,5 +28,6 @@ export {
   Input,
   Textarea,
   Link,
-  Header
+  Header,
+  OpacityContainer
 };

@@ -7,13 +7,13 @@ import { color, fontFamily } from '../../shared/theme';
 function CategoryList({ onClick }) {
   return (
     <List bg={color('primary')}>
-      <ListItem onClick={onClick} isSelected>
+      <ListItem onClick={onClick} bg={color('dark')} color={color('bright')}>
         <Tag># Work notes</Tag>
       </ListItem>
-      <ListItem onClick={onClick}>
+      <ListItem onClick={onClick} color={color('dark')}>
         <Tag># Family</Tag>
       </ListItem>
-      <ListItem onClick={onClick}>
+      <ListItem onClick={onClick} color={color('dark')}>
         <Tag># Read List</Tag>
       </ListItem>
     </List>

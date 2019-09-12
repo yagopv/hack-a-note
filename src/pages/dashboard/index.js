@@ -14,19 +14,24 @@ import { DashboardLayout } from '../../components/layout/DashboardLayout';
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const { isCategoryMenuOpened, isNoteListMenuOpened } = useSelector(
-    state => state.ui
-  );
+  const { isCategoryMenuOpened } = useSelector(state => state.ui);
   const { isAuthenticated } = useSelector(state => state.auth);
 
   return (
     <React.Fragment>
-      <Header title="Notes App" tag="tag1" isAuthenticated={isAuthenticated} />
-      <DashboardLayout>
-        <CategoryList />
-        <NoteList />
-        <Note />
-      </DashboardLayout>
+      <Header
+        title="Notes App"
+        tag="tag1"
+        isAuthenticated={isAuthenticated}
+        onToggleMenu={() => dispatch(toggleCategoryMenu())}
+      />
+      <Flex as="main" fullHeight>
+        <DashboardLayout isMenuOpened={isCategoryMenuOpened}>
+          <CategoryList />
+          <NoteList isCategoryMenuOpened={isCategoryMenuOpened} />
+          <Note />
+        </DashboardLayout>
+      </Flex>
     </React.Fragment>
   );
 }

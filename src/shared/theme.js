@@ -71,6 +71,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.3em;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .gutter-horizontal {
@@ -79,5 +80,21 @@ export const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     color: ${color('primary')};
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${color('dark')};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${color('primary')};
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${color('bright')};
   }
 `;

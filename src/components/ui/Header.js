@@ -6,17 +6,17 @@ import { Flex, FlexItem } from './Flexbox';
 import { Text } from '../ui';
 import { Link } from './Link';
 
-export function Header({ title, tag, isAuthenticated }) {
+export function Header({ title, tag, isAuthenticated, onToggleMenu }) {
   const theme = useContext(ThemeContext);
   const isMobile = useMedia([theme.breakpoints.md], [false], true);
 
   return (
-    <Flex alignItems="center" p="md">
+    <Flex alignItems="center" p="md" as="header">
       {!isMobile && <Title>{title}</Title>}
       {isMobile && (
         <React.Fragment>
           <FlexItem grow="1">
-            <NavButton />
+            <NavButton onClick={onToggleMenu} />
           </FlexItem>
           <FlexItem grow="1" textAlign="center">
             <Tag>#{tag}</Tag>
@@ -35,9 +35,9 @@ export function Header({ title, tag, isAuthenticated }) {
   );
 }
 
-function NavButton() {
+function NavButton({ onClick }) {
   return (
-    <a href="#tags" id="tags-toggle">
+    <a href="#tags" id="tags-toggle" onClick={onClick}>
       <svg
         width="16"
         height="13"
