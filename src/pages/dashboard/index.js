@@ -20,6 +20,47 @@ import {
 import { toggleCategoryMenu, toggleNoteListMenu } from '../../store/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 
+const notes = [
+  {
+    id: 1,
+    title: 'Cras vitae lorem bibendum',
+    description:
+      'Quisque luctus eros felis, id imperdiet orci porta ac. Nulla pellentesque, metus eu accumsan ultricies, nisi risus blandit quam, sed sollicitudin mauris nisi ut massa'
+  },
+  {
+    id: 2,
+    selected: false,
+
+    title: 'Ut cursus mauris at tincidunt venenatis',
+    description:
+      'Cras tincidunt lectus at lectus faucibus dignissim non at nulla.'
+  },
+  {
+    id: 3,
+    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
+    description:
+      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
+  },
+  {
+    id: 4,
+    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
+    description:
+      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
+  },
+  {
+    id: 5,
+    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
+    description:
+      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
+  },
+  {
+    id: 6,
+    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
+    description:
+      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
+  }
+];
+
 function Dashboard() {
   const dispatch = useDispatch();
   const { isCategoryMenuOpened } = useSelector(state => state.ui);
@@ -51,7 +92,11 @@ function Dashboard() {
                 ml={'xs'}
               />
             </Flex>
-            <NoteList isCategoryMenuOpened={isCategoryMenuOpened} mt="md" />
+            <NoteList
+              isCategoryMenuOpened={isCategoryMenuOpened}
+              notes={notes}
+              mt="md"
+            />
           </Flex>
           <Note />
         </DashboardLayout>
