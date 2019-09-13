@@ -5,7 +5,7 @@ import { Separator } from './Separator';
 import { Box } from './Box';
 import { Text } from './Text';
 import { Button } from './Button';
-import { FormControl, Label, Input } from './Forms';
+import { FormControl, Label, Input, IconInput, IconButton } from './Forms';
 import { ValidationMessage } from './ValidationMessage';
 import { Textarea } from './Textarea';
 import { Link } from './Link';
@@ -26,6 +26,8 @@ export {
   Label,
   ValidationMessage,
   Input,
+  IconInput,
+  IconButton,
   Textarea,
   Link,
   Header,

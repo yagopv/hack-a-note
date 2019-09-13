@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { fontSize, fontFamily, color as themeColor } from '../../shared/theme';
+import { withSpacingProps } from './uiUtils';
 
 export const FormControl = styled.div`
   display: flex;
@@ -17,7 +18,9 @@ export const Label = styled.label`
   margin-bottom: 0.5rem;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input.attrs(props => ({
+  type: props.type || 'text'
+}))`
   font-family: ${fontFamily('primary')};
   flex: 1;
   font-size: 1rem;
@@ -30,4 +33,23 @@ export const Input = styled.input`
     color: inherit;
     opacity: 0.5;
   }
+`;
+
+export const IconInput = styled(Input)`
+  background-image: ${props => props.image};
+  background-repeat: no-repeat;
+  background-position: 0.5rem center;
+  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+`;
+
+export const IconButton = styled.button`
+  background-image: ${props => props.image};
+  width: 2.5rem;
+  background-color: transparent;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  font-size: 0;
+  ${withSpacingProps}
 `;

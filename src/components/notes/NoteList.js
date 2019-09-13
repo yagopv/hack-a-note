@@ -45,15 +45,13 @@ const notes = [
 function NoteList({ onClick, isCategoryMenuOpened }) {
   return (
     <OpacityContainer activated={isCategoryMenuOpened}>
-      <Box pb="7rem" overflowY="auto">
-        <List>
-          {notes.map(note => (
-            <ListItem key={note.id} onClick={onClick}>
-              <NoteItem {...note} isSelected />
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+      <List mt="md">
+        {notes.map(note => (
+          <ListItem key={note.id} onClick={onClick}>
+            <NoteItem {...note} isSelected />
+          </ListItem>
+        ))}
+      </List>
     </OpacityContainer>
   );
 }

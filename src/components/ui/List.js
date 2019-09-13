@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import { color } from '../../shared/theme';
+import { withColorProps, withSpacingProps } from './uiUtils';
 
 export const List = styled.ul`
   list-style-type: none;
-  background: ${props => props.bg};
-  padding-top: 1rem;
+  ${withColorProps}
+  ${withSpacingProps}
 `;
 
 export const ListItem = styled.li`
-  padding: 0.5rem 1rem;
-  background: ${props => props.bg};
-  color: ${props => props.color};
+  ${withColorProps}
+  ${withSpacingProps}
 `;

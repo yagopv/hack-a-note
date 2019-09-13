@@ -6,14 +6,19 @@ import { color, fontFamily } from '../../shared/theme';
 
 function CategoryList({ onClick }) {
   return (
-    <List bg={color('primary')}>
-      <ListItem onClick={onClick} bg={color('dark')} color={color('bright')}>
+    <List bg={color('primary')} pt="md">
+      <ListItem
+        onClick={onClick}
+        bg={color('dark')}
+        color={color('bright')}
+        p="sm"
+      >
         <Tag># Work notes</Tag>
       </ListItem>
-      <ListItem onClick={onClick} color={color('dark')}>
+      <ListItem onClick={onClick} color={color('dark')} p="sm">
         <Tag># Family</Tag>
       </ListItem>
-      <ListItem onClick={onClick} color={color('dark')}>
+      <ListItem onClick={onClick} color={color('dark')} p="sm">
         <Tag># Read List</Tag>
       </ListItem>
     </List>
