@@ -13,7 +13,7 @@ import {
 } from '../ui';
 
 function LoginForm({ onSubmit }) {
-  const { form, handleSubmit, pristine, submitting } = useForm({
+  const { form, handleSubmit } = useForm({
     onSubmit,
     validate: loginFormValidation
   });

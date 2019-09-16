@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text, Box, List, ListItem } from '../ui';
+import { List, ListItem } from '../ui';
 import { color, fontFamily } from '../../shared/theme';
 
 function CategoryList({ onClick }) {

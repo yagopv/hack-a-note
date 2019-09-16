@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { color, fontFamily, fontSize } from '../../shared/theme';
+import { fontFamily, fontSize } from '../../shared/theme';
 import { useMedia } from '../../shared/hooks/useMedia';
 import { Flex, FlexItem } from './Flexbox';
 import { Text } from '../ui';
@@ -53,12 +53,6 @@ function NavButton({ onClick }) {
     </a>
   );
 }
-
-const Container = styled.header`
-  display: flex;
-  align-items: center;
-  padding: 1.4rem 1rem;
-`;
 
 const Title = styled.h1`
   font-family: ${fontFamily('special')};

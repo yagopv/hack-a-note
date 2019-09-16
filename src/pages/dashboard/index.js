@@ -1,23 +1,11 @@
-import React, { useContext } from 'react';
-import Split from 'react-split';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
-import { Menu } from '../../components/ui/Menu';
-import { ThemeContext } from 'styled-components';
-import { useMedia } from '../../shared/hooks/useMedia';
 import { Header } from '../../components/ui/Header';
-import {
-  Flex,
-  FlexItem,
-  Text,
-  Input,
-  IconInput,
-  IconButton,
-  Box
-} from '../../components/ui';
-import { toggleCategoryMenu, toggleNoteListMenu } from '../../store/ui';
+import { Flex, IconInput, IconButton } from '../../components/ui';
+import { toggleCategoryMenu } from '../../store/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 
 const notes = [
@@ -96,6 +84,7 @@ function Dashboard() {
               isCategoryMenuOpened={isCategoryMenuOpened}
               notes={notes}
               mt="md"
+              onSelected={index => console.log(index)}
             />
           </Flex>
           <Note />
