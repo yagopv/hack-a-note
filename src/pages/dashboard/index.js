@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
@@ -54,6 +54,8 @@ function Dashboard() {
   const { isCategoryMenuOpened } = useSelector(state => state.ui);
   const { isAuthenticated } = useSelector(state => state.auth);
 
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   return (
     <React.Fragment>
       <Header
@@ -84,7 +86,8 @@ function Dashboard() {
               isCategoryMenuOpened={isCategoryMenuOpened}
               notes={notes}
               mt="md"
-              onSelected={index => console.log(index)}
+              selectedIndex={selectedIndex}
+              onSelected={index => setSelectedIndex(index)}
             />
           </Flex>
           <Note />
