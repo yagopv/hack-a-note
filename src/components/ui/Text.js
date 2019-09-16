@@ -15,4 +15,5 @@ export const Text = styled(Box)`
     isHeading(props.as) ? fontFamily('secondary') : fontFamily('primary')};
   font-size: ${props => fontSize(props.as) || '0.8rem'};
   text-transform: ${props => (isHeading(props.as) ? 'uppercase' : 'none')};
+  line-height: ${props => isHeading(props.as) && '2rem'};
 `;

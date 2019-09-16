@@ -90,7 +90,7 @@ function Dashboard() {
               onSelected={index => setSelectedIndex(index)}
             />
           </Flex>
-          <Note />
+          <Note note={notes[selectedIndex]} />
         </DashboardLayout>
       </Flex>
     </React.Fragment>
