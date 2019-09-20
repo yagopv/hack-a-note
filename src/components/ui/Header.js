@@ -46,7 +46,7 @@ function NavButton({ onClick }) {
       >
         <path
           stroke="#C86818"
-          stroke-width="3"
+          strokeWidth="3"
           d="M0 1.5h16M0 6.5h16M0 11.5h16"
         />
       </svg>
