@@ -4,7 +4,6 @@ import { Flex, Text } from '../../components/ui';
 import { LoginForm } from '../../components/forms';
 import { login } from '../../store/auth';
 import { Header } from '../../components/ui';
-import { setToken } from '../../http/auth';
 
 function Login({ history }) {
   const dispatch = useDispatch();
@@ -14,8 +13,6 @@ function Login({ history }) {
       const token = await dispatch(login(email, password));
       if (token) {
         history.push('/');
-        localStorage.setItem('token', token);
-        setToken(token);
       }
     },
     [dispatch, history]

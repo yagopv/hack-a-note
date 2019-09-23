@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-let token = null;
-
-export function setToken(accessToken) {
-  token = accessToken;
-}
-
 export function login(email, password) {
   return axios.post(`${process.env.REACT_APP_BASE_URL}/auth`, null, {
     auth: {
