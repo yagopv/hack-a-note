@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CategoryList } from '../../components/categories/CategoryList';
-import { NoteList } from '../../components/notes/NoteList';
-import { Note } from '../../components/notes/Note';
-import { Header } from '../../components/ui/Header';
-import { Flex, IconInput, IconButton } from '../../components/ui';
-import { toggleCategoryMenu } from '../../store/ui';
-import { DashboardLayout } from '../../components/layout/DashboardLayout';
-import { getNotes } from '../../store/notes';
+import { CategoryList } from '../components/categories/CategoryList';
+import { NoteList } from '../components/notes/NoteList';
+import { Note } from '../components/notes/Note';
+import { Header } from '../components/ui/Header';
+import { Flex, IconInput, IconButton } from '../components/ui';
+import { toggleCategoryMenu } from '../store/ui';
+import { DashboardLayout } from '../components/layout/DashboardLayout';
+import { getNotes } from '../store/notes';
 
 function Dashboard() {
   const dispatch = useDispatch();

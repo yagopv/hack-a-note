@@ -1,15 +1,16 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Flex, Text, Header } from '../../components/ui';
-import { RegisterForm } from '../../components/forms';
-import { register } from '../../store/auth';
+import { Flex, Text } from '../components/ui';
+import { LoginForm } from '../components/forms';
+import { login } from '../store/auth';
+import { Header } from '../components/ui';
 
-function Register({ history }) {
+function Login({ history }) {
   const dispatch = useDispatch();
 
-  const signUp = useCallback(
-    async ({ email, password, name }) => {
-      const token = await dispatch(register(email, password, name));
+  const signIn = useCallback(
+    async ({ email, password }) => {
+      const token = await dispatch(login(email, password));
       if (token) {
         history.push('/');
       }
@@ -26,11 +27,11 @@ function Register({ history }) {
         direction="column"
         fullHeight
       >
-        <Text as="h3">Please register</Text>
-        <RegisterForm onSubmit={signUp} />
+        <Text as="h3">Please login</Text>
+        <LoginForm onSubmit={signIn} />
       </Flex>
     </React.Fragment>
   );
 }
 
-export { Register };
+export { Login };
