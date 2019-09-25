@@ -4,23 +4,20 @@ import styled from 'styled-components';
 import { List, ListItem } from '../ui';
 import { color, fontFamily } from '../../shared/theme';
 
-function CategoryList({ onClick }) {
+function CategoryList({ items, selected, onCategorySelected }) {
   return (
     <List bg={color('primary')} pt="md">
-      <ListItem
-        onClick={onClick}
-        bg={color('dark')}
-        color={color('bright')}
-        p="sm"
-      >
-        <Tag># Work notes</Tag>
-      </ListItem>
-      <ListItem onClick={onClick} color={color('dark')} p="sm">
-        <Tag># Family</Tag>
-      </ListItem>
-      <ListItem onClick={onClick} color={color('dark')} p="sm">
-        <Tag># Read List</Tag>
-      </ListItem>
+      {items &&
+        items.map((item, index) => (
+          <ListItem
+            onClick={() => onCategorySelected(index)}
+            bg={selected === index && color('dark')}
+            color={selected === index ? color('bright') : color('dark')}
+            p="sm"
+          >
+            <Tag># {item}</Tag>
+          </ListItem>
+        ))}
     </List>
   );
 }

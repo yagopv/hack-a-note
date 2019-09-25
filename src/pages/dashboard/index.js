@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
@@ -7,54 +7,27 @@ import { Header } from '../../components/ui/Header';
 import { Flex, IconInput, IconButton } from '../../components/ui';
 import { toggleCategoryMenu } from '../../store/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
-
-const notes = [
-  {
-    id: 1,
-    title: 'Cras vitae lorem bibendum',
-    description:
-      'Quisque luctus eros felis, id imperdiet orci porta ac. Nulla pellentesque, metus eu accumsan ultricies, nisi risus blandit quam, sed sollicitudin mauris nisi ut massa'
-  },
-  {
-    id: 2,
-    selected: false,
-
-    title: 'Ut cursus mauris at tincidunt venenatis',
-    description:
-      'Cras tincidunt lectus at lectus faucibus dignissim non at nulla.'
-  },
-  {
-    id: 3,
-    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
-    description:
-      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
-  },
-  {
-    id: 4,
-    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
-    description:
-      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
-  },
-  {
-    id: 5,
-    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
-    description:
-      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
-  },
-  {
-    id: 6,
-    title: 'Aenean vel turpis at nunc blandit commodo quis a urna',
-    description:
-      'Mauris iaculis ligula vel semper blandit. Morbi dapibus venenatis augue, sit amet imperdiet erat gravida id. Praesent mollis velit in nisi ullamcorper cursus'
-  }
-];
+import { getNotes } from '../../store/notes';
 
 function Dashboard() {
   const dispatch = useDispatch();
   const { isCategoryMenuOpened } = useSelector(state => state.ui);
   const { isAuthenticated } = useSelector(state => state.auth);
+  const { notes } = useSelector(state => state.notes);
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedTag, setSelectedTag] = useState(0);
+  const [selectedNote, setSelectedNote] = useState(0);
+
+  useEffect(() => {
+    dispatch(getNotes());
+  }, [dispatch]);
+
+  const tags = useMemo(() => {
+    return notes.reduce((acc, currentValue, index) => {
+      currentValue.tags.forEach(tag => !acc.includes(tag) && acc.push(tag));
+      return acc;
+    }, []);
+  }, [notes]);
 
   return (
     <React.Fragment>
@@ -66,7 +39,14 @@ function Dashboard() {
       />
       <Flex as="main" fullHeight>
         <DashboardLayout isMenuOpened={isCategoryMenuOpened}>
-          <CategoryList />
+          <CategoryList
+            items={tags}
+            selected={selectedTag}
+            onCategorySelected={index => {
+              setSelectedTag(index);
+              setSelectedNote(0);
+            }}
+          />
           <Flex direction="column" p="md">
             <Flex>
               <IconInput
@@ -86,11 +66,11 @@ function Dashboard() {
               isCategoryMenuOpened={isCategoryMenuOpened}
               notes={notes}
               mt="md"
-              selectedIndex={selectedIndex}
-              onSelected={index => setSelectedIndex(index)}
+              selected={selectedNote}
+              onNoteSelected={setSelectedNote}
             />
           </Flex>
-          <Note note={notes[selectedIndex]} />
+          <Note note={(notes.length && notes[selectedTag]) || []} />
         </DashboardLayout>
       </Flex>
     </React.Fragment>

@@ -9,7 +9,7 @@ const REGISTER_FAILED = '[AUTH] Register Failed';
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: false,
+  isAuthenticated: !!localStorage.getItem('token'),
   error: null,
   user: null
 };
@@ -34,16 +34,20 @@ export function register(email, password, name) {
   return async (dispatch, getState) => {
     try {
       dispatch({ type: REGISTER });
-      const registerData = await http.register(email, password, name);
-      dispatch({ type: REGISTER_SUCCESS, registerData });
+      const {
+        data: { user, token }
+      } = await http.register(email, password, name);
+      dispatch({ type: REGISTER_SUCCESS, user });
+      return token;
     } catch (error) {
       dispatch({ type: REGISTER_FAILED, error });
+      return false;
     }
   };
 }
 
-export function authReducer(state = initialState, { type, payload }) {
-  switch (type) {
+export function authReducer(state = initialState, action) {
+  switch (action.type) {
     case LOGIN:
       return { ...state, isFetching: true };
     case LOGIN_SUCCESS:
@@ -51,16 +55,16 @@ export function authReducer(state = initialState, { type, payload }) {
         ...state,
         isAuthenticated: true,
         isFetching: true,
-        user: payload
+        user: action.user
       };
     case LOGIN_FAILED:
-      return { ...state, isFetching: false, error: payload };
+      return { ...state, isFetching: false, error: action.error };
     case REGISTER:
       return { ...state, isFetching: true };
     case REGISTER_SUCCESS:
       return { ...state, isAuthenticated: true };
     case REGISTER_FAILED:
-      return { ...state, isFetching: false, error: payload };
+      return { ...state, isFetching: false, error: action.error };
     default:
       return state;
   }

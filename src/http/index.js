@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { login, register } from './auth';
+import { getNotes, getNote, updateNote, createNote, deleteNote } from './notes';
 
 let token = localStorage.getItem('token') || null;
 
+const TOKEN_URLS = ['/auth, /users'];
+
 axios.interceptors.request.use(
   function(config) {
-    if (token && !config.url.includes('/auth')) {
+    if (token && TOKEN_URLS.indexOf(config.url) === -1) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
@@ -17,7 +20,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   function(response) {
-    if (response.config.url.includes('/auth') && response.data.token) {
+    if (response.data.token && TOKEN_URLS.indexOf(response.config.url) === -1) {
       token = response.data.token;
       localStorage.setItem('token', token);
     }
@@ -28,4 +31,12 @@ axios.interceptors.response.use(
   }
 );
 
-export default { login, register };
+export default {
+  login,
+  register,
+  getNotes,
+  getNote,
+  updateNote,
+  createNote,
+  deleteNote
+};

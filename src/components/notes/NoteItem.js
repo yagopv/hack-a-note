@@ -5,14 +5,14 @@ import { Text } from '../ui/Text';
 import { color } from '../../shared/theme';
 import { withSpacingProps } from '../ui/uiUtils';
 
-function NoteItem({ title, description, isSelected }) {
+function NoteItem({ title, body, isSelected }) {
   return (
     <NoteItemContainer isSelected={isSelected} p="sm">
       <Text as="h5" color="inherit">
         {title}
       </Text>
       <Text as="p" mt="sm" color={isSelected ? color('dark') : color('text')}>
-        {description}
+        {body}
       </Text>
     </NoteItemContainer>
   );
