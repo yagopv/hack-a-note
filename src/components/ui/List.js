@@ -10,4 +10,5 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   ${withColorProps}
   ${withSpacingProps}
+  cursor: pointer;
 `;

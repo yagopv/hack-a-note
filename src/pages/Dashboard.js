@@ -70,7 +70,7 @@ function Dashboard() {
               onNoteSelected={setSelectedNote}
             />
           </Flex>
-          <Note note={(notes.length && notes[selectedTag]) || []} />
+          <Note note={(notes.length && notes[selectedNote]) || []} />
         </DashboardLayout>
       </Flex>
     </React.Fragment>
