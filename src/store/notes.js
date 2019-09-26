@@ -28,18 +28,18 @@ export function getNotes() {
   };
 }
 
-export function updateNote(change) {
-  return {
-    type: UPDATE_NOTE,
-    change
-  };
-}
-
-export function saveNote(note) {
+export function saveNote(note, originalNote) {
   return async dispatch => {
+    if (
+      note.title.trim() === originalNote.title.trim() &&
+      note.content.trim() === originalNote.content.trim()
+    ) {
+      return;
+    }
+
     try {
       dispatch({ type: SAVE_NOTE });
-      const updatedNote = await http.updateNote(note.id, note);
+      const { data: updatedNote } = await http.updateNote(note.id, note);
       dispatch({ type: SAVE_NOTE_SUCCESS, note: updatedNote });
     } catch (error) {
       dispatch({ type: SAVE_NOTE_FAILED, error });
@@ -50,17 +50,19 @@ export function saveNote(note) {
 export function notesReducer(state = initialState, action) {
   switch (action.type) {
     case GET_NOTES:
+    case SAVE_NOTE:
       return { ...state, isFetching: true };
     case GET_NOTES_SUCCESS:
       return { ...state, isFetching: false, notes: action.notes };
     case GET_NOTES_FAILED:
+    case SAVE_NOTE_FAILED:
       return { ...state, isFetching: false, error: action.error };
-    case UPDATE_NOTE:
+    case SAVE_NOTE_SUCCESS:
       return {
         ...state,
         notes: state.notes.map(note => {
-          if (note.id === action.change.id) {
-            return { ...note, ...action.change };
+          if (note.id === action.note.id) {
+            return action.note;
           }
           return note;
         })
