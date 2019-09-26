@@ -10,6 +10,7 @@ function CategoryList({ items, selected, onCategorySelected }) {
       {items &&
         items.map((item, index) => (
           <ListItem
+            key={index}
             onClick={() => onCategorySelected(index)}
             bg={selected === index && color('dark')}
             color={selected === index ? color('bright') : color('dark')}

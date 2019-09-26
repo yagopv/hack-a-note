@@ -39,8 +39,8 @@ export function saveNote(note) {
   return async dispatch => {
     try {
       dispatch({ type: SAVE_NOTE });
-      // const updatedNote = await http.updateNote(note);
-      // dispatch({ type: SAVE_NOTE_SUCCESS, note: updatedNote });
+      const updatedNote = await http.updateNote(note.id, note);
+      dispatch({ type: SAVE_NOTE_SUCCESS, note: updatedNote });
     } catch (error) {
       dispatch({ type: SAVE_NOTE_FAILED, error });
     }

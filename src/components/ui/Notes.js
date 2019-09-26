@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color, fontFamily } from '../../shared/theme';
 
-export const NoteTitle = styled.input`
+export const NoteTitle = styled.input.attrs({ type: 'text' })`
   background: transparent;
   border: none;
   color: ${color('primary')};
@@ -9,6 +9,7 @@ export const NoteTitle = styled.input`
   font-size: 2rem;
   font-weight: bold;
   outline: none;
+  width: 100%;
 `;
 
 export const NoteContent = styled.textarea`

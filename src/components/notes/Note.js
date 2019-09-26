@@ -1,11 +1,19 @@
 import React, { useCallback } from 'react';
 import { Box, NoteTitle, NoteContent } from '../ui';
 
-function Note({ note: { id, title, content, tags }, onNoteChange, onSave }) {
+function Note({
+  note: { id, title = '', content = '', tags },
+  onNoteChange,
+  onSave
+}) {
   const autoSize = useCallback(element => {
     element.style.height = '5px';
     element.style.height = element.scrollHeight + 'px';
   }, []);
+
+  const handleSave = useCallback(() => {
+    onSave({ id, title, content, tags });
+  }, [content, id, onSave, tags, title]);
 
   return (
     <Box p="md">
@@ -15,7 +23,7 @@ function Note({ note: { id, title, content, tags }, onNoteChange, onSave }) {
           event => onNoteChange({ id, title: event.target.value }),
           [id, onNoteChange]
         )}
-        onBlur={onSave}
+        onBlur={handleSave}
       />
       <NoteContent
         onInput={event => autoSize(event.target)}
@@ -23,10 +31,9 @@ function Note({ note: { id, title, content, tags }, onNoteChange, onSave }) {
           event => onNoteChange({ id, content: event.target.value }),
           [id, onNoteChange]
         )}
-        onBlur={onSave}
-      >
-        {content}
-      </NoteContent>
+        onBlur={handleSave}
+        value={content}
+      />
     </Box>
   );
 }
