@@ -7,7 +7,7 @@ import { Header } from '../components/ui/Header';
 import { Flex, IconInput, IconButton } from '../components/ui';
 import { toggleCategoryMenu } from '../store/ui';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
-import { getNotes } from '../store/notes';
+import { getNotes, saveNote, updateNote } from '../store/notes';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -70,7 +70,11 @@ function Dashboard() {
               onNoteSelected={setSelectedNote}
             />
           </Flex>
-          <Note note={(notes.length && notes[selectedNote]) || []} />
+          <Note
+            note={(notes.length && notes[selectedNote]) || []}
+            onNoteChange={change => dispatch(updateNote(change))}
+            onSave={note => dispatch(saveNote(note))}
+          />
         </DashboardLayout>
       </Flex>
     </React.Fragment>
