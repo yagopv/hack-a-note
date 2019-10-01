@@ -1,30 +1,23 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { CategoryList } from '../components/categories/CategoryList';
-import { NoteList } from '../components/notes/NoteList';
-import { Note } from '../components/notes/Note';
-import { Header } from '../components/ui/Header';
-import { Flex, IconInput, IconButton } from '../components/ui';
-import { DashboardLayout } from '../components/layout/DashboardLayout';
-import { getNotes, saveNote } from '../store/notes';
-import Auth from '../store/auth';
-import UI from '../store/ui';
+import React, { useState, useMemo } from 'react';
+import { CategoryList } from '../../components/categories/CategoryList';
+import { NoteList } from '../../components/notes/NoteList';
+import { Note } from '../../components/notes/Note';
+import { Header } from '../../components/ui/Header';
+import { Flex, IconInput, IconButton } from '../../components/ui';
+import { DashboardLayout } from '../../components/layout/DashboardLayout';
+import { useAuth, useUI } from '../../shared/context';
+import { useNotes } from './useNotes';
 
 function Dashboard() {
-  const dispatch = useDispatch();
+  const [{ isAuthenticated }] = useAuth();
+  const [{ isCategoryMenuOpened }, setUIState] = useUI();
   const {
-    state: { isAuthenticated }
-  } = Auth.useContainer();
-  const { isCategoryMenuOpened, toggleCategoryMenu } = UI.useContainer();
-
-  const { notes } = useSelector(state => state.notes);
+    state: { notes },
+    saveNote
+  } = useNotes();
 
   const [selectedTag, setSelectedTag] = useState(0);
   const [selectedNote, setSelectedNote] = useState(0);
-
-  useEffect(() => {
-    dispatch(getNotes());
-  }, [dispatch]);
 
   const tags = useMemo(() => {
     return notes.reduce((acc, currentValue, index) => {
@@ -39,7 +32,9 @@ function Dashboard() {
         title="Notes App"
         tag="tag1"
         isAuthenticated={isAuthenticated}
-        onToggleMenu={() => toggleCategoryMenu()}
+        onToggleMenu={() =>
+          setUIState({ isCategoryMenuOpened: !isCategoryMenuOpened })
+        }
       />
       <Flex as="main" fullHeight>
         <DashboardLayout isMenuOpened={isCategoryMenuOpened}>
@@ -78,7 +73,7 @@ function Dashboard() {
             <Note
               note={notes[selectedNote]}
               onSave={note => {
-                dispatch(saveNote(note, notes[selectedNote]));
+                saveNote(note, notes[selectedNote]);
                 console.log(note);
               }}
             />

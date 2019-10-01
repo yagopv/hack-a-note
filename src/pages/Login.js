@@ -2,19 +2,30 @@ import React, { useCallback } from 'react';
 import { Flex, Text } from '../components/ui';
 import { LoginForm } from '../components/forms';
 import { Header } from '../components/ui';
-import Auth from '../store/auth';
+import { useAuth, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../shared/context';
+import http from '../http';
 
 function Login({ history }) {
-  const auth = Auth.useContainer();
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useAuth();
 
   const signIn = useCallback(
     async ({ email, password }) => {
-      const token = await auth.login(email, password);
-      if (token) {
-        history.push('/');
+      try {
+        dispatch({ type: LOGIN });
+        const {
+          data: { user, token }
+        } = await http.login(email, password);
+        dispatch({ type: LOGIN_SUCCESS, user });
+        if (token) {
+          history.push('/');
+        }
+      } catch (error) {
+        dispatch({ type: LOGIN_FAILED, error });
+        return false;
       }
     },
-    [auth, history]
+    [dispatch, history]
   );
 
   return (

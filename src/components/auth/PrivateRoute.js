@@ -1,11 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router';
-import Auth from '../../store/auth';
+import { useAuth } from '../../shared/context';
 
 function PrivateRoute({ component: Component, ...others }) {
-  const {
-    state: { isAuthenticated }
-  } = Auth.useContainer();
+  const [{ isAuthenticated }] = useAuth();
 
   return (
     <Route
