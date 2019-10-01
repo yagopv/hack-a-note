@@ -8,11 +8,14 @@ import { Flex, IconInput, IconButton } from '../components/ui';
 import { toggleCategoryMenu } from '../store/ui';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { getNotes, saveNote } from '../store/notes';
+import Auth from '../store/auth';
 
 function Dashboard() {
   const dispatch = useDispatch();
   const { isCategoryMenuOpened } = useSelector(state => state.ui);
-  const { isAuthenticated } = useSelector(state => state.auth);
+  const {
+    state: { isAuthenticated }
+  } = Auth.useContainer();
   const { notes } = useSelector(state => state.notes);
 
   const [selectedTag, setSelectedTag] = useState(0);
