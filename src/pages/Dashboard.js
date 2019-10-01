@@ -5,17 +5,18 @@ import { NoteList } from '../components/notes/NoteList';
 import { Note } from '../components/notes/Note';
 import { Header } from '../components/ui/Header';
 import { Flex, IconInput, IconButton } from '../components/ui';
-import { toggleCategoryMenu } from '../store/ui';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { getNotes, saveNote } from '../store/notes';
 import Auth from '../store/auth';
+import UI from '../store/ui';
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const { isCategoryMenuOpened } = useSelector(state => state.ui);
   const {
     state: { isAuthenticated }
   } = Auth.useContainer();
+  const { isCategoryMenuOpened, toggleCategoryMenu } = UI.useContainer();
+
   const { notes } = useSelector(state => state.notes);
 
   const [selectedTag, setSelectedTag] = useState(0);
@@ -38,7 +39,7 @@ function Dashboard() {
         title="Notes App"
         tag="tag1"
         isAuthenticated={isAuthenticated}
-        onToggleMenu={() => dispatch(toggleCategoryMenu())}
+        onToggleMenu={() => toggleCategoryMenu()}
       />
       <Flex as="main" fullHeight>
         <DashboardLayout isMenuOpened={isCategoryMenuOpened}>

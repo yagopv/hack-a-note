@@ -1,30 +1,33 @@
-const TOGGLE_CATEGORY_MENU = '[UI] Toggle Category Menu';
-const TOGGLE_NOTELIST_MENU = '[UI] Toggle NoteList Menu';
+import { useState } from 'react';
+import { createContainer } from './Container';
 
-const initialState = {
-  isCategoryMenuOpened: false,
-  isNoteListMenuOpened: false
-};
-
-export function toggleCategoryMenu() {
-  return {
-    type: TOGGLE_CATEGORY_MENU
-  };
-}
-
-export function toggleNoteListMenu() {
-  return {
-    type: TOGGLE_NOTELIST_MENU
-  };
-}
-
-export function uiReducer(state = initialState, { type }) {
-  switch (type) {
-    case TOGGLE_CATEGORY_MENU:
-      return { ...state, isCategoryMenuOpened: !state.isCategoryMenuOpened };
-    case TOGGLE_NOTELIST_MENU:
-      return { ...state, isNoteListMenuOpened: !state.isNoteListMenuOpened };
-    default:
-      return state;
+function useUI(
+  initialState = {
+    isCategoryMenuOpened: false,
+    isNoteListMenuOpened: false
   }
+) {
+  const [isCategoryMenuOpened, setIsCategoryMenuOpened] = useState(
+    initialState.isCategoryMenuOpened
+  );
+  const [isNoteListMenuOpened, setIsNoteListMenuOpened] = useState(
+    initialState.isNoteListMenuOpened
+  );
+
+  function toggleCategoryMenu() {
+    setIsCategoryMenuOpened(!isCategoryMenuOpened);
+  }
+
+  function toggleNoteListMenu() {
+    setIsNoteListMenuOpened(!isNoteListMenuOpened);
+  }
+
+  return {
+    isCategoryMenuOpened,
+    isNoteListMenuOpened,
+    toggleCategoryMenu,
+    toggleNoteListMenu
+  };
 }
+
+export default createContainer(useUI);
