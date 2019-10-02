@@ -43,7 +43,7 @@ function notesReducer(state, action) {
     case CREATE_NOTE_SUCCESS:
       return {
         ...state,
-        notes: [action.createdNote, ...state.notes]
+        notes: [action.note, ...state.notes]
       };
     case SELECT_TAG:
       return { ...state, selectedTag: action.tagIndex };
@@ -59,14 +59,16 @@ export function useNotes(
     notes: [],
     isFetching: false,
     error: null,
-    selectedTag: 0,
-    selectedNote: 0
+    selectedTag: null,
+    selectedNote: null
   }
 ) {
   const [state, dispatch] = useReducer(notesReducer, initialState);
 
   const saveNote = async (note, originalNote) => {
     if (
+      note.title &&
+      note.content &&
       note.title.trim() === originalNote.title.trim() &&
       note.content.trim() === originalNote.content.trim()
     ) {
@@ -82,13 +84,13 @@ export function useNotes(
     }
   };
 
-  const createNote = async () => {
+  const createNote = async tag => {
     try {
       dispatch({ type: CREATE_NOTE });
       const { data: createdNote } = await http.createNote({
         title: 'Untitled Note',
         content: 'No content',
-        tags: state.selectedTag ? [state.selectedTag] : []
+        tags: tag ? [tag] : []
       });
       dispatch({ type: CREATE_NOTE_SUCCESS, note: createdNote });
     } catch (error) {

@@ -7,10 +7,19 @@ import { color, fontFamily } from '../../shared/theme';
 function CategoryList({ items, selected, onCategorySelected }) {
   return (
     <List bg={color('primary')} pt="md">
+      <ListItem
+        key={'all'}
+        onClick={() => onCategorySelected(null)}
+        bg={selected === null && color('dark')}
+        color={selected === null ? color('bright') : color('dark')}
+        p="sm"
+      >
+        <Tag>All notes</Tag>
+      </ListItem>
       {items &&
         items.map((item, index) => (
           <ListItem
-            key={index}
+            key={item}
             onClick={() => onCategorySelected(index)}
             bg={selected === index && color('dark')}
             color={selected === index ? color('bright') : color('dark')}
