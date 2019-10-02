@@ -51,5 +51,13 @@ export const IconButton = styled.button`
   background-position: center center;
   border: none;
   font-size: 0;
+  cursor: pointer;
+  outline: none;
+  :hover {
+    opacity: 0.7;
+  }
+  :active {
+    opacity: 1;
+  }
   ${withSpacingProps}
 `;

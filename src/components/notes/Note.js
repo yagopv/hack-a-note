@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Box, NoteTitle, NoteContent } from '../ui';
 
 function Note({ note: { id, title = '', content = '', tags }, onSave }) {
@@ -13,6 +13,14 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
   const handleSave = useCallback(() => {
     onSave({ id, title: noteTitle, content: noteContent, tags });
   }, [id, noteContent, noteTitle, onSave, tags]);
+
+  useEffect(() => {
+    setNoteTitle(title);
+  }, [title]);
+
+  useEffect(() => {
+    setNoteContent(content);
+  }, [content]);
 
   return (
     <Box p="md">
