@@ -11,6 +11,7 @@ import { ValidationMessage } from './ValidationMessage';
 import { Link } from './Link';
 import { Header } from './Header';
 import { OpacityContainer } from './OpacityContainer';
+export { MarkdownPreview } from './MarkdownPreview';
 
 export {
   Flex,

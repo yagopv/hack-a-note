@@ -15,9 +15,8 @@ export const NoteTitle = styled.input.attrs({ type: 'text' })`
 export const NoteContent = styled.textarea`
   flex: 1;
   font-size: 1rem;
-  border: 2px solid ${props => color('primary')};
+  border: none;
   border-radius: 5px;
-  padding: 10px;
   background: transparent;
   outline: none;
   display: block;

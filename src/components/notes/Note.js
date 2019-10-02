@@ -1,19 +1,36 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
-import { Box, NoteTitle, NoteContent } from '../ui';
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+  useRef
+} from 'react';
+import marked from 'marked';
+
+import { Box, NoteTitle, NoteContent, MarkdownPreview } from '../ui';
 
 function Note({ note: { id, title = '', content = '', tags }, onSave }) {
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteContent, setNoteContent] = useState(content);
+  const [editMode, setEditMode] = useState(false);
   const textarea = useRef(null);
 
   const autoSize = useCallback(element => {
-    element.style.height = '5px';
-    element.style.height = element.scrollHeight + 'px';
+    if (element) {
+      element.style.height = '5px';
+      element.style.height = element.scrollHeight + 'px';
+    }
   }, []);
 
   const handleSave = useCallback(() => {
+    setEditMode(false);
     onSave({ id, title: noteTitle, content: noteContent, tags });
   }, [id, noteContent, noteTitle, onSave, tags]);
+
+  const handleChange = useCallback(
+    event => setNoteContent(event.target.value),
+    []
+  );
 
   useEffect(() => {
     setNoteTitle(title);
@@ -21,8 +38,13 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
 
   useEffect(() => {
     setNoteContent(content);
-    autoSize(textarea.current);
-  }, [autoSize, content, noteContent]);
+  }, [content]);
+
+  useEffect(() => {
+    if (editMode) {
+      autoSize(textarea.current);
+    }
+  }, [autoSize, editMode]);
 
   return (
     <Box p="md">
@@ -32,14 +54,22 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
         onChange={useCallback(event => setNoteTitle(event.target.value), [])}
         onBlur={handleSave}
       />
-      <NoteContent
-        ref={textarea}
-        placeholder="Enter note content"
-        onInput={event => autoSize(event.target)}
-        onChange={useCallback(event => setNoteContent(event.target.value), [])}
-        onBlur={handleSave}
-        value={noteContent}
-      />
+      {!editMode && (
+        <MarkdownPreview
+          dangerouslySetInnerHTML={{ __html: marked(noteContent) }}
+          onClick={() => setEditMode(true)}
+        />
+      )}
+      {editMode && (
+        <NoteContent
+          ref={textarea}
+          placeholder="Enter note content"
+          onInput={event => autoSize(event.target)}
+          onChange={handleChange}
+          onBlur={handleSave}
+          value={noteContent}
+        />
+      )}
     </Box>
   );
 }
