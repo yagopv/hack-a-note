@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useEffect, useMemo } from 'react';
+import { useReducer, useEffect, useMemo } from 'react';
 import http from '../../http';
 
 const GET_NOTES = '[NOTES] Get Notes';
@@ -88,8 +88,6 @@ export function useNotes(
     try {
       dispatch({ type: CREATE_NOTE });
       const { data: createdNote } = await http.createNote({
-        title: 'Untitled Note',
-        content: 'No content',
         tags: tag ? [tag] : []
       });
       dispatch({ type: CREATE_NOTE_SUCCESS, note: createdNote });
@@ -106,6 +104,14 @@ export function useNotes(
       return acc;
     }, []);
   }, [state.notes]);
+  const filteredNotes = useMemo(() => {
+    if (!state.notes.length || state.selectedTag === null) {
+      return state.notes;
+    }
+    return state.notes.filter(note =>
+      note.tags.includes(tags[state.selectedTag])
+    );
+  }, [state.notes, state.selectedTag, tags]);
 
   useEffect(() => {
     async function getNotes() {
@@ -122,5 +128,13 @@ export function useNotes(
     getNotes();
   }, []);
 
-  return { state, saveNote, createNote, selectTag, selectNote, tags };
+  return {
+    state,
+    saveNote,
+    createNote,
+    selectTag,
+    selectNote,
+    tags,
+    filteredNotes
+  };
 }

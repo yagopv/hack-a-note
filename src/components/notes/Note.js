@@ -25,11 +25,13 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
   return (
     <Box p="md">
       <NoteTitle
+        placeholder="Untitled Note"
         value={noteTitle}
         onChange={useCallback(event => setNoteTitle(event.target.value), [])}
         onBlur={handleSave}
       />
       <NoteContent
+        placeholder="Enter note content"
         onInput={event => autoSize(event.target)}
         onChange={useCallback(event => setNoteContent(event.target.value), [])}
         onBlur={handleSave}

@@ -12,12 +12,13 @@ function Dashboard() {
   const [{ isAuthenticated }] = useAuth();
   const [{ isCategoryMenuOpened }, setUIState] = useUI();
   const {
-    state: { notes, selectedTag, selectedNote },
+    state: { selectedTag, selectedNote },
     saveNote,
     createNote,
     selectTag,
     selectNote,
-    tags
+    tags,
+    filteredNotes
   } = useNotes();
 
   return (
@@ -58,17 +59,17 @@ function Dashboard() {
             </Flex>
             <NoteList
               isCategoryMenuOpened={isCategoryMenuOpened}
-              notes={notes}
+              notes={filteredNotes}
               mt="md"
               selected={selectedNote}
               onNoteSelected={selectNote}
             />
           </Flex>
-          {notes[selectedNote] && (
+          {filteredNotes[selectedNote] && (
             <Note
-              note={notes[selectedNote]}
+              note={filteredNotes[selectedNote]}
               onSave={note => {
-                saveNote(note, notes[selectedNote]);
+                saveNote(note, filteredNotes[selectedNote]);
                 console.log(note);
               }}
             />
