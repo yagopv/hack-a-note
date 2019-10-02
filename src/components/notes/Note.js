@@ -1,9 +1,10 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Box, NoteTitle, NoteContent } from '../ui';
 
 function Note({ note: { id, title = '', content = '', tags }, onSave }) {
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteContent, setNoteContent] = useState(content);
+  const textarea = useRef(null);
 
   const autoSize = useCallback(element => {
     element.style.height = '5px';
@@ -20,7 +21,8 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
 
   useEffect(() => {
     setNoteContent(content);
-  }, [content]);
+    autoSize(textarea.current);
+  }, [autoSize, content, noteContent]);
 
   return (
     <Box p="md">
@@ -31,6 +33,7 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
         onBlur={handleSave}
       />
       <NoteContent
+        ref={textarea}
         placeholder="Enter note content"
         onInput={event => autoSize(event.target)}
         onChange={useCallback(event => setNoteContent(event.target.value), [])}
