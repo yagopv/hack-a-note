@@ -8,6 +8,7 @@ import React, {
 import marked from 'marked';
 
 import { Box, NoteTitle, NoteContent, MarkdownPreview } from '../ui';
+import { TagsInput } from '../forms/TagsInput';
 
 function Note({ note: { id, title = '', content = '', tags }, onSave }) {
   const [noteTitle, setNoteTitle] = useState(title);
@@ -54,6 +55,7 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
         onChange={useCallback(event => setNoteTitle(event.target.value), [])}
         onBlur={handleSave}
       />
+      <TagsInput />
       {!editMode && (
         <MarkdownPreview
           dangerouslySetInnerHTML={{ __html: marked(noteContent) }}

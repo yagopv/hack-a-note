@@ -1,4 +1,3 @@
-import { LoginForm } from './LoginForm';
-import { RegisterForm } from './RegisterForm';
-
-export { LoginForm, RegisterForm };
+export { TagsInput } from './TagsInput';
+export { LoginForm } from './LoginForm';
+export { RegisterForm } from './RegisterForm';
