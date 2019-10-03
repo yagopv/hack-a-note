@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect,
-  useMemo,
-  useRef
-} from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import marked from 'marked';
 
 import { Box, NoteTitle, NoteContent, MarkdownPreview } from '../ui';
@@ -35,10 +29,12 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
 
   useEffect(() => {
     setNoteTitle(title);
+    setEditMode(false);
   }, [title]);
 
   useEffect(() => {
     setNoteContent(content);
+    setEditMode(false);
   }, [content]);
 
   useEffect(() => {
@@ -55,7 +51,17 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
         onChange={useCallback(event => setNoteTitle(event.target.value), [])}
         onBlur={handleSave}
       />
-      <TagsInput />
+      <TagsInput
+        initialTags={tags}
+        onChange={tags => {
+          onSave({
+            id,
+            title: noteTitle,
+            content: noteContent,
+            tags
+          });
+        }}
+      />
       {!editMode && (
         <MarkdownPreview
           dangerouslySetInnerHTML={{ __html: marked(noteContent) }}

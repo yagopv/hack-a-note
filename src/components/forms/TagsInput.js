@@ -1,9 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { color, fontFamily } from '../../shared/theme';
 
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
-function TagsInput() {
-  const [tags, setTags] = useState([]);
+// Included on the above link - https://daveceddia.com/why-not-modify-react-state-directly/
+
+function TagsInput({ initialTags = [], onChange }) {
+  const [tags, setTags] = useState(initialTags);
   const inputRef = useRef(null);
 
   const handleKeyDown = event => {
@@ -12,7 +15,9 @@ function TagsInput() {
       if (tags.find(tag => tag.toLowerCase() === value.toLowerCase())) {
         return;
       }
-      setTags([...tags, value]);
+      const newTags = [...tags, value];
+      setTags(newTags);
+      onChange(newTags);
       inputRef.current.value = null;
     } else if (event.key === 'Backspace' && !value) {
       removeTag(tags.length - 1);
@@ -23,7 +28,12 @@ function TagsInput() {
     const newTags = [...tags];
     newTags.splice(index, 1);
     setTags(newTags);
+    onChange(newTags);
   };
+
+  useEffect(() => {
+    setTags(initialTags);
+  }, [initialTags]);
 
   return (
     <TagContainer>
@@ -37,7 +47,11 @@ function TagsInput() {
           </TagListItem>
         ))}
         <TagInputContainer className="input-tag__tags__input">
-          <TagInput ref={inputRef} onKeyDown={handleKeyDown} />
+          <TagInput
+            ref={inputRef}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter tag"
+          />
         </TagInputContainer>
       </TagList>
     </TagContainer>
@@ -45,8 +59,6 @@ function TagsInput() {
 }
 
 const TagContainer = styled.div`
-  background: white;
-  border: 1px solid #d6d6d6;
   border-radius: 2px;
   display: flex;
   flex-wrap: wrap;
@@ -55,6 +67,7 @@ const TagContainer = styled.div`
 
 const TagList = styled.ul`
   display: inline-flex;
+  list-style: none;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
@@ -63,24 +76,25 @@ const TagList = styled.ul`
 
 const TagListItem = styled.li`
   align-items: center;
-  background: #85a3bf;
-  border-radius: 2px;
-  color: white;
+  background: ${color('primary')};
+  border-radius: 10px;
+  color: ${color('bright')};
   display: flex;
   font-weight: 300;
   list-style: none;
   margin-bottom: 5px;
   margin-right: 5px;
-  padding: 5px 10px;
+  padding: 3px 5px;
+  font-family: ${fontFamily('primary')};
 `;
 
 const TagRemoveButtom = styled.button`
   align-items: center;
-  appearance: none;
-  background: #333333;
+  background: ${color('dark')};
+  color: ${color('bright')};
+  font-family: ${fontFamily('primary')};
   border: none;
   border-radius: 50%;
-  color: white;
   cursor: pointer;
   display: inline-flex;
   font-size: 12px;
@@ -88,12 +102,11 @@ const TagRemoveButtom = styled.button`
   justify-content: center;
   line-height: 0;
   margin-left: 8px;
-  transform: rotate(45deg);
   width: 15px;
+  outline: none;
 `;
 
 const TagInputContainer = styled.li`
-  background: none;
   flex-grow: 1;
   padding: 0;
 `;
@@ -103,6 +116,9 @@ const TagInput = styled.input.attrs({
 })`
   border: none;
   width: 100%;
+  background: transparent;
+  outline: none;
+  color: ${color('primary')};
 `;
 
 export { TagsInput };

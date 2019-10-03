@@ -70,7 +70,8 @@ export function useNotes(
       note.title &&
       note.content &&
       note.title.trim() === originalNote.title.trim() &&
-      note.content.trim() === originalNote.content.trim()
+      note.content.trim() === originalNote.content.trim() &&
+      note.tags === originalNote.tags
     ) {
       return;
     }
