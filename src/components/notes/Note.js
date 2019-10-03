@@ -4,9 +4,10 @@ import marked from 'marked';
 import { Box, NoteTitle, NoteContent, MarkdownPreview } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 
-function Note({ note: { id, title = '', content = '', tags }, onSave }) {
+function Note({ note: { id, title = '', content = '', tags = [] }, onSave }) {
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteContent, setNoteContent] = useState(content);
+  const [noteTags, setNoteTags] = useState(tags);
   const [editMode, setEditMode] = useState(false);
   const textarea = useRef(null);
 
@@ -19,8 +20,8 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
 
   const handleSave = useCallback(() => {
     setEditMode(false);
-    onSave({ id, title: noteTitle, content: noteContent, tags });
-  }, [id, noteContent, noteTitle, onSave, tags]);
+    onSave({ id, title: noteTitle, content: noteContent, tags: noteTags });
+  }, [id, noteContent, noteTags, noteTitle, onSave]);
 
   const handleChange = useCallback(
     event => setNoteContent(event.target.value),
@@ -38,6 +39,11 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
   }, [content]);
 
   useEffect(() => {
+    setNoteTags(tags);
+    setEditMode(false);
+  }, [tags]);
+
+  useEffect(() => {
     if (editMode) {
       autoSize(textarea.current);
     }
@@ -52,15 +58,9 @@ function Note({ note: { id, title = '', content = '', tags }, onSave }) {
         onBlur={handleSave}
       />
       <TagsInput
-        initialTags={tags}
-        onChange={tags => {
-          onSave({
-            id,
-            title: noteTitle,
-            content: noteContent,
-            tags
-          });
-        }}
+        initialTags={noteTags}
+        onChange={useCallback(tags => setNoteTags(tags), [])}
+        onBlur={handleSave}
       />
       {!editMode && (
         <MarkdownPreview
