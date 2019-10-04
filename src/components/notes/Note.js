@@ -5,7 +5,7 @@ import { Box, NoteTitle, NoteContent, MarkdownPreview } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 
 function Note({ initialNote, onSaveNote }) {
-  const [note, setNote] = useState(initialNote);
+  const [note, setNote] = useState({ title: '', content: '', ...initialNote });
   const [editMode, setEditMode] = useState(false);
   const textarea = useRef(null);
 
@@ -31,7 +31,7 @@ function Note({ initialNote, onSaveNote }) {
   );
 
   useEffect(() => {
-    setNote(initialNote);
+    setNote({ title: '', content: '', ...initialNote });
     console.log('Initial Note Changed', initialNote);
   }, [initialNote]);
 
