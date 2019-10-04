@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { color, fontFamily } from '../../shared/theme';
+import { linkMixin } from './Link';
 
 export const MarkdownPreview = styled.div`
   margin: 2rem 0;
@@ -44,5 +45,9 @@ export const MarkdownPreview = styled.div`
     margin: 10px 0;
     color: ${color('text')};
     font-family: ${fontFamily('primary')};
+  }
+
+  a {
+    ${linkMixin}
   }
 `;

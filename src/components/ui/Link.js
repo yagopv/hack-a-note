@@ -1,10 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import { color, fontFamily } from '../../shared/theme';
 
-export const Link = styled(RouterLink)`
+export const linkMixin = css`
   font-family: ${fontFamily('secondary')};
   color: ${color('secondary')};
   text-transform: uppercase;
-  text-decoration: underline;
+  text-decoration: none;
+  :hover {
+    opacity: 0.7;
+    border-bottom: 2px solid ${color('secondary')};
+  }
+
+  :active {
+    opacity: 1;
+    border-bottom: 2px solid ${color('secondary')};
+  }
+`;
+
+export const Link = styled(RouterLink)`
+  ${linkMixin}
 `;

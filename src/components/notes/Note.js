@@ -23,6 +23,7 @@ function Note({ initialNote, onSaveNote }) {
     ) {
       onSaveNote(note);
     }
+    setEditMode(false);
   }, [initialNote.content, initialNote.title, note, onSaveNote]);
 
   const handleChange = useCallback(
