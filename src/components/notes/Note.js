@@ -4,10 +4,8 @@ import marked from 'marked';
 import { Box, NoteTitle, NoteContent, MarkdownPreview } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 
-function Note({ note: { id, title = '', content = '', tags = [] }, onSave }) {
-  const [noteTitle, setNoteTitle] = useState(title);
-  const [noteContent, setNoteContent] = useState(content);
-  const [noteTags, setNoteTags] = useState(tags);
+function Note({ initialNote, onSaveNote }) {
+  const [note, setNote] = useState(initialNote);
   const [editMode, setEditMode] = useState(false);
   const textarea = useRef(null);
 
@@ -19,29 +17,28 @@ function Note({ note: { id, title = '', content = '', tags = [] }, onSave }) {
   }, []);
 
   const handleSave = useCallback(() => {
-    setEditMode(false);
-    onSave({ id, title: noteTitle, content: noteContent, tags: noteTags });
-  }, [id, noteContent, noteTags, noteTitle, onSave]);
+    if (
+      initialNote.title !== note.title ||
+      initialNote.content !== note.content
+    ) {
+      onSaveNote(note);
+    }
+  }, [initialNote.content, initialNote.title, note, onSaveNote]);
 
   const handleChange = useCallback(
-    event => setNoteContent(event.target.value),
-    []
+    event => {
+      setNote({ ...note, [event.target.id]: event.target.value });
+      if (event.target.id === 'tags') {
+        handleSave();
+      }
+    },
+    [handleSave, note]
   );
 
   useEffect(() => {
-    setNoteTitle(title);
-    setEditMode(false);
-  }, [title]);
-
-  useEffect(() => {
-    setNoteContent(content);
-    setEditMode(false);
-  }, [content]);
-
-  useEffect(() => {
-    setNoteTags(tags);
-    setEditMode(false);
-  }, [tags]);
+    setNote(initialNote);
+    console.log('Initial Note Changed', initialNote);
+  }, [initialNote]);
 
   useEffect(() => {
     if (editMode) {
@@ -52,30 +49,32 @@ function Note({ note: { id, title = '', content = '', tags = [] }, onSave }) {
   return (
     <Box p="md">
       <NoteTitle
+        id="title"
         placeholder="Untitled Note"
-        value={noteTitle}
-        onChange={useCallback(event => setNoteTitle(event.target.value), [])}
+        value={note.title}
+        onChange={handleChange}
         onBlur={handleSave}
       />
       <TagsInput
-        initialTags={noteTags}
-        onChange={useCallback(tags => setNoteTags(tags), [])}
-        onBlur={handleSave}
+        id="tags"
+        initialTags={note.tags}
+        onChange={tags => handleChange({ target: { id: 'tags', value: tags } })}
       />
       {!editMode && (
         <MarkdownPreview
-          dangerouslySetInnerHTML={{ __html: marked(noteContent) }}
+          dangerouslySetInnerHTML={{ __html: marked(note.content) }}
           onClick={() => setEditMode(true)}
         />
       )}
       {editMode && (
         <NoteContent
+          id="content"
           ref={textarea}
           placeholder="Enter note content"
           onInput={event => autoSize(event.target)}
           onChange={handleChange}
           onBlur={handleSave}
-          value={noteContent}
+          value={note.content}
         />
       )}
     </Box>

@@ -62,16 +62,13 @@ function Dashboard() {
               notes={filteredNotes}
               mt="md"
               selected={selectedNote}
-              onNoteSelected={selectNote}
+              onSelectNote={selectNote}
             />
           </Flex>
           {filteredNotes[selectedNote] && (
             <Note
-              note={filteredNotes[selectedNote]}
-              onSave={note => {
-                saveNote(note, filteredNotes[selectedNote]);
-                console.log(note);
-              }}
+              initialNote={filteredNotes[selectedNote]}
+              onSaveNote={note => saveNote(note)}
             />
           )}
         </DashboardLayout>

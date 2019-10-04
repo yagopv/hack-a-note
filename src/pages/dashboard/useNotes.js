@@ -65,17 +65,8 @@ export function useNotes(
 ) {
   const [state, dispatch] = useReducer(notesReducer, initialState);
 
-  const saveNote = async (note, originalNote) => {
-    if (
-      note.title &&
-      note.content &&
-      note.title.trim() === originalNote.title.trim() &&
-      note.content.trim() === originalNote.content.trim() &&
-      note.tags === originalNote.tags
-    ) {
-      return;
-    }
-
+  // Update existing note in the server
+  const saveNote = async note => {
     try {
       dispatch({ type: SAVE_NOTE });
       const { data: savedNote } = await http.updateNote(note.id, note);
@@ -85,6 +76,7 @@ export function useNotes(
     }
   };
 
+  // Create a new note in the server
   const createNote = async tag => {
     try {
       dispatch({ type: CREATE_NOTE });
@@ -97,14 +89,19 @@ export function useNotes(
     }
   };
 
+  // Select tags and notes
   const selectTag = tagIndex => dispatch({ type: SELECT_TAG, tagIndex });
   const selectNote = noteIndex => dispatch({ type: SELECT_NOTE, noteIndex });
+
+  // Get tags in notes
   const tags = useMemo(() => {
     return state.notes.reduce((acc, currentValue, index) => {
       currentValue.tags.forEach(tag => !acc.includes(tag) && acc.push(tag));
       return acc;
     }, []);
   }, [state.notes]);
+
+  // Get Notes by tag
   const filteredNotes = useMemo(() => {
     if (!state.notes.length || state.selectedTag === null) {
       return state.notes;
@@ -114,6 +111,7 @@ export function useNotes(
     );
   }, [state.notes, state.selectedTag, tags]);
 
+  // Get ALL Notes
   useEffect(() => {
     async function getNotes() {
       try {

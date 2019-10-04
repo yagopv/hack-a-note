@@ -5,7 +5,7 @@ import { color, fontFamily } from '../../shared/theme';
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
 // Included on the above link - https://daveceddia.com/why-not-modify-react-state-directly/
 
-function TagsInput({ initialTags = [], onChange, onBlur }) {
+function TagsInput({ initialTags = [], onChange }) {
   const [tags, setTags] = useState(initialTags);
   const inputRef = useRef(null);
 
@@ -29,7 +29,6 @@ function TagsInput({ initialTags = [], onChange, onBlur }) {
     newTags.splice(index, 1);
     setTags(newTags);
     onChange(newTags);
-    onBlur();
   };
 
   useEffect(() => {
@@ -52,7 +51,6 @@ function TagsInput({ initialTags = [], onChange, onBlur }) {
             ref={inputRef}
             onKeyDown={handleKeyDown}
             placeholder="Enter tag"
-            onBlur={onBlur}
           />
         </TagInputContainer>
       </TagList>
