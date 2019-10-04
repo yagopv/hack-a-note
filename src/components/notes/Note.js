@@ -26,13 +26,8 @@ function Note({ initialNote, onSaveNote }) {
   }, [initialNote.content, initialNote.title, note, onSaveNote]);
 
   const handleChange = useCallback(
-    event => {
-      setNote({ ...note, [event.target.id]: event.target.value });
-      if (event.target.id === 'tags') {
-        handleSave();
-      }
-    },
-    [handleSave, note]
+    event => setNote({ ...note, [event.target.id]: event.target.value }),
+    [note]
   );
 
   useEffect(() => {
@@ -57,10 +52,13 @@ function Note({ initialNote, onSaveNote }) {
       />
       <TagsInput
         id="tags"
-        initialTags={note.tags}
-        onChange={tags => handleChange({ target: { id: 'tags', value: tags } })}
+        value={note.tags}
+        onChange={tags => {
+          handleChange({ target: { id: 'tags', value: tags } });
+          onSaveNote({ ...note, tags });
+        }}
       />
-      {!editMode && (
+      {!editMode && note.content && (
         <MarkdownPreview
           dangerouslySetInnerHTML={{ __html: marked(note.content) }}
           onClick={() => setEditMode(true)}

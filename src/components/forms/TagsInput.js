@@ -1,44 +1,39 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { color, fontFamily } from '../../shared/theme';
 
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
 // Included on the above link - https://daveceddia.com/why-not-modify-react-state-directly/
 
-function TagsInput({ initialTags = [], onChange }) {
-  const [tags, setTags] = useState(initialTags);
+function TagsInput({ value = [], onChange }) {
   const inputRef = useRef(null);
 
   const handleKeyDown = event => {
-    const value = event.target.value;
-    if (event.key === 'Enter' && value) {
-      if (tags.find(tag => tag.toLowerCase() === value.toLowerCase())) {
+    if (event.key === 'Enter' && event.target.value) {
+      if (
+        value.find(
+          tag => tag.toLowerCase() === event.target.value.toLowerCase()
+        )
+      ) {
         return;
       }
-      const newTags = [...tags, value];
-      setTags(newTags);
-      onChange(newTags);
+      onChange([...value, event.target.value]);
       inputRef.current.value = null;
     } else if (event.key === 'Backspace' && !value) {
-      removeTag(tags.length - 1);
+      removeTag(value.length - 1);
     }
   };
 
   const removeTag = index => {
-    const newTags = [...tags];
+    const newTags = [...value];
     newTags.splice(index, 1);
-    setTags(newTags);
     onChange(newTags);
   };
-
-  useEffect(() => {
-    setTags(initialTags);
-  }, [initialTags]);
 
   return (
     <TagContainer>
       <TagList>
-        {tags.map((tag, index) => (
+        {value.map((tag, index) => (
           <TagListItem key={tag}>
             {tag}
             <TagRemoveButtom type="button" onClick={() => removeTag(index)}>
