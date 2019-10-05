@@ -12,10 +12,15 @@ function NoteItem({
 }) {
   return (
     <NoteItemContainer isSelected={isSelected} p="sm">
-      <Text as="h5" color="inherit">
+      <Text as="h5" color="inherit" truncate={1}>
         {title || 'Untitled Note'}
       </Text>
-      <Text as="p" mt="sm" color={isSelected ? color('dark') : color('text')}>
+      <Text
+        as="p"
+        mt="sm"
+        truncate={3}
+        color={isSelected ? color('dark') : color('text')}
+      >
         {content || 'No content'}
       </Text>
     </NoteItemContainer>
