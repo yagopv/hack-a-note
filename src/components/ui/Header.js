@@ -6,7 +6,7 @@ import { Flex, FlexItem } from './Flexbox';
 import { Text } from '../ui';
 import { Link } from './Link';
 
-export function Header({ title, tag, isAuthenticated, onToggleMenu }) {
+export function Header({ title, tag, user, onToggleMenu, onLogout }) {
   const theme = useContext(ThemeContext);
   const isMobile = useMedia([theme.breakpoints.md], [false], true);
 
@@ -23,11 +23,11 @@ export function Header({ title, tag, isAuthenticated, onToggleMenu }) {
           </FlexItem>
         </React.Fragment>
       )}
-      {isAuthenticated && (
+      {user && (
         <FlexItem grow="1" textAlign="right">
           <div>
-            <Text>Hola Marta</Text>
-            <Link>Salir</Link>
+            <Text>Hola {user.name}</Text>
+            <Link onClick={onLogout}>Salir</Link>
           </div>
         </FlexItem>
       )}

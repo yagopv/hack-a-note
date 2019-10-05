@@ -5,11 +5,11 @@ import { Note } from '../../components/notes/Note';
 import { Header } from '../../components/ui/Header';
 import { Flex, IconInput, IconButton } from '../../components/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
-import { useAuth, useUI } from '../../shared/context';
+import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
 
 function Dashboard() {
-  const [{ isAuthenticated }] = useAuth();
+  const [{ user }, dispatch] = useAuth();
   const [{ isCategoryMenuOpened }, setUIState] = useUI();
   const {
     state: { selectedTag, selectedNote },
@@ -26,10 +26,14 @@ function Dashboard() {
       <Header
         title="Notes App"
         tag="tag1"
-        isAuthenticated={isAuthenticated}
+        user={user}
         onToggleMenu={() =>
           setUIState({ isCategoryMenuOpened: !isCategoryMenuOpened })
         }
+        onLogout={() => {
+          dispatch({ type: LOGOUT });
+          localStorage.removeItem('currentUser');
+        }}
       />
       <Flex as="main" fullHeight>
         <DashboardLayout isMenuOpened={isCategoryMenuOpened}>
