@@ -7,7 +7,9 @@ import {
   Label,
   ValidationMessage,
   Button,
-  Flex
+  Flex,
+  Box,
+  Link
 } from '../ui';
 
 function RegisterForm({ onSubmit }) {
@@ -60,6 +62,9 @@ function RegisterForm({ onSubmit }) {
       </FormControl>
       <Flex direction="column" alignItems="flex-end">
         <Button type="submit">Submit</Button>
+        <Box mt="md">
+          <Link to="/login">Already have an account </Link>
+        </Box>
       </Flex>
     </form>
   );
