@@ -11,7 +11,9 @@ export const DashboardLayout = styled.div`
     @media ${props.theme.breakpoints.xs} {
       grid-template-columns: 50vw 100vw 100vw;
       transition: transform 0.33s ease;
-      transform: translateX(${props.isMenuOpened ? 0 : '-50vw'});
+      transform: translateX(${
+        props.isMenuOpened ? 0 : props.isNoteListOpened ? '-150vw' : '-50vw'
+      });
     }
   `}
 `;

@@ -10,7 +10,7 @@ import { useNotes } from './useNotes';
 
 function Dashboard() {
   const [{ user }, dispatch] = useAuth();
-  const [{ isCategoryMenuOpened }, setUIState] = useUI();
+  const [uiState, setUIState] = useUI();
   const {
     state: { selectedTag, selectedNote },
     saveNote,
@@ -28,7 +28,10 @@ function Dashboard() {
         tag="tag1"
         user={user}
         onToggleMenu={() =>
-          setUIState({ isCategoryMenuOpened: !isCategoryMenuOpened })
+          setUIState({
+            isCategoryMenuOpened: !uiState.isCategoryMenuOpened,
+            isNoteListMenuOpened: false
+          })
         }
         onLogout={() => {
           dispatch({ type: LOGOUT });
@@ -36,7 +39,10 @@ function Dashboard() {
         }}
       />
       <Flex as="main" fullHeight>
-        <DashboardLayout isMenuOpened={isCategoryMenuOpened}>
+        <DashboardLayout
+          isMenuOpened={uiState.isCategoryMenuOpened}
+          isNoteListOpened={uiState.isNoteListMenuOpened}
+        >
           <CategoryList
             items={tags}
             selected={selectedTag}
@@ -62,11 +68,17 @@ function Dashboard() {
               />
             </Flex>
             <NoteList
-              isCategoryMenuOpened={isCategoryMenuOpened}
+              isCategoryMenuOpened={uiState.isCategoryMenuOpened}
               notes={filteredNotes}
               mt="md"
               selected={selectedNote}
-              onSelectNote={selectNote}
+              onSelectNote={index => {
+                selectNote(index);
+                setUIState({
+                  isNoteListMenuOpened: true,
+                  isCategoryMenuOpened: false
+                });
+              }}
             />
           </Flex>
           {filteredNotes[selectedNote] && (
@@ -76,6 +88,20 @@ function Dashboard() {
             />
           )}
         </DashboardLayout>
+        {uiState.isNoteListMenuOpened && (
+          <IconButton
+            image={
+              'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDYiIGhlaWdodD0iNDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjMiIGN5PSIyMyIgcj0iMjIuNSIgZmlsbD0iI0Y4QzUxRCIgc3Ryb2tlPSIjMDAwIi8+PHBhdGggZD0iTTE4LjMzNSAyMi42NTFsLS4zNTQuMzU0LjM1NC4zNTQgOC45NjggOC45NjhoMGEuODE0LjgxNCAwIDAxMCAxLjE1czAgMCAwIDBsLS43ODcuNzg2aDBhLjgwMy44MDMgMCAwMS0uNTc0LjIzNy44MDIuODAyIDAgMDEtLjU3NS0uMjM3aDBsLTEwLjY4LTEwLjY4aDBhLjgwMi44MDIgMCAwMS0uMjM3LS41Nzd2LS4wMDNjMC0uMjIuMDg0LS40MjMuMjM3LS41NzZoMGwxMC42OS0xMC42OWgwYS44MDIuODAyIDAgMDEuNTc0LS4yMzdjLjIyIDAgLjQyMy4wODQuNTc1LjIzN2gwbC43ODcuNzg3aDBhLjgwMy44MDMgMCAwMS4yMzcuNTc0YzAgLjIyLS4wODQuNDIyLS4yMzcuNTc0aDBsLTguOTc4IDguOTh6IiBmaWxsPSIjRjhDNTFEIiBzdHJva2U9IiMwMDAiLz48L3N2Zz4=)'
+            }
+            style={{ position: 'fixed', bottom: '20px', left: '20px' }}
+            onClick={() =>
+              setUIState({
+                isNoteListMenuOpened: false,
+                isCategoryMenuOpened: false
+              })
+            }
+          />
+        )}
       </Flex>
     </React.Fragment>
   );
