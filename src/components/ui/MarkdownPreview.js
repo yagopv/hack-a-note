@@ -43,7 +43,7 @@ export const MarkdownPreview = styled.div`
   p {
     font-size: 1rem;
     margin: 10px 0;
-    color: ${color('text')};
+    color: ${color('medium')};
     font-family: ${fontFamily('primary')};
   }
 

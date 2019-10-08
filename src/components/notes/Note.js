@@ -84,11 +84,13 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
       </Flex>
       {!editMode && note.content && (
         <MarkdownPreview
-          dangerouslySetInnerHTML={{ __html: marked(note.content) }}
+          dangerouslySetInnerHTML={{
+            __html: marked(note.content, { gfm: true, breaks: true })
+          }}
           onClick={() => setEditMode(true)}
         />
       )}
-      {editMode && (
+      {(editMode || !note.content) && (
         <NoteContent
           id="content"
           ref={textarea}

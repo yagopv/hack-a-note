@@ -10,9 +10,14 @@ export const NoteTitle = styled.input.attrs({ type: 'text' })`
   font-weight: bold;
   outline: none;
   width: 100%;
+  ::placeholder {
+    font-family: ${fontFamily('primary')};
+    opacity: 0.5;
+  }
 `;
 
 export const NoteContent = styled.textarea`
+  font-family: ${fontFamily('primary')};
   flex: 1;
   font-size: 1rem;
   border: none;
@@ -22,13 +27,13 @@ export const NoteContent = styled.textarea`
   display: block;
   margin: 2rem 0;
   width: 100%;
-  color: ${color('text')}
+  color: ${color('medium')}
   resize: none;
   overflow: hidden;
   min-height: 50px;
   max-height: 100%;
   ::placeholder {
-    color: ${props => color('primary')};
+    color: ${props => color('medium')};
     opacity: 0.5;
   }
 `;

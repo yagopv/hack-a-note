@@ -19,7 +19,7 @@ function NoteItem({
         as="p"
         mt="sm"
         truncate={3}
-        color={isSelected ? color('dark') : color('text')}
+        color={isSelected ? color('dark') : color('medium')}
       >
         {content || 'No content'}
       </Text>

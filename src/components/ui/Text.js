@@ -21,7 +21,7 @@ const truncatedMultilineMixin = css`
 
 export const Text = styled(Box)`
   color: ${props =>
-    props.color || (isHeading(props.as) ? color('primary') : color('text'))};
+    props.color || (isHeading(props.as) ? color('primary') : color('medium'))};
   font-weight: ${props =>
     props.background || (isHeading(props.as) ? '900' : '400')}
   font-family: ${props =>

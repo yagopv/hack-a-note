@@ -57,11 +57,12 @@ const TagContainer = styled.div`
   border-radius: 2px;
   display: flex;
   flex-wrap: wrap;
-  padding: 5px 5px 0;
+  padding: 20px 0;
 `;
 
 const TagList = styled.ul`
   display: inline-flex;
+  align-items: center;
   list-style: none;
   flex-wrap: wrap;
   margin: 0;
@@ -77,8 +78,7 @@ const TagListItem = styled.li`
   display: flex;
   font-weight: 300;
   list-style: none;
-  margin-bottom: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   padding: 3px 5px;
   font-family: ${fontFamily('primary')};
 `;
@@ -92,6 +92,7 @@ const TagRemoveButtom = styled.button`
   border-radius: 50%;
   cursor: pointer;
   display: inline-flex;
+  align-items: center;
   font-size: 12px;
   height: 15px;
   justify-content: center;
@@ -114,6 +115,11 @@ const TagInput = styled.input.attrs({
   background: transparent;
   outline: none;
   color: ${color('primary')};
+  font-family: ${fontFamily('primary')};
+  ::placeholder {
+    color: ${props => color('medium')};
+    opacity: 0.5;
+  }
 `;
 
 export { TagsInput };
