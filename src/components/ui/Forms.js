@@ -44,8 +44,8 @@ export const IconInput = styled(Input)`
 
 export const IconButton = styled.button`
   background-image: ${props => props.image};
-  width: 2.5rem;
-  height: 2.5rem;
+  width: ${props => props.width};
+  height: ${props => props.height};
   background-color: transparent;
   background-size: 100%;
   background-repeat: no-repeat;

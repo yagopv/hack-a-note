@@ -10,6 +10,9 @@ const SAVE_NOTE_FAILED = '[NOTES] Save Note Failed';
 const CREATE_NOTE = '[NOTES] Create Note';
 const CREATE_NOTE_SUCCESS = '[NOTES] Create Note Success';
 const CREATE_NOTE_FAILED = '[NOTES] Create Note Failed';
+const DELETE_NOTE = '[NOTES] Delete Note';
+const DELETE_NOTE_SUCCESS = '[NOTES] Delete Note Success';
+const DELETE_NOTE_FAILED = '[NOTES] Delete Note Failed';
 const SELECT_TAG = '[NOTES] SELECT_TAG';
 const SELECT_NOTE = '[NOTES] SELECT_NOTE';
 
@@ -18,6 +21,7 @@ function notesReducer(state, action) {
     case GET_NOTES:
     case SAVE_NOTE:
     case CREATE_NOTE:
+    case DELETE_NOTE:
       return { ...state, isFetching: true };
     case GET_NOTES_SUCCESS:
       return {
@@ -25,10 +29,16 @@ function notesReducer(state, action) {
         isFetching: false,
         notes: action.notes
       };
-
+    case DELETE_NOTE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        notes: state.notes.filter(note => note.id !== action.noteId)
+      };
     case GET_NOTES_FAILED:
     case SAVE_NOTE_FAILED:
     case CREATE_NOTE_FAILED:
+    case DELETE_NOTE_FAILED:
       return { ...state, isFetching: false, error: action.error };
     case SAVE_NOTE_SUCCESS:
       return {
@@ -89,6 +99,17 @@ export function useNotes(
     }
   };
 
+  // Delete a new note in the server
+  const deleteNote = async noteId => {
+    try {
+      dispatch({ type: DELETE_NOTE });
+      await http.deleteNote(noteId);
+      dispatch({ type: DELETE_NOTE_SUCCESS, noteId });
+    } catch (error) {
+      dispatch({ type: DELETE_NOTE_FAILED, error });
+    }
+  };
+
   // Select tags and notes
   const selectTag = tagIndex => dispatch({ type: SELECT_TAG, tagIndex });
   const selectNote = noteIndex => dispatch({ type: SELECT_NOTE, noteIndex });
@@ -131,6 +152,7 @@ export function useNotes(
     state,
     saveNote,
     createNote,
+    deleteNote,
     selectTag,
     selectNote,
     tags,
