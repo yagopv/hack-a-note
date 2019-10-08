@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import { Text } from '../ui/Text';
 import { color } from '../../shared/theme';
 import { withSpacingProps } from '../ui/uiUtils';
+import { getFriendlyDate } from '../../shared/utils';
 
 function NoteItem({
   title = 'Untitled Note',
   content = 'No content',
+  updatedAt,
   isSelected
 }) {
+  const friendlyDate = useMemo(() => getFriendlyDate(updatedAt), [updatedAt]);
+
   return (
     <NoteItemContainer isSelected={isSelected} p="sm">
       <Text as="h5" color="inherit" truncate={1}>
@@ -21,7 +25,7 @@ function NoteItem({
         truncate={3}
         color={isSelected ? color('dark') : color('medium')}
       >
-        {content || 'No content'}
+        <span>{friendlyDate}</span> {content || 'No content'}
       </Text>
     </NoteItemContainer>
   );
