@@ -83,7 +83,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 3px;
   }
 
   ::-webkit-scrollbar-track {

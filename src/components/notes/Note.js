@@ -43,7 +43,7 @@ function Note({ initialNote, onSaveNote }) {
   }, [autoSize, editMode]);
 
   return (
-    <Box p="md">
+    <Box p="md" overflow="auto">
       <NoteTitle
         id="title"
         placeholder="Untitled Note"

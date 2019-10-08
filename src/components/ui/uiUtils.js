@@ -25,6 +25,7 @@ export const withAlignmentProps = css`
 export const withOverflowProps = css`
   ${({ overflowX }) => overflowX && `overflow-y: ${overflowX};`}
   ${({ overflowY }) => overflowY && `overflow-y: ${overflowY};`}
+  ${({ overflow }) => overflow && `overflow: ${overflow};`}
 `;
 
 export const withColorProps = css`

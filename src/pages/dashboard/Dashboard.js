@@ -3,10 +3,12 @@ import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
 import { Header } from '../../components/ui/Header';
-import { Flex, IconInput, IconButton } from '../../components/ui';
+import { Flex, IconInput, IconButton, Box } from '../../components/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
+import { useMedia } from '../../shared/hooks/useMedia';
+import { theme } from '../../shared/theme';
 
 function Dashboard() {
   const [{ user }, dispatch] = useAuth();
@@ -20,6 +22,7 @@ function Dashboard() {
     tags,
     filteredNotes
   } = useNotes();
+  const isMobile = useMedia([theme.breakpoints.md], [false], true);
 
   return (
     <React.Fragment>
@@ -51,7 +54,7 @@ function Dashboard() {
               selectNote(null);
             }}
           />
-          <Flex direction="column" p="md">
+          <Flex direction="column" p="md" overflow="auto">
             <Flex>
               <IconInput
                 type="search"
@@ -88,7 +91,7 @@ function Dashboard() {
             />
           )}
         </DashboardLayout>
-        {uiState.isNoteListMenuOpened && (
+        {isMobile && uiState.isNoteListMenuOpened && (
           <IconButton
             image={
               'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDYiIGhlaWdodD0iNDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjMiIGN5PSIyMyIgcj0iMjIuNSIgZmlsbD0iI0Y4QzUxRCIgc3Ryb2tlPSIjMDAwIi8+PHBhdGggZD0iTTE4LjMzNSAyMi42NTFsLS4zNTQuMzU0LjM1NC4zNTQgOC45NjggOC45NjhoMGEuODE0LjgxNCAwIDAxMCAxLjE1czAgMCAwIDBsLS43ODcuNzg2aDBhLjgwMy44MDMgMCAwMS0uNTc0LjIzNy44MDIuODAyIDAgMDEtLjU3NS0uMjM3aDBsLTEwLjY4LTEwLjY4aDBhLjgwMi44MDIgMCAwMS0uMjM3LS41Nzd2LS4wMDNjMC0uMjIuMDg0LS40MjMuMjM3LS41NzZoMGwxMC42OS0xMC42OWgwYS44MDIuODAyIDAgMDEuNTc0LS4yMzdjLjIyIDAgLjQyMy4wODQuNTc1LjIzN2gwbC43ODcuNzg3aDBhLjgwMy44MDMgMCAwMS4yMzcuNTc0YzAgLjIyLS4wODQuNDIyLS4yMzcuNTc0aDBsLTguOTc4IDguOTh6IiBmaWxsPSIjRjhDNTFEIiBzdHJva2U9IiMwMDAiLz48L3N2Zz4=)'
