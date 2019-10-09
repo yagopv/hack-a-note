@@ -21,13 +21,17 @@ const truncatedMultilineMixin = css`
 
 export const Text = styled(Box)`
   color: ${props =>
-    props.color || (isHeading(props.as) ? color('primary') : color('medium'))};
+    color(props.color) ||
+    'inherit' ||
+    (isHeading(props.as) ? color('primary') : color('medium'))};
   font-weight: ${props =>
     props.background || (isHeading(props.as) ? '900' : '400')}
   font-family: ${props =>
-    isHeading(props.as) ? fontFamily('secondary') : fontFamily('primary')};
-  font-size: ${props => fontSize(props.as) || '0.8rem'};
-  text-transform: ${props => (isHeading(props.as) ? 'uppercase' : 'none')};
+    fontFamily(props.fontFamily) ||
+    (isHeading(props.as) ? fontFamily('secondary') : fontFamily('primary'))};
+  font-size:  ${props => fontSize(props.as) || '0.8rem'};
+  text-transform:  ${props =>
+    props.textTransform || (isHeading(props.as) ? 'uppercase' : 'none')};
   line-height: ${props => isHeading(props.as) && '2rem'};
   ${props => props.truncate === 1 && truncatedMixin}
   ${props => props.truncate > 1 && truncatedMultilineMixin}

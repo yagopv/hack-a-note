@@ -37,3 +37,10 @@ export const NoteContent = styled.textarea`
     opacity: 0.5;
   }
 `;
+
+export const NoteDate = styled.span`
+  font-family: ${fontFamily('secondary')};
+  position: relative;
+  top: 5px;
+  color: ${props => color(props.color)};
+`;

@@ -2,7 +2,7 @@ import React from 'react';
 import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
-import { Header } from '../../components/ui/Header';
+import { Header, Text } from '../../components/ui';
 import { Flex, IconInput, IconButton } from '../../components/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
@@ -93,6 +93,18 @@ function Dashboard() {
               onSaveNote={note => saveNote(note)}
               onDeleteNote={id => deleteNote(id)}
             />
+          )}
+          {!filteredNotes[selectedNote] && (
+            <Flex justifyContent="center" alignItems="center">
+              <Text
+                as="h2"
+                fontFamily="secondary"
+                textTransform="none"
+                color="medium"
+              >
+                No note selected
+              </Text>
+            </Flex>
           )}
         </DashboardLayout>
         {isMobile && uiState.isNoteListMenuOpened && (
