@@ -1,5 +1,7 @@
-import { useReducer, useEffect, useMemo } from 'react';
+import { useReducer, useEffect, useMemo, useState } from 'react';
+import { useDebounce } from '../../shared/hooks/useDebounce';
 import http from '../../http';
+import { findTextInNote } from '../../shared/utils';
 
 const GET_NOTES = '[NOTES] Get Notes';
 const GET_NOTES_SUCCESS = '[NOTES] Get Notes Success';
@@ -74,6 +76,8 @@ export function useNotes(
   }
 ) {
   const [state, dispatch] = useReducer(notesReducer, initialState);
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   // Update existing note in the server
   const saveNote = async note => {
@@ -125,12 +129,17 @@ export function useNotes(
   // Get Notes by tag
   const filteredNotes = useMemo(() => {
     if (!state.notes.length || state.selectedTag === null) {
-      return state.notes;
+      return state.notes.filter(note =>
+        findTextInNote(debouncedSearchTerm, note)
+      );
     }
-    return state.notes.filter(note =>
-      note.tags.includes(tags[state.selectedTag])
+
+    return state.notes.filter(
+      note =>
+        note.tags.includes(tags[state.selectedTag]) &&
+        findTextInNote(debouncedSearchTerm, note)
     );
-  }, [state.notes, state.selectedTag, tags]);
+  }, [debouncedSearchTerm, state.notes, state.selectedTag, tags]);
 
   // Get ALL Notes
   useEffect(() => {
@@ -156,6 +165,7 @@ export function useNotes(
     selectTag,
     selectNote,
     tags,
-    filteredNotes
+    filteredNotes,
+    filterNotesByText: setSearchTerm
   };
 }

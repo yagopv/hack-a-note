@@ -23,3 +23,19 @@ export function getFriendlyDate(value) {
   }
   return value;
 }
+
+export function findTextInNote(text, { title, content }) {
+  if (!text) {
+    return true;
+  }
+
+  if (title && title.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
+    return true;
+  }
+
+  if (content && content.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
+    return true;
+  }
+
+  return false;
+}
