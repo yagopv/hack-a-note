@@ -39,3 +39,9 @@ export function findTextInNote(text, { title, content }) {
 
   return false;
 }
+
+export function orderNotesByDate(a, b) {
+  a = new Date(a.updatedAt);
+  b = new Date(b.updatedAt);
+  return a > b ? -1 : a < b ? 1 : 0;
+}

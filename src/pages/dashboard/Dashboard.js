@@ -53,6 +53,10 @@ function Dashboard() {
             selected={selectedTag}
             onCategorySelected={index => {
               selectTag(index);
+              setUIState({
+                isCategoryMenuOpened: false,
+                isNoteListMenuOpened: false
+              });
               selectNote(null);
             }}
           />
