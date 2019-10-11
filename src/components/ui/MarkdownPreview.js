@@ -4,7 +4,8 @@ import { linkMixin } from './Link';
 
 export const MarkdownPreview = styled.div`
   color: ${color('medium')}
-  margin: 2rem 0;
+  margin: 1rem 0;
+  overflow: hidden;
   h1,
   h2,
   h3,
@@ -14,7 +15,7 @@ export const MarkdownPreview = styled.div`
     color: ${color('primary')};
     font-family: ${fontFamily('secondary')};
     text-transform: uppercase;
-    margin: 20px 0;
+    margin: 30px 0;
   }
 
   h1 {
@@ -43,7 +44,7 @@ export const MarkdownPreview = styled.div`
 
   p {
     font-size: 1rem;
-    margin: 10px 0;
+    margin: 20px 0;
     color: ${color('medium')};
     font-family: ${fontFamily('primary')};
   }
@@ -56,5 +57,16 @@ export const MarkdownPreview = styled.div`
     margin: 10px 0;
     border-left: 5px solid ${color('primary')};
     padding-left: 1rem;
+  }
+
+  pre {
+    padding: 10px;
+    background-color: ${color('medium')};
+    color: ${color('dark')};
+    border-radius: 5px;
+    overflow: auto;
+    ::-webkit-scrollbar-thumb {
+      background: none;
+    }
   }
 `;

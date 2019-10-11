@@ -73,14 +73,15 @@ const TagList = styled.ul`
 const TagListItem = styled.li`
   align-items: center;
   background: ${color('primary')};
-  border-radius: 10px;
+  border-radius: 15px;
   color: ${color('bright')};
   display: flex;
   font-weight: 300;
   list-style: none;
   margin-right: 10px;
-  padding: 3px 5px;
+  padding: 5px 10px;
   font-family: ${fontFamily('primary')};
+  margin-bottom: 15px;
 `;
 
 const TagRemoveButtom = styled.button`
@@ -116,6 +117,7 @@ const TagInput = styled.input.attrs({
   outline: none;
   color: ${color('primary')};
   font-family: ${fontFamily('primary')};
+  margin-bottom: 15px;
   ::placeholder {
     color: ${props => color('medium')};
     opacity: 0.5;
