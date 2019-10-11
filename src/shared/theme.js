@@ -64,6 +64,7 @@ export const GlobalStyle = createGlobalStyle`
   }
  
   body, #root {
+    font-family: ${fontFamily('primary')};
     height: 100%;
     background: ${color('dark')};
     color: ${color('primary')};

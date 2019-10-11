@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, fontFamily } from '../../shared/theme';
+import { color, fontFamily, fontSize } from '../../shared/theme';
 
 export const NoteTitle = styled.input.attrs({ type: 'text' })`
   background: transparent;
@@ -18,9 +18,10 @@ export const NoteTitle = styled.input.attrs({ type: 'text' })`
 
 export const NoteContent = styled.textarea`
   font-family: ${fontFamily('primary')};
+  padding: 1rem;
+  border: 2px solid ${color('primary')};
   flex: 1;
   font-size: 1rem;
-  border: none;
   border-radius: 5px;
   background: transparent;
   outline: none;
@@ -43,4 +44,13 @@ export const NoteDate = styled.span`
   position: relative;
   top: 5px;
   color: ${props => color(props.color)};
+`;
+
+export const NoteContentEmpty = styled.p`
+  color: ${color('medium')};
+  font-family: ${fontFamily('primary')};
+  margin: 2rem 0;
+  opacity: 0.5;
+  font-weight: bold;
+  font-size: ${fontSize('lg')};
 `;

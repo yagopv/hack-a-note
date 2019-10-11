@@ -3,6 +3,7 @@ import { color, fontFamily } from '../../shared/theme';
 import { linkMixin } from './Link';
 
 export const MarkdownPreview = styled.div`
+  color: ${color('medium')}
   margin: 2rem 0;
   h1,
   h2,
@@ -49,5 +50,11 @@ export const MarkdownPreview = styled.div`
 
   a {
     ${linkMixin}
+  }
+
+  blockquote {
+    margin: 10px 0;
+    border-left: 5px solid ${color('primary')};
+    padding-left: 1rem;
   }
 `;

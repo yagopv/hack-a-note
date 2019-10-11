@@ -28,12 +28,7 @@ function NoteItem({
           <Text as="h5" truncate={1}>
             {title || 'Untitled Note'}
           </Text>
-          <Text
-            as="p"
-            mt="sm"
-            truncate={3}
-            color={isSelected ? 'dark' : 'medium'}
-          >
+          <Text as="p" truncate={3} color={isSelected ? 'dark' : 'medium'}>
             {content || 'No content'}
           </Text>
         </FlexItem>
@@ -45,7 +40,7 @@ function NoteItem({
 export const NoteItemContainer = styled.div`
   padding: 15px 0;
   cursor: pointer;
-  height: 85px;
+  height: 95px;
   ${withSpacingProps}
   ${props =>
     props.isSelected

@@ -11,6 +11,7 @@ import {
   Link
 } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
+import { NoteContentEmpty } from '../ui/Notes';
 
 function Note({ initialNote, onSaveNote, onDeleteNote }) {
   const [note, setNote] = useState({ title: '', content: '', ...initialNote });
@@ -39,18 +40,25 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
   }, [note.id, onDeleteNote]);
 
   const handleChange = useCallback(
-    event => setNote({ ...note, [event.target.id]: event.target.value }),
+    event => {
+      console.log({ ...note, [event.target.id]: event.target.value });
+      setNote({ ...note, [event.target.id]: event.target.value });
+    },
     [note]
   );
 
+  const handleChangeEditMode = useCallback(() => {
+    setEditMode(!editMode);
+  }, [editMode]);
+
   useEffect(() => {
     setNote({ title: '', content: '', ...initialNote });
-    console.log('Initial Note Changed', initialNote);
   }, [initialNote]);
 
   useEffect(() => {
     if (editMode) {
       autoSize(textarea.current);
+      textarea.current.focus();
     }
   }, [autoSize, editMode]);
 
@@ -85,23 +93,30 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
           />
         </Link>
       </Flex>
-      {!editMode && note.content && (
-        <MarkdownPreview
-          dangerouslySetInnerHTML={{
-            __html: marked(note.content, { gfm: true, breaks: true })
-          }}
-          onClick={() => setEditMode(true)}
-        />
-      )}
-      {(editMode || !note.content) && (
+      {!editMode &&
+        (note.content ? (
+          <MarkdownPreview
+            dangerouslySetInnerHTML={{
+              __html: marked(note.content, {
+                gfm: true,
+                breaks: true
+              })
+            }}
+            onClick={handleChangeEditMode}
+          />
+        ) : (
+          <NoteContentEmpty onClick={handleChangeEditMode}>
+            Enter note content
+          </NoteContentEmpty>
+        ))}
+      {editMode && (
         <NoteContent
           id="content"
           ref={textarea}
-          placeholder="Enter note content"
           onInput={event => autoSize(event.target)}
           onChange={handleChange}
           onBlur={handleSave}
-          value={note.content}
+          value={note.content || ''}
         />
       )}
     </Box>
