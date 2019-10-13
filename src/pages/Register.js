@@ -14,12 +14,12 @@ function Register({ history }) {
   const [state, dispatch] = useAuth();
 
   const signUp = useCallback(
-    async (email, password, name) => {
+    async ({ email, fullName, password }) => {
       try {
         dispatch({ type: REGISTER });
         const {
           data: { user, token }
-        } = await http.register(email, password, name);
+        } = await http.register(email, password, fullName);
         dispatch({ type: REGISTER_SUCCESS, user });
         if (token) {
           history.push('/');

@@ -13,7 +13,7 @@ import {
 } from '../ui';
 
 function RegisterForm({ onSubmit }) {
-  const { form, handleSubmit, pristine, submitting } = useForm({
+  const { form, handleSubmit, submitting } = useForm({
     onSubmit,
     validate: registerFormValidation
   });
@@ -61,7 +61,9 @@ function RegisterForm({ onSubmit }) {
         </ValidationMessage>
       </FormControl>
       <Flex direction="column" alignItems="flex-end">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={submitting}>
+          Submit
+        </Button>
         <Box mt="md">
           <Link to="/login">Already have an account </Link>
         </Box>

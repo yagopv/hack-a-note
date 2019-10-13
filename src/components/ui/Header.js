@@ -13,14 +13,16 @@ export function Header({ title, tag, user, onToggleMenu, onLogout }) {
   return (
     <Flex alignItems="center" p="md" as="header">
       {!isMobile && <Title>{title}</Title>}
-      {isMobile && tag && (
+      {isMobile && (
         <React.Fragment>
           <FlexItem grow="1">
             <NavButton onClick={onToggleMenu} />
           </FlexItem>
-          <FlexItem grow="1" textAlign="center">
-            <Tag>#{tag}</Tag>
-          </FlexItem>
+          {tag && (
+            <FlexItem grow="1" textAlign="center">
+              <Tag>#{tag}</Tag>
+            </FlexItem>
+          )}
         </React.Fragment>
       )}
       {user && (

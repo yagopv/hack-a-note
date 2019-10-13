@@ -30,7 +30,7 @@ function Dashboard() {
     <React.Fragment>
       <Header
         title="Notes App"
-        tag="tag1"
+        tag={tags[selectedTag]}
         user={user}
         onToggleMenu={() =>
           setUIState({

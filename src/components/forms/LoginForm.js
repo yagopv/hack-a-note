@@ -13,7 +13,7 @@ import {
 } from '../ui';
 
 function LoginForm({ onSubmit }) {
-  const { form, handleSubmit } = useForm({
+  const { form, handleSubmit, submitting } = useForm({
     onSubmit,
     validate: loginFormValidation
   });
@@ -47,7 +47,9 @@ function LoginForm({ onSubmit }) {
         </ValidationMessage>
       </FormControl>
       <Flex direction="column" alignItems="flex-end">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={submitting}>
+          Submit
+        </Button>
         <Box mt="md">
           <Link to="/register">Register </Link> |
           <Link to="/forgot-password"> Forgot Password</Link>
