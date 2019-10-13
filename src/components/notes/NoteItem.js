@@ -24,7 +24,7 @@ function NoteItem({
             {friendlyDate}
           </NoteDate>
         </FlexItem>
-        <FlexItem>
+        <FlexItem overflow="hidden">
           <Text as="h5" truncate={1}>
             {title || 'Untitled Note'}
           </Text>

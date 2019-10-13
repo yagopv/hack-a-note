@@ -16,7 +16,8 @@ import { NoteContentEmpty } from '../ui/Notes';
 function Note({ initialNote, onSaveNote, onDeleteNote }) {
   const [note, setNote] = useState({ title: '', content: '', ...initialNote });
   const [editMode, setEditMode] = useState(false);
-  const textarea = useRef(null);
+  const titleTextarea = useRef(null);
+  const contentTextarea = useRef(null);
 
   const autoSize = useCallback(element => {
     if (element) {
@@ -56,9 +57,9 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
   }, [initialNote]);
 
   useEffect(() => {
+    autoSize(titleTextarea.current);
     if (editMode) {
-      autoSize(textarea.current);
-      textarea.current.focus();
+      autoSize(contentTextarea.current);
     }
   }, [autoSize, editMode]);
 
@@ -66,8 +67,10 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
     <Box p="md" overflow="auto">
       <NoteTitle
         id="title"
+        ref={titleTextarea}
         placeholder="Untitled Note"
         value={note.title}
+        onInput={event => autoSize(event.target)}
         onChange={handleChange}
         onBlur={handleSave}
       />
@@ -112,7 +115,7 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
       {editMode && (
         <NoteContent
           id="content"
-          ref={textarea}
+          ref={contentTextarea}
           onInput={event => autoSize(event.target)}
           onChange={handleChange}
           onBlur={handleSave}
