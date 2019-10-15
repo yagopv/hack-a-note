@@ -31,6 +31,23 @@ function notesReducer(state, action) {
         isFetching: false,
         notes: action.notes
       };
+    case SAVE_NOTE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        notes: state.notes.map(note => {
+          if (note.id === action.note.id) {
+            return action.note;
+          }
+          return note;
+        })
+      };
+    case CREATE_NOTE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        notes: [action.note, ...state.notes]
+      };
     case DELETE_NOTE_SUCCESS:
       return {
         ...state,
@@ -42,21 +59,6 @@ function notesReducer(state, action) {
     case CREATE_NOTE_FAILED:
     case DELETE_NOTE_FAILED:
       return { ...state, isFetching: false, error: action.error };
-    case SAVE_NOTE_SUCCESS:
-      return {
-        ...state,
-        notes: state.notes.map(note => {
-          if (note.id === action.note.id) {
-            return action.note;
-          }
-          return note;
-        })
-      };
-    case CREATE_NOTE_SUCCESS:
-      return {
-        ...state,
-        notes: [action.note, ...state.notes]
-      };
     case SELECT_TAG:
       return { ...state, selectedTag: action.tagIndex };
     case SELECT_NOTE:
