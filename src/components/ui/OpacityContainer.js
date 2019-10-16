@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const OpacityContainer = styled.div`
   transition: opacity 0.3s ease-in;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { fontSize, fontFamily, color as themeColor } from '../../shared/theme';
 import { withSpacingProps } from './uiUtils';
 

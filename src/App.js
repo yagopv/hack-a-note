@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/macro';
 import { theme, GlobalStyle } from './shared/theme';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Login } from './pages/Login';

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { color, fontFamily } from '../../shared/theme';
 
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components/macro';
 import { fontFamily, fontSize } from '../../shared/theme';
 import { useMedia } from '../../shared/hooks/useMedia';
 import { Flex, FlexItem } from './Flexbox';

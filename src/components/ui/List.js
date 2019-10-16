@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { withColorProps, withSpacingProps } from './uiUtils';
 
 export const List = styled.ul`

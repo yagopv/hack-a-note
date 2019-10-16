@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { Box } from './Box';
 import { color, fontFamily, fontSize } from '../../shared/theme';
 

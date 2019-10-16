@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { color, fontFamily } from '../../shared/theme';
 
 export const Button = styled.button`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { color, fontFamily, fontSize } from '../../shared/theme';
 
 export const NoteTitle = styled.textarea`

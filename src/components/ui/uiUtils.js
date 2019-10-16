@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import { spacing } from '../../shared/theme';
 
 export const withSpacingProps = css`

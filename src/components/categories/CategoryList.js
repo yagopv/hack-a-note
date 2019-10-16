@@ -1,11 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { List, ListItem } from '../ui';
 import { color, fontFamily } from '../../shared/theme';
 
-const CategoryList = React.forwardRef(
-  ({ items, selected, onCategorySelected }, ref) => (
+// Naming the forwardRef function we can see it named in Devtools
+const CategoryList = React.forwardRef(function CategoryList(
+  { items, selected, onCategorySelected },
+  ref
+) {
+  return (
     <List ref={ref} bg={color('primary')} pt="md">
       <ListItem
         key={'all'}
@@ -29,8 +33,8 @@ const CategoryList = React.forwardRef(
           </ListItem>
         ))}
     </List>
-  )
-);
+  );
+});
 
 const Tag = styled.p`
   font-family: ${fontFamily('primary')};
