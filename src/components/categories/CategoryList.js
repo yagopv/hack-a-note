@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { List, ListItem } from '../ui';
 import { color, fontFamily } from '../../shared/theme';
 
-function CategoryList({ items, selected, onCategorySelected }) {
-  return (
-    <List bg={color('primary')} pt="md">
+const CategoryList = React.forwardRef(
+  ({ items, selected, onCategorySelected }, ref) => (
+    <List ref={ref} bg={color('primary')} pt="md">
       <ListItem
         key={'all'}
         onClick={() => onCategorySelected(null)}
@@ -29,8 +29,8 @@ function CategoryList({ items, selected, onCategorySelected }) {
           </ListItem>
         ))}
     </List>
-  );
-}
+  )
+);
 
 const Tag = styled.p`
   font-family: ${fontFamily('primary')};

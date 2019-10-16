@@ -84,6 +84,7 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
       />
       <Flex justifyContent="flex-end" alignItems="center">
         <Link
+          to=""
           onClick={handleDelete}
           style={{ display: 'flex', alignItems: 'center' }}
         >

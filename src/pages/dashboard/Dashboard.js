@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
@@ -9,6 +9,7 @@ import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
 import { useMedia } from '../../shared/hooks/useMedia';
 import { theme } from '../../shared/theme';
+import { useOnClickOutside } from '../../shared/hooks/useOnClickOutside';
 
 function Dashboard() {
   const [{ user }, dispatch] = useAuth();
@@ -26,6 +27,13 @@ function Dashboard() {
     filterNotesByText
   } = useNotes();
   const isMobile = useMedia([theme.breakpoints.md], [false], true);
+  const categoryList = useRef(null);
+  useOnClickOutside(categoryList, () => {
+    setUIState({
+      isCategoryMenuOpened: false,
+      isNoteListMenuOpened: false
+    });
+  });
 
   return (
     <React.Fragment>
@@ -50,6 +58,7 @@ function Dashboard() {
           isNoteListOpened={uiState.isNoteListMenuOpened}
         >
           <CategoryList
+            ref={categoryList}
             items={tags}
             selected={selectedTag}
             onCategorySelected={index => {

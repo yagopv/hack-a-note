@@ -29,7 +29,9 @@ export function Header({ title, tag, user, onToggleMenu, onLogout }) {
         <FlexItem grow="1" textAlign="right">
           <div>
             <Text>Hola {user.name}</Text>
-            <Link onClick={onLogout}>Salir</Link>
+            <Link to="" onClick={onLogout}>
+              Salir
+            </Link>
           </div>
         </FlexItem>
       )}
