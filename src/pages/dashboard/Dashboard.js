@@ -16,7 +16,6 @@ function Dashboard() {
   const [uiState, setUIState] = useUI();
   const {
     state: { selectedTag, selectedNote, isFetching },
-
     saveNote,
     createNote,
     selectTag,
@@ -29,10 +28,12 @@ function Dashboard() {
   const isMobile = useMedia([theme.breakpoints.md], [false], true);
   const categoryList = useRef(null);
   useOnClickOutside(categoryList, () => {
-    setUIState({
-      isCategoryMenuOpened: false,
-      isNoteListMenuOpened: false
-    });
+    if (uiState.isCategoryMenuOpened) {
+      setUIState({
+        isCategoryMenuOpened: false,
+        isNoteListMenuOpened: false
+      });
+    }
   });
 
   return (
