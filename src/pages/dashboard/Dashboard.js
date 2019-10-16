@@ -91,6 +91,7 @@ function Dashboard() {
                     return;
                   }
                   await createNote(tags[selectedTag]);
+                  selectNote(0);
                   setUIState({
                     isNoteListMenuOpened: true,
                     isCategoryMenuOpened: false
