@@ -12,7 +12,7 @@ import {
   Flex
 } from '../ui';
 
-function LoginForm({ onSubmit }) {
+export function LoginForm({ onSubmit }) {
   const { form, handleSubmit, submitting } = useForm({
     onSubmit,
     validate: loginFormValidation
@@ -58,5 +58,3 @@ function LoginForm({ onSubmit }) {
     </form>
   );
 }
-
-export { LoginForm };

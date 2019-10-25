@@ -11,7 +11,7 @@ import { useMedia } from '../../shared/hooks/useMedia';
 import { theme } from '../../shared/theme';
 import { useOnClickOutside } from '../../shared/hooks/useOnClickOutside';
 
-function Dashboard() {
+export function Dashboard() {
   const [{ user }, dispatch] = useAuth();
   const [uiState, setUIState] = useUI();
   const {
@@ -167,5 +167,3 @@ function Dashboard() {
     </React.Fragment>
   );
 }
-
-export { Dashboard };

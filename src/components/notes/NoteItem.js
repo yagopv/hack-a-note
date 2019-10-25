@@ -8,7 +8,7 @@ import { getFriendlyDate } from '../../shared/utils';
 import { FlexItem, Flex } from '../ui';
 import { NoteDate } from '../ui/Notes';
 
-function NoteItem({
+export function NoteItem({
   title = 'Untitled Note',
   content = 'No content',
   updatedAt,
@@ -37,7 +37,7 @@ function NoteItem({
   );
 }
 
-export const NoteItemContainer = styled.div`
+const NoteItemContainer = styled.div`
   padding: 15px 0;
   cursor: pointer;
   height: 95px;
@@ -51,5 +51,3 @@ export const NoteItemContainer = styled.div`
   `
       : `border-bottom: 1px solid ${color('bright')}`}
 `;
-
-export { NoteItem };

@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { Flex } from './Flexbox';
+import { Button, Flex, Text } from '.';
 import { color } from '../../shared/theme';
-import { Button } from '.';
-import { Text } from './Text';
 
 export function Dialog({ children, onCancel, onAccept }) {
   return ReactDOM.createPortal(

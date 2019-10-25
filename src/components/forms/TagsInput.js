@@ -5,7 +5,7 @@ import { color, fontFamily } from '../../shared/theme';
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
 // Included on the above link - https://daveceddia.com/why-not-modify-react-state-directly/
 
-function TagsInput({ value = [], onChange }) {
+export function TagsInput({ value = [], onChange }) {
   const inputRef = useRef(null);
 
   const handleKeyDown = event => {
@@ -41,7 +41,7 @@ function TagsInput({ value = [], onChange }) {
             </TagRemoveButtom>
           </TagListItem>
         ))}
-        <TagInputContainer className="input-tag__tags__input">
+        <TagInputContainer>
           <TagInput
             ref={inputRef}
             onKeyDown={handleKeyDown}
@@ -123,5 +123,3 @@ const TagInput = styled.input.attrs({
     opacity: 0.5;
   }
 `;
-
-export { TagsInput };

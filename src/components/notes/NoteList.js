@@ -2,7 +2,12 @@ import React from 'react';
 import { NoteItem } from './NoteItem';
 import { ListItem, List, OpacityContainer } from '../ui';
 
-function NoteList({ onSelectNote, isCategoryMenuOpened, notes, selected }) {
+export function NoteList({
+  onSelectNote,
+  isCategoryMenuOpened,
+  notes,
+  selected
+}) {
   return (
     <OpacityContainer activated={isCategoryMenuOpened}>
       <List mt="md">
@@ -15,5 +20,3 @@ function NoteList({ onSelectNote, isCategoryMenuOpened, notes, selected }) {
     </OpacityContainer>
   );
 }
-
-export { NoteList };

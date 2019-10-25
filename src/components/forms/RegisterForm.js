@@ -12,7 +12,7 @@ import {
   Link
 } from '../ui';
 
-function RegisterForm({ onSubmit }) {
+export function RegisterForm({ onSubmit }) {
   const { form, handleSubmit, submitting } = useForm({
     onSubmit,
     validate: registerFormValidation
@@ -71,5 +71,3 @@ function RegisterForm({ onSubmit }) {
     </form>
   );
 }
-
-export { RegisterForm };

@@ -5,7 +5,7 @@ import { Header } from '../components/ui';
 import { useAuth, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../shared/context';
 import http from '../http';
 
-function Login({ history }) {
+export function Login({ history }) {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useAuth();
 
@@ -43,5 +43,3 @@ function Login({ history }) {
     </React.Fragment>
   );
 }
-
-export { Login };

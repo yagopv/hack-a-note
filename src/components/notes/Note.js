@@ -8,14 +8,13 @@ import {
   NoteContent,
   MarkdownPreview,
   IconButton,
-  Link,
-  Text
+  Link
 } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 import { NoteContentEmpty } from '../ui/Notes';
 import { Dialog } from '../ui/Dialog';
 
-function Note({ initialNote, onSaveNote, onDeleteNote }) {
+export function Note({ initialNote, onSaveNote, onDeleteNote }) {
   const [note, setNote] = useState({ title: '', content: '', ...initialNote });
   const [editMode, setEditMode] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
@@ -134,5 +133,3 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
     </Box>
   );
 }
-
-export { Note };

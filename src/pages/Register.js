@@ -9,7 +9,7 @@ import {
 } from '../shared/context';
 import http from '../http';
 
-function Register({ history }) {
+export function Register({ history }) {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useAuth();
 
@@ -47,5 +47,3 @@ function Register({ history }) {
     </React.Fragment>
   );
 }
-
-export { Register };
