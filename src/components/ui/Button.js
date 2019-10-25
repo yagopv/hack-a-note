@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { color, fontFamily } from '../../shared/theme';
+import { withSpacingProps } from './uiUtils';
 
 export const Button = styled.button`
   font-family: ${fontFamily('secondary')};
@@ -7,9 +8,9 @@ export const Button = styled.button`
   min-width: 100px;
   padding: 10px 20px;
   font-size: 1rem;
-  background: ${color('secondary')};
+  background: ${props => color(props.background || 'secondary')};
   text-transform: uppercase;
-  color: ${color('bright')};
+  color: ${props => color(props.color || 'bright')};
   outline: none;
   cursor: pointer;
   height: 50px;
@@ -22,4 +23,5 @@ export const Button = styled.button`
   :active {
     transform: translateY(2px);
   }
+  ${withSpacingProps}
 `;

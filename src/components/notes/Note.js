@@ -8,14 +8,17 @@ import {
   NoteContent,
   MarkdownPreview,
   IconButton,
-  Link
+  Link,
+  Text
 } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 import { NoteContentEmpty } from '../ui/Notes';
+import { Dialog } from '../ui/Dialog';
 
 function Note({ initialNote, onSaveNote, onDeleteNote }) {
   const [note, setNote] = useState({ title: '', content: '', ...initialNote });
   const [editMode, setEditMode] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
   const titleTextarea = useRef(null);
   const contentTextarea = useRef(null);
 
@@ -85,7 +88,7 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
       <Flex justifyContent="flex-end" alignItems="center">
         <Link
           to=""
-          onClick={handleDelete}
+          onClick={() => setShowDialog(true)}
           style={{ display: 'flex', alignItems: 'center' }}
         >
           Remove
@@ -122,6 +125,11 @@ function Note({ initialNote, onSaveNote, onDeleteNote }) {
           onBlur={handleSave}
           value={note.content || ''}
         />
+      )}
+      {showDialog && (
+        <Dialog onAccept={handleDelete} onCancel={() => setShowDialog(false)}>
+          Sure to remove this note ?
+        </Dialog>
       )}
     </Box>
   );
