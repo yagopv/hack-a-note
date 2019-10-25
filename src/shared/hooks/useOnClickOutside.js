@@ -4,7 +4,12 @@ export function useOnClickOutside(ref, handler) {
   useEffect(() => {
     const listener = event => {
       console.log(event, ref);
-      if (!ref.current || ref.current.contains(event.target)) {
+      const header = document.getElementsByTagName('header')[0];
+      if (
+        !ref.current ||
+        ref.current.contains(event.target) ||
+        header.contains(event.target)
+      ) {
         return;
       }
 
