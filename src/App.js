@@ -17,9 +17,15 @@ function App() {
             <GlobalStyle />
             <Router>
               <Switch>
-                <PrivateRoute exact path="/" component={Dashboard} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
+                <PrivateRoute exact path="/">
+                  <Dashboard />
+                </PrivateRoute>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/register">
+                  <Register />
+                </Route>
               </Switch>
             </Router>
           </React.Fragment>
