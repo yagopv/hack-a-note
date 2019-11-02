@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Flex, Text, Header } from '../components/ui';
 import { RegisterForm } from '../components/forms';
 import {
@@ -9,9 +10,10 @@ import {
 } from '../shared/context';
 import http from '../http';
 
-export function Register({ history }) {
+export function Register() {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useAuth();
+  const history = useHistory();
 
   const signUp = useCallback(
     async ({ email, fullName, password }) => {

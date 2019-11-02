@@ -8,7 +8,7 @@ theme: Next, 1
 **docs** : https://create-react-app.dev
 
 ```bash
-npx create-react-app my-app
+npx create-react-app react-core-concepts
 cd my-app
 npm start
 ```

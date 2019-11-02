@@ -1,13 +1,16 @@
 import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { Flex, Text } from '../components/ui';
 import { LoginForm } from '../components/forms';
 import { Header } from '../components/ui';
 import { useAuth, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../shared/context';
 import http from '../http';
 
-export function Login({ history }) {
+export function Login() {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useAuth();
+  const history = useHistory();
 
   const signIn = useCallback(
     async ({ email, password }) => {
