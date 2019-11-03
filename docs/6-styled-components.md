@@ -195,3 +195,60 @@ const Button = styled.button`
 `;
 
 ```
+
+---
+
+## Estilos globales
+
+Función para crear un componente que genera estilos globales
+
+```javascript
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${props => (props.whiteColor ? 'white' : 'black')};
+  }
+`
+
+<React.Fragment>
+  <GlobalStyle whiteColor >
+  <App /> 
+</React.Fragment>
+```
+
+---
+
+## ThemeProvider
+
+Proveedror de contexto que inyecta el `theme` en todos los componentes creados con styled components
+
+```javascript
+const Box = styled.div`
+  color: ${props => props.theme.color};
+`
+
+render(
+  <ThemeProvider theme={{ color: 'mediumseagreen' }}>
+    <Box>I'm mediumseagreen!</Box>
+  </ThemeProvider>
+)
+```
+
+---
+
+## Función css
+
+Permite crear estilos reusables para facilitar la escritura de componentes más complejos
+
+```javascript
+import styled, { css } from 'styled-components'
+
+const complexMixin = css`
+  color: ${props => (props.whiteColor ? 'white' : 'black')};
+`
+
+const StyledComp = styled.div`
+  ${props => (props.complex ? complexMixin : 'color: blue;')};
+`
+```
