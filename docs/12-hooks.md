@@ -182,4 +182,42 @@ function TextInputWithFocusButton() {
 }
 ```
 
+---
+
+## Custom hooks
+
+Un custom hook es una función Javascript cuyo nombre comienza con "use" y que usa otros hooks
+
+```javascript
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
+    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
+    };
+  });
+
+  return isOnline;
+}
+```
+
+---
+
+## Reglas
+
+- Sólo invocarlos en el top-level del componente. No usarlos bajo condiciones, bucles o funciones anidadas
+  - Aseguramos que la invocación se realizará siempre en el mismo orden en el render
+  - Aseguramos que el estado se preservará de forma correcta entre renders
+
+- No utilizarlos desde funciones Javascript normales
+  - Desde componentes React
+  - En custom hooks
+
+**Estas reglas aplican tanto a componentes como custom hooks**
 

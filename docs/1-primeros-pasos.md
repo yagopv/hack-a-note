@@ -9,7 +9,7 @@ theme: Next, 1
 
 ```bash
 npx create-react-app react-core-concepts
-cd my-app
+cd react-core-concepts
 npm start
 ```
 

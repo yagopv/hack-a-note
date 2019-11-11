@@ -115,3 +115,23 @@ class LoggingButton extends React.Component {
   }
 }
 ```
+
+---
+
+## Lifting de eventos (Paso de datos a padres)
+
+```javascript
+class ReloadButton extends React.Component {
+  render() {
+    return (
+        <button onClick={this.props.actionToPerform}>{this.props.label}</button>
+    )
+  }
+}
+
+---
+
+## Tips
+
+- Los eventos que permite enlazar React son los enumerados aquí (https://es.reactjs.org/docs/events.html)
+- No puedo enlazar eventos en window ya que quedan fuera del arbol de componentes React

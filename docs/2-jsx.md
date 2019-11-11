@@ -8,8 +8,8 @@ theme: Next, 1
 
 ## JSX. Que es
 
-- HTML, CSS, y Javascript todo junto. Todo lo que conociamos se desmorona 😱
-- La lógica del renderizado está ligada a la lógica de UX/UI
+- HTML, CSS, y Javascript en el mismo sitio?. Todo lo que conociamos se desmorona 😱
+- La lógica de `render` está ligada a la lógica de UX/UI
 - No es obligatorio pero nadie lo utiliza de otra forma
 
 ---
@@ -118,3 +118,10 @@ const element = React.createElement(
 );
 ```
 
+---
+
+## Tips
+- Los componentes han de comenzar siempre por mayúscula
+- Hemos de importar React para usar JSX ya que el compilador lo utiliza
+
+---

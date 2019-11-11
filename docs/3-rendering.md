@@ -50,7 +50,7 @@ La realidad es que ⬆️ solo pasa una vez
 ## Componentes
 
 - Representan partes de la interfaz de usuario
-- Pueden ser Stateless o Statefull
+- Pueden ser Stateless (Sin estado) o Statefull (Con estado)
 
 ---
 
@@ -187,14 +187,46 @@ function Comment(props) {
 
 ---
 
-# Todos los componentes de React deben actuar como funciones puras con respecto a sus props.
+# Todos los componentes de React deben actuar como funciones puras con respecto a sus props
+
+---
+
+![](https://media.giphy.com/media/QmFkMhsEC4k8jcpIMS/giphy.gif)
 
 ---
 
 ## Funciones puras
 
-- Los componentes de React deben ser tratados compo funciones puras. Para los mismos parametros obtenemos siempre el mismo resultado
-- No podemos cambiar las props que nos llegan como parámetro (De hecho es una mala práctica en general) porque en ese caso no se obtendrían los resultados esperados
+- Los componentes de React deben ser tratados compo funciones puras. Para los mismos parametros de entrada obtenemos siempre el mismo resultado visual
+- No podemos cambiar las props que nos llegan como parámetro (De hecho es una mala práctica en general) porque en ese caso no se obtendrían los resultados esperados.
 
 ---
 
+## defaultProps
+
+Puedo aplicar valores por defecto a las props en un componente
+
+```javascript
+MyComponent.defaultProps = {
+  name: 'Alex',
+  age: 25
+}
+```
+
+---
+
+## propTypes
+
+Puedo aplicar ciertas reglas de tipos en tiempo de desarrollo que deben cumplir los componentes
+
+```javascript
+ChangeMobile.propTypes = {
+  isAppLoading: PropTypes.bool,
+  initialize: PropTypes.func,
+  translate: PropTypes.func
+}
+```
+
+https://es.reactjs.org/docs/typechecking-with-proptypes.html
+
+---

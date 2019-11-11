@@ -118,4 +118,7 @@ componentDidMount() {
 
 ---
 
+## Tips
+
+- Si necesito renderizar cun componente que no depende del flujo normal puedo usar `forceUpdate()`
 
