@@ -121,4 +121,5 @@ componentDidMount() {
 ## Tips
 
 - Si necesito renderizar cun componente que no depende del flujo normal puedo usar `forceUpdate()`
+- https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster  (Diagrama decision estado)
 
