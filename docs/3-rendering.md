@@ -35,8 +35,6 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-La realidad es que ⬆️ solo pasa una vez
-
 ---
 
 ## Diff
@@ -171,7 +169,6 @@ function Comment(props) {
   return (
     <div className="Comment">
       <div className="UserInfo">
-        <Avatar user={props.author} />
         <UserInfo user={props.author} />
       </div>
       <div className="Comment-text">

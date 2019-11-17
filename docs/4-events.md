@@ -80,7 +80,6 @@ class Toggle extends React.Component {
 ```javascript
 class LoggingButton extends React.Component {
   // Esta sintaxis nos asegura que `this` está ligado dentro de handleClick
-  // Peligro: esto es una sintaxis *experimental*
   handleClick = () => {
     console.log('this is:', this);
   }

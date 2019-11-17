@@ -252,3 +252,4 @@ const StyledComp = styled.div`
   ${props => (props.complex ? complexMixin : 'color: blue;')};
 `
 ```
+

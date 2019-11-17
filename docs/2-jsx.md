@@ -9,7 +9,7 @@ theme: Next, 1
 ## JSX. Que es
 
 - HTML, CSS, y Javascript en el mismo sitio?. Todo lo que conociamos se desmorona 😱
-- La lógica de `render` está ligada a la lógica de UX/UI
+- La lógica de `render` (dibujado) está ligada a la lógica de UX/UI
 - No es obligatorio pero nadie lo utiliza de otra forma
 
 ---
