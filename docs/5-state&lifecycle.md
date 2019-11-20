@@ -115,3 +115,5 @@ componentDidMount() {
 
 - https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster  (Diagrama decision estado)
 
+- https://pusher.com/tutorials/lifecycle-methods-react-16
+

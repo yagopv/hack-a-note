@@ -222,3 +222,8 @@ function useFriendStatus(friendID) {
 
 **Estas reglas aplican tanto a componentes como custom hooks**
 
+---
+
+## Tips
+
+- https://dev.to/trentyang/replace-lifecycle-with-hooks-in-react-3d4n
