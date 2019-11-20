@@ -1,8 +1,12 @@
 autoscale: true
 slidenumbers: true
-theme: Next, 1
+theme: Courier, 7
 
 # Rendering 
+
+---
+
+![](https://media.giphy.com/media/3owyoXMzSPGjbsQ5uE/giphy.gif)
 
 ---
 
@@ -17,9 +21,9 @@ ReactDOM.render(element, document.getElementById('root'));
 
 ---
 
-## Inmutabilidad
+## Inmutabilidad 😱
 
-- Los elementos React son Inmutables. Fotogramas en el tiempo
+Los elementos React son Inmutables. Una vez creado no puedes cambiar sus hijos o atributos. Son fotogramas en el tiempo. Para actualizarlo solo conocemos `ReactDOM.render()`
 
 ```javascript
 function tick() {
@@ -39,16 +43,18 @@ setInterval(tick, 1000);
 
 ## Diff
 
-- React compara cada render con el anterior y sólo aplica las modificaciones que son necesarias
+React compara cada render con el anterior y sólo aplica las modificaciones que son necesarias
 
-[Ejemplo](https://es.reactjs.org/redirect-to-codepen/rendering-elements/update-rendered-element)
+[https://es.reactjs.org/redirect-to-codepen/rendering-elements/update-rendered-element](https://es.reactjs.org/redirect-to-codepen/rendering-elements/update-rendered-element)
 
 ---
 
 ## Componentes
 
-- Representan partes de la interfaz de usuario
+- Representan partes de la interfaz de usuario 
+[https://bradfrost.com/blog/post/atomic-web-design](https://bradfrost.com/blog/post/atomic-web-design)
 - Pueden ser Stateless (Sin estado) o Statefull (Con estado)
+- Hay dos formas de crear componentes (funcionales y clases)
 
 ---
 
@@ -58,23 +64,29 @@ setInterval(tick, 1000);
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
+
 ```
 
 ---
 
 ## Clases
 
+Extender `React.component` e implementar `render()`
+
 ```javascript
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1 className="name-text">Hello, {this.props.name}</h1>;
   }
 }
+
+Ojo con los nombres de los atributos como class => className => JSX es JS
+
 ```
 
 ---
 
-## Render de Componentes
+## Como se usan
 
 ```javascript
 // Paso de parametros como props
@@ -82,10 +94,8 @@ function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
-const element = <Welcome name="Sara" />;
-
 ReactDOM.render(
-  element,
+  <Welcome name="Sara" />,
   document.getElementById('root')
 );
 ```
@@ -112,16 +122,10 @@ function Comment(props) {
           src={props.author.avatarUrl}
           alt={props.author.name}
         />
-        <div className="UserInfo-name">
-          {props.author.name}
-        </div>
+        <div className="UserInfo-name">{props.author.name}</div>
       </div>
-      <div className="Comment-text">
-        {props.text}
-      </div>
-      <div className="Comment-date">
-        {formatDate(props.date)}
-      </div>
+      <div className="Comment-text">{props.text}</div>
+      <div className="Comment-date">{formatDate(props.date)}</div>
     </div>
   );
 }
@@ -138,7 +142,6 @@ function Avatar(props) {
       src={props.user.avatarUrl}
       alt={props.user.name}
     />
-
   );
 }
 ```
@@ -184,7 +187,7 @@ function Comment(props) {
 
 ---
 
-# Todos los componentes de React deben actuar como funciones puras con respecto a sus props
+## Todos los componentes de React deben actuar como funciones puras con respecto a sus props
 
 ---
 
@@ -194,8 +197,27 @@ function Comment(props) {
 
 ## Funciones puras
 
-- Los componentes de React deben ser tratados compo funciones puras. Para los mismos parametros de entrada obtenemos siempre el mismo resultado visual
-- No podemos cambiar las props que nos llegan como parámetro (De hecho es una mala práctica en general) porque en ese caso no se obtendrían los resultados esperados.
+- Los componentes de React deben ser tratados compo **funciones puras**. Para los mismos parametros de entrada obtenemos siempre el mismo resultado visual
+- **No podemos cambiar las props que nos llegan como parámetro** (De hecho es una mala práctica en general) porque en ese caso no se obtendrían los resultados esperados.
+
+---
+
+## Comparación
+
+```javascript
+// Función pura
+function pureSum( a, b ) {
+    return a + b;
+}
+
+// Impura
+function nonPureSum(a) {
+    const inputValue = document.querySelector('.inputVal').value;
+    a = a + inputValue;
+    return result;
+}
+
+```
 
 ---
 
@@ -225,5 +247,3 @@ ChangeMobile.propTypes = {
 ```
 
 https://es.reactjs.org/docs/typechecking-with-proptypes.html
-
----

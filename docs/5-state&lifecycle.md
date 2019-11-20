@@ -1,6 +1,6 @@
 autoscale: true
 slidenumbers: true
-theme: Next, 1
+theme: Courier, 7
 
 # State
 
@@ -9,6 +9,7 @@ theme: Next, 1
 ## State
 
 - Hasta ahora habiamos visto solo componentes sin estado interno. Fotogramas basados en el render y las props (Funciones puras)
+
 - Los componentes en React pueden tener un estado interno
 
 ---
@@ -17,26 +18,19 @@ theme: Next, 1
 class Person extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-      age:0
+    this.state = { age: 0 }
     this.incrementAge = this.incrementAge.bind(this)
   }
-
   componentDidMount() {
     console.log('Component inserted in DOM');
   }
-
   componentWillUnmount() {
     console.log('The component will be detached');
   }
-
   incrementAge(){
-    this.setState((state, props) => ({
-      age: state.age + 1;
-    }));
+    this.setState((state, props) => ({ age: state.age + 1; }));
   }
-
-  render(){
+  render() {
     return(
       <div>
         <label>My age is: {this.state.age}</label>
@@ -49,15 +43,15 @@ class Person extends React.Component{
 
 ---
 
-1. Cuando se pasa <Person /> a ReactDOM.render(), React invoca al constructor del componente Person. Inicializa this.state con un objeto conm la edad de la persona
+1. Cuando se pasa <Person /> a ReactDOM.render(), React invoca al constructor del componente `Person`. Inicializa `this.state` con un objeto con la edad de la persona
 
-2. React invoca entonces al método render() del componente Person. Así es como React sabe lo que se debe mostrar en pantalla. React entonces actualiza el DOM para que coincida con la salida del renderizado de Person
+2. React invoca entonces al método `render()` del componente `Person`. Así es como React sabe lo que se debe mostrar en pantalla. React entonces actualiza el DOM para que coincida con la salida del renderizado de Person
 
-3. Cuando la salida de Person se inserta en el DOM, React invoca al método de ciclo de vida `componentDidMount()`
+3. Cuando la salida de `Person` se inserta en el DOM, React invoca al método de ciclo de vida `componentDidMount()`
 
 4. Cada vez que pulsamos sobre el botón se realiza una llamada a `setState()` planificando una actualización de la interfaz de usuario incrementado la edad. Gracias a la invocación a `setState()`, React sabe que el estado cambió e invoca de nuevo al método `render()` para saber qué debe estar en la pantalla. Esta vez, `this.state.age` en el método `render()` será diferente, por lo que el resultado del renderizado incluirá la edad actualizada. Conforme a eso React actualiza el DOM
 
-5. Si el componente Person se elimina en algún momento del DOM, React invoca al método de ciclo de vida `componentWillUnmount()`, por lo que podemos realizar labores de recojida de 🚮
+5. Si el componente `Person` se elimina en algún momento del DOM, React invoca al método de ciclo de vida `componentWillUnmount()`, por lo que podemos realizar labores de recogida de 🚮
 
 ---
 
@@ -68,21 +62,21 @@ class Person extends React.Component{
 ## No actualizar el estado directamente
 
 ```javascript
-this.state.age = 5; // Wrong!! (Sólo en el constructor se puede hacer)
-this.setState({ age: 5 }); // Good!!
+this.state.age = 5; // Mal!! (Sólo se puede hacer en el constructor o mediante una propiedad de la clase)
+this.setState({ age: 5 }); // Bien!!
 ```
 
 ---
 
-##  setState() es asincrono
+##  setState() es asíncrono
 
 ```javascript
-// Wrong. El estado no esta garantizado que este actualizado
+// Mal. El estado no esta garantizado que se haya actualizado
 this.setState({
   age: this.state.age + 1;
 });
 
-// Nice. El estado esta garantizado que es el correcto
+// Bien. El estado esta garantizado que es el correcto
 this.setState((state, props) => ({
   age: state.age + 1;
 }));
@@ -95,10 +89,7 @@ this.setState((state, props) => ({
 ```javascript
 constructor(props) {
   super(props);
-  this.state = {
-    posts: [],
-    comments: []
-  };
+  this.state = { posts: [], comments: [] };
 }
 
 componentDidMount() {
@@ -120,6 +111,7 @@ componentDidMount() {
 
 ## Tips
 
-- Si necesito renderizar cun componente que no depende del flujo normal puedo usar `forceUpdate()`
+- Si necesito renderizar un componente que no depende del flujo normal puedo usar `forceUpdate()`
+
 - https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster  (Diagrama decision estado)
 

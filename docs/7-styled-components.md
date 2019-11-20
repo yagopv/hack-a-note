@@ -1,6 +1,6 @@
 autoscale: true
 slidenumbers: true
-theme: Next, 1
+theme: Courier, 7
 
 # Styled  Components
 
@@ -9,14 +9,18 @@ theme: Next, 1
 ## Tagged Template Literals
 
 ```javascript
-// Sin interpolaciones
-fn`some string here`
-fn(['some string here'])
+// Dada una funcion como esta
+function fn(...params) { console.log(params) }
+
+// Sin variables en el template string (interpolaciones)
+fn`what the fuck?`
+fn(['what the fuck?'])
 
 // Con interpolaciones
-const aVar = 'good'
-fn`this is a ${aVar} day`
-fn(['this is a ', ' day'], aVar)
+const aVar = 'is'
+const anotherVar = '?'
+fn`what the fuck ${aVar} this ${anotherVar}`
+fn(['what the fuck ', ' this ', ''], aVar, anotherVar)
 ```
 
 ---
@@ -36,11 +40,11 @@ const Wrapper = styled.section`
 `;
 
 render(
-  <Wrapper>
-    <Title>
+  <Wrapper> {/* <section> */}
+    <Title> {/* <h1> */}
       Hello World!
-    </Title>
-  </Wrapper>
+    </Title> {/* <h1> */}
+  </Wrapper> {/* </h1> */}
 );
 ```
 
@@ -88,7 +92,13 @@ const TomatoButton = styled(Button)`
 ## Modificando el tag asociado
 
 ```javascript
-<Button as="a" href="/">Link with Button styles</Button>
+<Button as="a" href="/">
+  Link with Button styles
+</Button>
+```
+
+```html
+<a href="/">Link with Button styles</a>
 ```
 
 ---
@@ -105,11 +115,13 @@ const Input = styled.input`
   border: none;
   border-radius: 3px;
 `;
+```
 
+```html
 render(
   <div>
-    <Input defaultValue="@probablyup" type="text" />
-    <Input defaultValue="@geelen" type="text" inputColor="rebeccapurple" />
+    <Input type="text" />
+    <Input type="text" inputColor="rebeccapurple" />
   </div>
 );
 ```
@@ -198,6 +210,24 @@ const Button = styled.button`
 
 ---
 
+## ThemeProvider
+
+Proveedor de contexto que inyecta el `theme` en todos los componentes creados con styled components
+
+```javascript
+const Box = styled.div`
+  color: ${props => props.theme.color};
+`
+
+render(
+  <ThemeProvider theme={{ color: 'mediumseagreen' }}>
+    <Box>I'm mediumseagreen!</Box>
+  </ThemeProvider>
+)
+```
+
+---
+
 ## Estilos globales
 
 Función para crear un componente que genera estilos globales
@@ -219,25 +249,7 @@ const GlobalStyle = createGlobalStyle`
 
 ---
 
-## ThemeProvider
-
-Proveedror de contexto que inyecta el `theme` en todos los componentes creados con styled components
-
-```javascript
-const Box = styled.div`
-  color: ${props => props.theme.color};
-`
-
-render(
-  <ThemeProvider theme={{ color: 'mediumseagreen' }}>
-    <Box>I'm mediumseagreen!</Box>
-  </ThemeProvider>
-)
-```
-
----
-
-## Función css
+## Función `css`
 
 Permite crear estilos reusables para facilitar la escritura de componentes más complejos
 

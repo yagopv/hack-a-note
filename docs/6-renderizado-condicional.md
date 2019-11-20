@@ -1,6 +1,6 @@
 autoscale: true
 slidenumbers: true
-theme: Next, 1
+theme: Courier, 7
 
 # Renderizado Condicional
 
@@ -46,9 +46,7 @@ function Mailbox(props) {
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
-    <div>
-      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
-    </div>
+    <div>The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.</div>
   );
 }
 
@@ -122,5 +120,4 @@ function NumberList(props) {
 }
 ```
 
----
 

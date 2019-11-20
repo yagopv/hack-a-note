@@ -1,6 +1,6 @@
 autoscale: true
 slidenumbers: true
-theme: Next, 1
+theme: Courier, 7
 
 # Hooks
 
@@ -9,7 +9,8 @@ theme: Next, 1
 ## Que son?
 
 - Permiten usar características de React sin tener que escribir clases
-- Desarrollar componentes React usando sólo funciones y hooks nos brinda una serie de beneficios:
+- Permiten desarrollar componentes React usando sólo funciones
+- React kooks nos brinda una serie de beneficios:
   - Reusar código se convierte en trivial. Con las clases no lo era
   - Componentes más simples
   - Beneficios a nivel de optimización debido al funcionamiento interno de React (AoT compilation, minification, ...)

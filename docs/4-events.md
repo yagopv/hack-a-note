@@ -1,6 +1,6 @@
 autoscale: true
 slidenumbers: true
-theme: Next, 1
+theme: Courier, 7
 
 # Events
 
@@ -45,6 +45,14 @@ function ActionLink() {
 
 ---
 
+## Tips
+
+- Los eventos que permite enlazar React son los enumerados aquí (https://es.reactjs.org/docs/events.html)
+
+- No puedo enlazar eventos en window ya que quedan fuera del arbol de componentes React
+
+---
+
 ## this con bind
 
 ```javascript
@@ -52,15 +60,12 @@ class Toggle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isToggleOn: true};
-
     // Este enlace es necesario para hacer que `this` funcione en el callback
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
+    this.setState(state => ({ isToggleOn: !state.isToggleOn }));
   }
 
   render() {
@@ -123,14 +128,7 @@ class LoggingButton extends React.Component {
 class ReloadButton extends React.Component {
   render() {
     return (
-        <button onClick={this.props.actionToPerform}>{this.props.label}</button>
+        <button onClick={this.props.actionToPerform}>{this.props.label}<button>
     )
   }
 }
-
----
-
-## Tips
-
-- Los eventos que permite enlazar React son los enumerados aquí (https://es.reactjs.org/docs/events.html)
-- No puedo enlazar eventos en window ya que quedan fuera del arbol de componentes React
