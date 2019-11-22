@@ -22,3 +22,11 @@
 .m-t-lg {
   margin-top: var(--space-lg);
 }
+
+.flex {
+  display: flex;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

@@ -2,9 +2,8 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import marked from 'marked';
 
-import { Flex, MarkdownPreview } from '../ui';
+import { Flex } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
-import { NoteContentEmpty } from '../ui/Notes';
 import { Dialog } from '../ui/Dialog';
 
 export function Note({ initialNote, onSaveNote, onDeleteNote }) {
@@ -90,7 +89,8 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
       </Flex>
       {!editMode &&
         (note.content ? (
-          <MarkdownPreview
+          <div
+            className="markdown"
             dangerouslySetInnerHTML={{
               __html: marked(note.content, {
                 gfm: true,
@@ -100,9 +100,9 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
             onClick={handleChangeEditMode}
           />
         ) : (
-          <NoteContentEmpty onClick={handleChangeEditMode}>
+          <p className="empty" onClick={handleChangeEditMode}>
             Enter note content
-          </NoteContentEmpty>
+          </p>
         ))}
       {editMode && (
         <textarea

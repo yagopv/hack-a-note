@@ -11,7 +11,7 @@ export function NoteList({
     <div
       className={`opacity-container ${isCategoryMenuOpened ? 'activated' : ''}`}
     >
-      <ul mt="md">
+      <ul className="m-t-lg">
         {notes.map((note, index) => (
           <li key={note.id} onClick={() => onSelectNote(index)}>
             <NoteItem {...note} isSelected={selected === index} />
