@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import marked from 'marked';
 
 import {
@@ -7,8 +8,7 @@ import {
   NoteTitle,
   NoteContent,
   MarkdownPreview,
-  IconButton,
-  Link
+  IconButton
 } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 import { NoteContentEmpty } from '../ui/Notes';

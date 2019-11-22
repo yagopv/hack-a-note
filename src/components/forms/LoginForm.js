@@ -1,16 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useForm, useField } from 'react-final-form-hooks';
 import { loginFormValidation, getValidationColor } from './validation';
-import {
-  FormControl,
-  Label,
-  Input,
-  ValidationMessage,
-  Button,
-  Box,
-  Link,
-  Flex
-} from '../ui';
+import { Box, Flex } from '../ui';
 
 export function LoginForm({ onSubmit }) {
   const { form, handleSubmit, submitting } = useForm({
@@ -22,38 +14,37 @@ export function LoginForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} style={{ width: '300px' }}>
-      <FormControl color={getValidationColor(email.meta)}>
-        <Label>Email</Label>
-        <Input
+      <div className={`form-control ${getValidationColor(email.meta)}`}>
+        <label>Email</label>
+        <input
           id="email"
           type="text"
           {...email.input}
           placeholder="Introduce tu email"
         />
-        <ValidationMessage as="span">
+        <span className="errorMessage">
           {email.meta.touched && email.meta.error}
-        </ValidationMessage>
-      </FormControl>
-      <FormControl color={getValidationColor(password.meta)}>
-        <Label>Password</Label>
-        <Input
+        </span>
+      </div>
+      <div className={`form-control ${getValidationColor(password.meta)}`}>
+        <label>Password</label>
+        <input
           id="password"
           type="password"
           {...password.input}
           placeholder="Enter your password"
         />
-        <ValidationMessage as="span">
+        <span className="errorMessage">
           {password.meta.touched && password.meta.error}
-        </ValidationMessage>
-      </FormControl>
+        </span>
+      </div>
       <Flex direction="column" alignItems="flex-end">
-        <Button type="submit" disabled={submitting}>
-          Submit
-        </Button>
-        <Box mt="md">
-          <Link to="/register">Register </Link> |
-          <Link to="/forgot-password"> Forgot Password</Link>
-        </Box>
+        <button type="submit" className="btn" disabled={submitting}>
+          Log in
+        </button>
+        <div className="m-t-lg">
+          <Link to="/register">Don't have an account. Please sign up</Link>
+        </div>
       </Flex>
     </form>
   );

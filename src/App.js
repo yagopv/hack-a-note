@@ -14,7 +14,6 @@ function App() {
       <UIProvider>
         <ThemeProvider theme={theme}>
           <React.Fragment>
-            <GlobalStyle />
             <Router>
               <Switch>
                 <PrivateRoute exact path="/">

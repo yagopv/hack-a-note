@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Flex, Text, Header } from '../components/ui';
+import { Header } from '../components/ui';
 import { RegisterForm } from '../components/forms';
 import {
   useAuth,
@@ -37,15 +37,10 @@ export function Register() {
   return (
     <React.Fragment>
       <Header title="Notes App" />
-      <Flex
-        alignItems="center"
-        justifyContent="center"
-        direction="column"
-        fullHeight
-      >
-        <Text as="h3">Please register</Text>
+      <main className="centered-container">
+        <h3>Please register</h3>
         <RegisterForm onSubmit={signUp} />
-      </Flex>
+      </main>
     </React.Fragment>
   );
 }

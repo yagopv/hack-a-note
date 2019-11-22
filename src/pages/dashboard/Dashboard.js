@@ -3,7 +3,7 @@ import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
 import { Header, Text } from '../../components/ui';
-import { Flex, IconInput, IconButton } from '../../components/ui';
+import { Flex, IconButton } from '../../components/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
@@ -73,12 +73,10 @@ export function Dashboard() {
           />
           <Flex direction="column" p="md" overflow="auto">
             <Flex>
-              <IconInput
+              <input
+                class="search"
                 type="search"
                 onChange={event => filterNotesByText(event.target.value)}
-                image={
-                  'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIzLjIzMyAyMS44NmwtNS43MTItNS45NGE5LjY1OSA5LjY1OSAwIDAwMi4yNzMtNi4yM2MwLTUuMzQzLTQuMzQ3LTkuNjktOS42OS05LjY5QzQuNzYzIDAgLjQxNSA0LjM0Ny40MTUgOS42OWMwIDUuMzQzIDQuMzQ4IDkuNjkgOS42OSA5LjY5YTkuNTg2IDkuNTg2IDAgMDA1LjU1Mi0xLjc1M2w1Ljc1NSA1Ljk4NWMuMjQxLjI1LjU2NS4zODguOTExLjM4OGExLjI2NSAxLjI2NSAwIDAwLjkxLTIuMTR6TTEwLjEwNSAyLjUyOGMzLjk0OSAwIDcuMTYyIDMuMjEzIDcuMTYyIDcuMTYyIDAgMy45NS0zLjIxMyA3LjE2Mi03LjE2MiA3LjE2Mi0zLjk1IDAtNy4xNjMtMy4yMTMtNy4xNjMtNy4xNjIgMC0zLjk1IDMuMjEzLTcuMTYyIDcuMTYzLTcuMTYyeiIgZmlsbD0iI0Y4QzUxRCIvPjwvc3ZnPg==)'
-                }
               />
               <IconButton
                 width="2.5rem"

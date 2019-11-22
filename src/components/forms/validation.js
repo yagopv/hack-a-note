@@ -47,11 +47,11 @@ export function registerFormValidation({ email, password, fullName }) {
 
 export function getValidationColor(field) {
   if (!field.touched) {
-    return color('primary');
+    return 'primary';
   } else {
     if (field.error) {
-      return color('ko');
+      return 'ko';
     }
-    return color('ok');
+    return 'ok';
   }
 }

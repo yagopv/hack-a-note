@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 import { fontFamily, fontSize } from '../../shared/theme';
 import { useMedia } from '../../shared/hooks/useMedia';
 import { Flex, FlexItem } from './Flexbox';
 import { Text } from '../ui';
-import { Link } from './Link';
 
 export function Header({ title, tag, user, onToggleMenu, onLogout }) {
   const theme = useContext(ThemeContext);

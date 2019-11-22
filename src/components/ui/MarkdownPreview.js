@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro';
 import { color, fontFamily } from '../../shared/theme';
-import { linkMixin } from './Link';
 
 export const MarkdownPreview = styled.div`
   color: ${color('medium')}
@@ -47,10 +46,6 @@ export const MarkdownPreview = styled.div`
     margin: 20px 0;
     color: ${color('medium')};
     font-family: ${fontFamily('primary')};
-  }
-
-  a {
-    ${linkMixin}
   }
 
   blockquote {

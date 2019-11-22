@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Flex, Text } from '../components/ui';
+import { Text } from '../components/ui';
 import { LoginForm } from '../components/forms';
 import { Header } from '../components/ui';
 import { useAuth, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../shared/context';
@@ -34,15 +34,10 @@ export function Login() {
   return (
     <React.Fragment>
       <Header title="Notes App" />
-      <Flex
-        alignItems="center"
-        justifyContent="center"
-        direction="column"
-        fullHeight
-      >
-        <Text as="h3">Please login</Text>
+      <main className="centered-container">
+        <h3>Please login</h3>
         <LoginForm onSubmit={signIn} />
-      </Flex>
+      </main>
     </React.Fragment>
   );
 }

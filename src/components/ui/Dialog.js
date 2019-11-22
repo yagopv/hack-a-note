@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { Button, Flex, Text } from '.';
+import { Flex, Text } from '.';
 import { color } from '../../shared/theme';
 
 export function Dialog({ children, onCancel, onAccept }) {
@@ -16,12 +16,12 @@ export function Dialog({ children, onCancel, onAccept }) {
           {children}
         </Text>
         <Flex mt="xl">
-          <Button background="bright" color="dark" onClick={onCancel}>
+          <button className="btn" onClick={onCancel}>
             Cancel
-          </Button>
-          <Button background="ko" ml="md" onClick={onAccept}>
+          </button>
+          <button className="btn" onClick={onAccept}>
             Accept
-          </Button>
+          </button>
         </Flex>
       </ModalWrapper>
     </ModalContainer>,
