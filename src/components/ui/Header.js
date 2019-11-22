@@ -3,39 +3,37 @@ import styled, { ThemeContext } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { fontFamily, fontSize } from '../../shared/theme';
 import { useMedia } from '../../shared/hooks/useMedia';
-import { Flex, FlexItem } from './Flexbox';
-import { Text } from '../ui';
 
 export function Header({ title, tag, user, onToggleMenu, onLogout }) {
   const theme = useContext(ThemeContext);
   const isMobile = useMedia([theme.breakpoints.md], [false], true);
 
   return (
-    <Flex alignItems="center" p="md" as="header">
+    <header className="header">
       {!isMobile && <Title>{title}</Title>}
       {isMobile && (
         <React.Fragment>
-          <FlexItem grow="1">
+          <div className="header-item">
             <NavButton onClick={onToggleMenu} />
-          </FlexItem>
+          </div>
           {tag && (
-            <FlexItem grow="1" textAlign="center">
-              <Tag>#{tag}</Tag>
-            </FlexItem>
+            <div className="header-item centered">
+              <h2 className="header-tag">#{tag}</h2>
+            </div>
           )}
         </React.Fragment>
       )}
       {user && (
-        <FlexItem grow="1" textAlign="right">
+        <div className="header-item right">
           <div>
-            <Text>Hola {user.name}</Text>
+            <p className="header-name">Hola {user.name}</p>
             <Link to="" onClick={onLogout}>
               Salir
             </Link>
           </div>
-        </FlexItem>
+        </div>
       )}
-    </Flex>
+    </header>
   );
 }
 

@@ -2,6 +2,7 @@
 @import './buttons.css';
 @import './forms.css';
 @import './utils.css';
+@import './components/header.css';
 
 html {
   box-sizing: border-box;
@@ -87,6 +88,14 @@ a:hover {
 a:active {
   opacity: 1;
   border-bottom: 2px solid var(--secondary);
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul > li {
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {

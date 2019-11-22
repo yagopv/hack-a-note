@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+}
+
+.header-item {
+  flex-grow: 1;
+}
+
+.header-item.centered {
+  text-align: center;
+}
+
+.header-item.right {
+  text-align: right;
+}
+
+.header-tag {
+  font-family: var(--font-secondary);
+  font-size: var(--font-m);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.header-name {
+  font-size: var(--font-s);
+}
