@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components/macro';
-import { theme, GlobalStyle } from './shared/theme';
+import { theme } from './shared/theme';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';

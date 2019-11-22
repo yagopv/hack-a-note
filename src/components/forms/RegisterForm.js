@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm, useField } from 'react-final-form-hooks';
 import { Link } from 'react-router-dom';
 import { registerFormValidation, getValidationColor } from './validation';
-import { Flex, Box } from '../ui';
 
 export function RegisterForm({ onSubmit }) {
   const { form, handleSubmit, submitting } = useForm({
@@ -52,14 +51,14 @@ export function RegisterForm({ onSubmit }) {
           {password.meta.touched && password.meta.error}
         </span>
       </div>
-      <Flex direction="column" alignItems="flex-end">
+      <div className="btn-container">
         <button type="submit" className="btn" disabled={submitting}>
           Register
         </button>
         <div className="m-t-lg">
           <Link to="/login">Already have an account </Link>
         </div>
-      </Flex>
+      </div>
     </form>
   );
 }

@@ -74,7 +74,7 @@ export function Dashboard() {
           <Flex direction="column" p="md" overflow="auto">
             <Flex>
               <input
-                class="search"
+                className="search"
                 type="search"
                 onChange={event => filterNotesByText(event.target.value)}
               />

@@ -1,5 +1,3 @@
-import { color } from '../../shared/theme';
-
 export function loginFormValidation({ email, password }) {
   const errors = {};
   if (!email) {

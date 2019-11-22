@@ -1,5 +1,3 @@
-import { createGlobalStyle } from 'styled-components/macro';
-
 export const theme = {
   breakpoints: {
     xs: '(max-width: 576px)',

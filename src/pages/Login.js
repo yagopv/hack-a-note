@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Text } from '../components/ui';
 import { LoginForm } from '../components/forms';
 import { Header } from '../components/ui';
 import { useAuth, LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../shared/context';
