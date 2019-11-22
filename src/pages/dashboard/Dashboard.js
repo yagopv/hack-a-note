@@ -4,7 +4,6 @@ import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
 import { Header, Text } from '../../components/ui';
 import { Flex } from '../../components/ui';
-import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
 import { useMedia } from '../../shared/hooks/useMedia';
@@ -53,10 +52,15 @@ export function Dashboard() {
           localStorage.removeItem('currentUser');
         }}
       />
-      <Flex as="main" fullHeight>
-        <DashboardLayout
-          isMenuOpened={uiState.isCategoryMenuOpened}
-          isNoteListOpened={uiState.isNoteListMenuOpened}
+      <main id="dashboard">
+        <div
+          className={`grid ${
+            uiState.isCategoryMenuOpened
+              ? 'menu-opened'
+              : uiState.isNoteListMenuOpened
+              ? 'notes-opened'
+              : ''
+          }`}
         >
           <CategoryList
             ref={categoryList}
@@ -145,7 +149,7 @@ export function Dashboard() {
               </Text>
             </Flex>
           )}
-        </DashboardLayout>
+        </div>
         {isMobile && uiState.isNoteListMenuOpened && (
           <button
             className="icon-button add-note-mobile"
@@ -158,7 +162,7 @@ export function Dashboard() {
             }
           ></button>
         )}
-      </Flex>
+      </main>
     </React.Fragment>
   );
 }
