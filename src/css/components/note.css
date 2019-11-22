@@ -2,3 +2,48 @@
   padding: var(--space-md);
   overflow: auto;
 }
+
+.note .title {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-family: var(--font-secondary);
+  font-size: 3rem;
+  height: 70px;
+  font-weight: bold;
+  outline: none;
+  width: 100%;
+  resize: none;
+}
+
+.note .title::placeholder {
+  font-family: var(--font-primary);
+  opacity: 0.5;
+}
+
+.note .content {
+  font-family: var(--font-primary);
+  padding: 1rem;
+  border: 2px solid var(--primary);
+  flex: 1;
+  font-size: 1rem;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  display: block;
+  margin: 2rem 0;
+  width: 100%;
+  color: var(--medium);
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 100%;
+}
+
+.note .content::placeholder {
+  color: var(--medium);
+  opacity: 0.5;
+}
+
+.note .date {
+}

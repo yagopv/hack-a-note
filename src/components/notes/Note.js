@@ -2,13 +2,7 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import marked from 'marked';
 
-import {
-  Flex,
-  NoteTitle,
-  NoteContent,
-  MarkdownPreview,
-  IconButton
-} from '../ui';
+import { Flex, MarkdownPreview } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 import { NoteContentEmpty } from '../ui/Notes';
 import { Dialog } from '../ui/Dialog';
@@ -66,8 +60,9 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
 
   return (
     <div className="note">
-      <NoteTitle
+      <textarea
         id="title"
+        className="title"
         ref={titleTextarea}
         placeholder="Untitled Note"
         value={note.title}
@@ -110,8 +105,9 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
           </NoteContentEmpty>
         ))}
       {editMode && (
-        <NoteContent
+        <textarea
           id="content"
+          className="content"
           ref={contentTextarea}
           onInput={event => autoSize(event.target)}
           onChange={handleChange}
