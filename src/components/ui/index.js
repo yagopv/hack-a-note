@@ -1,10 +1,7 @@
 export { Flex, FlexItem } from './Flexbox';
 export { Menu } from './Menu';
-export { List, ListItem } from './List';
-export { Separator } from './Separator';
 export { Box } from './Box';
 export { Text } from './Text';
-export { IconButton } from './Forms';
 export { NoteTitle, NoteContent } from './Notes';
 export { Header } from './Header';
 export { MarkdownPreview } from './MarkdownPreview';

@@ -1,0 +1,4 @@
+.note {
+  padding: var(--space-md);
+  overflow: auto;
+}

@@ -3,7 +3,7 @@ import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
 import { Header, Text } from '../../components/ui';
-import { Flex, IconButton } from '../../components/ui';
+import { Flex } from '../../components/ui';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
@@ -78,7 +78,8 @@ export function Dashboard() {
                 type="search"
                 onChange={event => filterNotesByText(event.target.value)}
               />
-              <IconButton
+              <button
+                className="icon-button add-note"
                 width="2.5rem"
                 height="2.5rem"
                 image={
@@ -96,7 +97,7 @@ export function Dashboard() {
                   });
                 }}
                 ml={'sm'}
-              />
+              ></button>
             </Flex>
             <NoteList
               isCategoryMenuOpened={uiState.isCategoryMenuOpened}
@@ -146,12 +147,8 @@ export function Dashboard() {
           )}
         </DashboardLayout>
         {isMobile && uiState.isNoteListMenuOpened && (
-          <IconButton
-            width="2.5rem"
-            height="2.5rem"
-            image={
-              'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDYiIGhlaWdodD0iNDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjMiIGN5PSIyMyIgcj0iMjIuNSIgZmlsbD0iI0Y4QzUxRCIgc3Ryb2tlPSIjMDAwIi8+PHBhdGggZD0iTTE4LjMzNSAyMi42NTFsLS4zNTQuMzU0LjM1NC4zNTQgOC45NjggOC45NjhoMGEuODE0LjgxNCAwIDAxMCAxLjE1czAgMCAwIDBsLS43ODcuNzg2aDBhLjgwMy44MDMgMCAwMS0uNTc0LjIzNy44MDIuODAyIDAgMDEtLjU3NS0uMjM3aDBsLTEwLjY4LTEwLjY4aDBhLjgwMi44MDIgMCAwMS0uMjM3LS41Nzd2LS4wMDNjMC0uMjIuMDg0LS40MjMuMjM3LS41NzZoMGwxMC42OS0xMC42OWgwYS44MDIuODAyIDAgMDEuNTc0LS4yMzdjLjIyIDAgLjQyMy4wODQuNTc1LjIzN2gwbC43ODcuNzg3aDBhLjgwMy44MDMgMCAwMS4yMzcuNTc0YzAgLjIyLS4wODQuNDIyLS4yMzcuNTc0aDBsLTguOTc4IDguOTh6IiBmaWxsPSIjRjhDNTFEIiBzdHJva2U9IiMwMDAiLz48L3N2Zz4=)'
-            }
+          <button
+            className="icon-button add-note-mobile"
             style={{ position: 'fixed', bottom: '20px', left: '20px' }}
             onClick={() =>
               setUIState({
@@ -159,7 +156,7 @@ export function Dashboard() {
                 isCategoryMenuOpened: false
               })
             }
-          />
+          ></button>
         )}
       </Flex>
     </React.Fragment>
