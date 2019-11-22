@@ -3,6 +3,7 @@
 @import './forms.css';
 @import './utils.css';
 @import './components/header.css';
+@import './components/category-list.css';
 
 html {
   box-sizing: border-box;
@@ -70,7 +71,7 @@ h6 {
 }
 
 p {
-  font-size: var(--font-xxl);
+  font-size: var(--font-sm);
 }
 
 a {

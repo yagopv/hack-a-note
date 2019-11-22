@@ -1,0 +1,19 @@
+.category-list {
+  background: var(--primary);
+}
+
+.category-list li {
+  color: var(--dark);
+  padding: var(--space-sm);
+}
+
+.category-list li.selected {
+  background-color: var(--dark);
+  color: var(--bright);
+}
+
+.category-list-tag {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  color: inherit;
+}

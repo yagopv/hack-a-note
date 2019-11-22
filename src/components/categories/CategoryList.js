@@ -1,8 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/macro';
-
-import { List, ListItem } from '../ui';
-import { color, fontFamily } from '../../shared/theme';
 
 // Naming the forwardRef function we can see it named in Devtools
 const CategoryList = React.forwardRef(function CategoryList(
@@ -10,36 +6,26 @@ const CategoryList = React.forwardRef(function CategoryList(
   ref
 ) {
   return (
-    <List ref={ref} bg={color('primary')} pt="md">
-      <ListItem
+    <ul ref={ref} className="category-list p-t-md">
+      <li
         key={'all'}
         onClick={() => onCategorySelected(null)}
-        bg={selected === null && color('dark')}
-        color={selected === null ? color('bright') : color('dark')}
-        p="sm"
+        className={`${selected === null ? 'selected' : ''}`}
       >
-        <Tag>All notes</Tag>
-      </ListItem>
+        <p className="category-list-tag">All notes</p>
+      </li>
       {items &&
         items.map((item, index) => (
-          <ListItem
+          <li
             key={item}
             onClick={() => onCategorySelected(index)}
-            bg={selected === index && color('dark')}
-            color={selected === index ? color('bright') : color('dark')}
-            p="sm"
+            className={`${selected === index ? 'selected' : ''}`}
           >
-            <Tag># {item}</Tag>
-          </ListItem>
+            <p className="category-list-tag"># {item}</p>
+          </li>
         ))}
-    </List>
+    </ul>
   );
 });
-
-const Tag = styled.p`
-  font-family: ${fontFamily('primary')};
-  font-weight: 700;
-  color: inherit;
-`;
 
 export { CategoryList };

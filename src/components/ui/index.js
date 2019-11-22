@@ -7,6 +7,5 @@ export { Text } from './Text';
 export { IconButton } from './Forms';
 export { NoteTitle, NoteContent } from './Notes';
 export { Header } from './Header';
-export { OpacityContainer } from './OpacityContainer';
 export { MarkdownPreview } from './MarkdownPreview';
 export { Dialog } from './Dialog';

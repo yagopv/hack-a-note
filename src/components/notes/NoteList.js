@@ -1,6 +1,5 @@
 import React from 'react';
 import { NoteItem } from './NoteItem';
-import { ListItem, List, OpacityContainer } from '../ui';
 
 export function NoteList({
   onSelectNote,
@@ -9,14 +8,16 @@ export function NoteList({
   selected
 }) {
   return (
-    <OpacityContainer activated={isCategoryMenuOpened}>
-      <List mt="md">
+    <div
+      className={`opacity-container ${isCategoryMenuOpened ? 'activated' : ''}`}
+    >
+      <ul mt="md">
         {notes.map((note, index) => (
-          <ListItem key={note.id} onClick={() => onSelectNote(index)}>
+          <li key={note.id} onClick={() => onSelectNote(index)}>
             <NoteItem {...note} isSelected={selected === index} />
-          </ListItem>
+          </li>
         ))}
-      </List>
-    </OpacityContainer>
+      </ul>
+    </div>
   );
 }
