@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import { Text } from '../ui/Text';
 import { getFriendlyDate } from '../../shared/utils';
 
 export function NoteItem({

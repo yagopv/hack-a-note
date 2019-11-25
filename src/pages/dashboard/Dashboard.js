@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
-import { Header, Text } from '../../components/ui';
+import { Header } from '../../components/ui';
 import { Flex } from '../../components/ui';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';

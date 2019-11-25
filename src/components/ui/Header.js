@@ -1,16 +1,13 @@
-import React, { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components/macro';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { fontFamily, fontSize } from '../../shared/theme';
 import { useMedia } from '../../shared/hooks/useMedia';
 
 export function Header({ title, tag, user, onToggleMenu, onLogout }) {
-  const theme = useContext(ThemeContext);
-  const isMobile = useMedia([theme.breakpoints.md], [false], true);
+  const isMobile = useMedia(['(min-width: 576px)'], [false], true);
 
   return (
     <header className="header">
-      {!isMobile && <Title>{title}</Title>}
+      {!isMobile && <h1>{title}</h1>}
       {isMobile && (
         <React.Fragment>
           <div className="header-item">
@@ -55,15 +52,3 @@ function NavButton({ onClick }) {
     </a>
   );
 }
-
-const Title = styled.h1`
-  font-family: ${fontFamily('special')};
-  font-size: ${fontSize('h3')};
-`;
-
-const Tag = styled.h2`
-  font-family: ${fontFamily('secondary')};
-  font-size: ${fontSize('h4')};
-  text-transform: uppercase;
-  font-weight: bold;
-`;
