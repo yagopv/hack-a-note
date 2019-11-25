@@ -3,7 +3,6 @@ import { CategoryList } from '../../components/categories/CategoryList';
 import { NoteList } from '../../components/notes/NoteList';
 import { Note } from '../../components/notes/Note';
 import { Header } from '../../components/ui';
-import { Flex } from '../../components/ui';
 import { useAuth, useUI, LOGOUT } from '../../shared/context';
 import { useNotes } from './useNotes';
 import { useMedia } from '../../shared/hooks/useMedia';
@@ -75,8 +74,8 @@ export function Dashboard() {
               selectNote(null);
             }}
           />
-          <Flex direction="column" p="md" overflow="auto">
-            <Flex>
+          <div className="note-list">
+            <div className="flex">
               <input
                 className="search"
                 type="search"
@@ -102,7 +101,7 @@ export function Dashboard() {
                 }}
                 ml={'sm'}
               ></button>
-            </Flex>
+            </div>
             <NoteList
               isCategoryMenuOpened={uiState.isCategoryMenuOpened}
               notes={filteredNotes}
@@ -116,7 +115,7 @@ export function Dashboard() {
                 });
               }}
             />
-          </Flex>
+          </div>
           {filteredNotes[selectedNote] && (
             <Note
               initialNote={filteredNotes[selectedNote]}

@@ -130,3 +130,23 @@
   margin: 3rem 1rem;
   color: var(--medium);
 }
+
+.note .note-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.note textarea {
+  flex: 1;
+  font-size: 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+}
+
+.note textarea::placeholder {
+  color: var(--primary);
+  opacity: 0.5;
+}

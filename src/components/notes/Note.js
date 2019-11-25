@@ -2,7 +2,6 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import marked from 'marked';
 
-import { Flex } from '../ui';
 import { TagsInput } from '../forms/TagsInput';
 import { Dialog } from '../ui/Dialog';
 
@@ -77,7 +76,7 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
           onSaveNote({ ...note, tags });
         }}
       />
-      <Flex justifyContent="flex-end" alignItems="center">
+      <div className="note-container">
         <Link
           to=""
           onClick={() => setShowDialog(true)}
@@ -86,7 +85,7 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
           Remove
           <button className="icon-button remove"></button>
         </Link>
-      </Flex>
+      </div>
       {!editMode &&
         (note.content ? (
           <div

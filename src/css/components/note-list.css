@@ -1,3 +1,9 @@
+.note-list {
+  flex-direction: column;
+  padding: var(--space-md);
+  overflow: auto;
+}
+
 .note-item {
   padding: 15px 0;
   cursor: pointer;
