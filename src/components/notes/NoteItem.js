@@ -18,12 +18,10 @@ export function NoteItem({
           <span className="date">{friendlyDate}</span>
         </div>
         <div className="overflow-hidden">
-          <Text as="h5" truncate={1}>
-            {title || 'Untitled Note'}
-          </Text>
-          <Text as="p" truncate={3} color={isSelected ? 'dark' : 'medium'}>
+          <h5 className="truncate-text title">{title || 'Untitled Note'}</h5>
+          <p className="truncate-multiline-text description">
             {content || 'No content'}
-          </Text>
+          </p>
         </div>
       </div>
     </div>

@@ -131,8 +131,8 @@ ReactDOM.render(
 let match = useRouteMatch("/blog/:slug");
 let match = useRouteMatch({
   path: "/Movies/:id/",
-  strict: true,
-  sensitive: true
+  strict: true, // Slash match
+  sensitive: true // Case sensitive
 });
 ```
 

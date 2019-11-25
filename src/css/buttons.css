@@ -18,3 +18,16 @@
   border: 2px solid var(--secondary);
   font-weight: bold;
 }
+
+.btn.bright {
+  background-color: var(--bright);
+  color: var(--dark);
+}
+
+.btn.error {
+  background-color: var(--ko);
+}
+
+.btn.error:hover {
+  color: var(--bright);
+}

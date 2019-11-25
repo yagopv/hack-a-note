@@ -1,7 +1,7 @@
 .note-item {
   padding: 15px 0;
   cursor: pointer;
-  height: 95px;
+  height: 100px;
   padding: var(--space-md);
   border-bottom: 1px solid var(--bright);
 }
@@ -24,5 +24,19 @@
 }
 
 .note-item.selected .date {
+  color: var(--dark);
+}
+
+.note-item.selected .title {
+  color: var(--dark);
+}
+
+.note-item .description {
+  margin: 10px 0;
+  color: var(--medium);
+  font-size: var(--font-xs);
+}
+
+.note-item.selected .description {
   color: var(--dark);
 }

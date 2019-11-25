@@ -21,10 +21,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   function(response) {
-    if (response.status === 401) {
-      localStorage.removeItem('currentUser');
-      window.location.href = '/login';
-    }
     if (response.data.token && TOKEN_URLS.indexOf(response.config.url) === -1) {
       localStorage.setItem('currentUser', JSON.stringify(response.data));
       token = response.data.token;
@@ -32,6 +28,10 @@ axios.interceptors.response.use(
     return response;
   },
   function(error) {
+    if (error.response.status === 401) {
+      localStorage.removeItem('currentUser');
+      window.location.href = '/login';
+    }
     return Promise.reject(error);
   }
 );

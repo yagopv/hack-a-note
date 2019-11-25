@@ -134,20 +134,11 @@ export function Dashboard() {
             />
           )}
           {!filteredNotes[selectedNote] && (
-            <Flex justifyContent="center" alignItems="center">
-              <Text
-                as="h2"
-                fontFamily="secondary"
-                textTransform="none"
-                textAlign="center"
-                mr="xl"
-                ml="xl"
-                mb="xl"
-                color="medium"
-              >
-                Select a note to start previewing and editing ...
-              </Text>
-            </Flex>
+            <div className="centered-container">
+              <h3 className="no-note-selected">
+                Select a note to start previewing and editing
+              </h3>
+            </div>
           )}
         </div>
         {isMobile && uiState.isNoteListMenuOpened && (

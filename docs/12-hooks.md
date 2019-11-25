@@ -36,7 +36,7 @@ function Example() {
 
 ---
 
-## useEffect (componentDidUpdate)
+## useEffect (Render)
 
 ```javascript
 import { useEffect } from 'react';
@@ -48,7 +48,7 @@ useEffect(() => {
 
 ---
 
-## useEffect (componentDidMount)
+## useEffect (Mount)
 
 ```javascript
 import { useEffect } from 'react';
@@ -60,7 +60,7 @@ useEffect(() => {
 
 ---
 
-## useEffect (componentWillUnmount)
+## useEffect (Unmount)
 
 ```javascript
 import { useEffect } from 'react';
@@ -76,7 +76,7 @@ useEffect(() => {
 
 ---
 
-## useEffect (Side Effects)
+## useEffect (Property change)
 
 ```javascript
 import { useEffect } from 'react';
