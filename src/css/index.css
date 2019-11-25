@@ -8,6 +8,7 @@
 @import './components/dashboard.css';
 @import './components/note-list.css';
 @import './components/dialog.css';
+@import './components/tags-input.css';
 
 html {
   box-sizing: border-box;

@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components/macro';
-import { color, fontFamily } from '../../shared/theme';
 
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
 // Included on the above link - https://daveceddia.com/why-not-modify-react-state-directly/
@@ -31,95 +29,23 @@ export function TagsInput({ value = [], onChange }) {
   };
 
   return (
-    <TagContainer>
-      <TagList>
+    <div className="tags-container">
+      <ul>
         {value.map((tag, index) => (
-          <TagListItem key={tag}>
+          <li key={tag}>
             {tag}
-            <TagRemoveButtom type="button" onClick={() => removeTag(index)}>
-              x
-            </TagRemoveButtom>
-          </TagListItem>
+            <button onClick={() => removeTag(index)}>x</button>
+          </li>
         ))}
-        <TagInputContainer>
-          <TagInput
+        <div className="tags-input-container">
+          <input
+            type="text"
             ref={inputRef}
             onKeyDown={handleKeyDown}
             placeholder="Enter tag"
           />
-        </TagInputContainer>
-      </TagList>
-    </TagContainer>
+        </div>
+      </ul>
+    </div>
   );
 }
-
-const TagContainer = styled.div`
-  border-radius: 2px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px 0;
-`;
-
-const TagList = styled.ul`
-  display: inline-flex;
-  align-items: center;
-  list-style: none;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-`;
-
-const TagListItem = styled.li`
-  align-items: center;
-  background: ${color('primary')};
-  border-radius: 15px;
-  color: ${color('bright')};
-  display: flex;
-  font-weight: 300;
-  list-style: none;
-  margin-right: 10px;
-  padding: 5px 10px;
-  font-family: ${fontFamily('primary')};
-  margin-bottom: 15px;
-`;
-
-const TagRemoveButtom = styled.button`
-  align-items: center;
-  background: ${color('dark')};
-  color: ${color('bright')};
-  font-family: ${fontFamily('primary')};
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  font-size: 12px;
-  height: 15px;
-  justify-content: center;
-  line-height: 0;
-  margin-left: 8px;
-  width: 15px;
-  outline: none;
-`;
-
-const TagInputContainer = styled.li`
-  flex-grow: 1;
-  padding: 0;
-`;
-
-const TagInput = styled.input.attrs({
-  type: 'text'
-})`
-  border: none;
-  width: 100%;
-  background: transparent;
-  outline: none;
-  color: ${color('primary')};
-  font-family: ${fontFamily('primary')};
-  margin-bottom: 15px;
-  ::placeholder {
-    color: ${props => color('medium')};
-    opacity: 0.5;
-  }
-`;
