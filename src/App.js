@@ -7,8 +7,8 @@ import { AppProviders } from './shared/context';
 
 function App() {
   return (
-    <AppProviders>
-      <Router>
+    <Router>
+      <AppProviders>
         <Switch>
           <PrivateRoute exact path="/">
             <Dashboard />
@@ -20,8 +20,8 @@ function App() {
             <Register />
           </Route>
         </Switch>
-      </Router>
-    </AppProviders>
+      </AppProviders>
+    </Router>
   );
 }
 

@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router';
 import { useAuth } from '../shared/context';
 
 export function PrivateRoute({ children, ...others }) {
-  const [{ isAuthenticated }] = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <Route {...others}>

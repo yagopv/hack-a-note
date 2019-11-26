@@ -1,4 +1,6 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import http from '../../http';
 
 export const LOGIN = '[AUTH] Login';
 export const LOGIN_SUCCESS = '[AUTH] Login Success';
@@ -51,10 +53,53 @@ const initialState = {
 };
 
 export function AuthProvider({ children }) {
-  let contextValue = useReducer(authReducer, initialState);
+  let [state, dispatch] = useReducer(authReducer, initialState);
+  const history = useHistory();
+
+  const signIn = useCallback(
+    async ({ email, password }) => {
+      try {
+        dispatch({ type: LOGIN });
+        const {
+          data: { user, token }
+        } = await http.login(email, password);
+        dispatch({ type: LOGIN_SUCCESS, user });
+        if (token) {
+          history.push('/');
+        }
+      } catch (error) {
+        dispatch({ type: LOGIN_FAILED, error });
+        return false;
+      }
+    },
+    [dispatch, history]
+  );
+
+  const signUp = useCallback(
+    async ({ email, fullName, password }) => {
+      try {
+        dispatch({ type: REGISTER });
+        const {
+          data: { user, token }
+        } = await http.register(email, password, fullName);
+        dispatch({ type: REGISTER_SUCCESS, user });
+        if (token) {
+          history.push('/');
+        }
+      } catch (error) {
+        dispatch({ type: REGISTER_FAILED, error });
+        return false;
+      }
+    },
+    [dispatch, history]
+  );
+
+  const logout = () => dispatch({ type: LOGOUT });
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ ...state, signIn, signUp, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 

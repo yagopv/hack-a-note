@@ -6,7 +6,7 @@ import { useMedia } from '../shared/hooks/useMedia';
 import { useOnClickOutside } from '../shared/hooks/useOnClickOutside';
 
 export function Dashboard() {
-  const [{ user }, dispatch] = useAuth();
+  const { user, logout } = useAuth();
   const [uiState, setUIState] = useUI();
   const {
     state: { selectedTag, selectedNote, isFetching },
@@ -43,7 +43,7 @@ export function Dashboard() {
           })
         }
         onLogout={() => {
-          dispatch({ type: LOGOUT });
+          logout();
           localStorage.removeItem('currentUser');
         }}
       />
