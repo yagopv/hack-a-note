@@ -1,39 +1,25 @@
 import React from 'react';
-import { useForm, useField } from 'react-final-form-hooks';
 import { Link } from 'react-router-dom';
-import { registerFormValidation, getValidationColor } from './validation';
+import { useForm, useField } from 'react-final-form-hooks';
+import { loginFormValidation, getValidationColor } from '../shared/validation';
 
-export function RegisterForm({ onSubmit }) {
+export function LoginForm({ onSubmit }) {
   const { form, handleSubmit, submitting } = useForm({
     onSubmit,
-    validate: registerFormValidation
+    validate: loginFormValidation
   });
-
-  const fullName = useField('fullName', form);
   const email = useField('email', form);
   const password = useField('password', form);
-
+  console.log(email, password);
   return (
-    <form onSubmit={handleSubmit} style={{ minWidth: '300px' }}>
-      <div className={`form-control ${getValidationColor(fullName.meta)}`}>
-        <label>Name</label>
-        <input
-          id="fullName"
-          type="text"
-          {...fullName.input}
-          placeholder="What is your name ?"
-        />
-        <span className="errorMessage">
-          {fullName.meta.touched && fullName.meta.error}
-        </span>
-      </div>
+    <form onSubmit={handleSubmit} style={{ width: '300px' }}>
       <div className={`form-control ${getValidationColor(email.meta)}`}>
         <label>Email</label>
         <input
           id="email"
           type="text"
           {...email.input}
-          placeholder="Enter your email"
+          placeholder="Introduce tu email"
         />
         <span className="errorMessage">
           {email.meta.touched && email.meta.error}
@@ -53,10 +39,10 @@ export function RegisterForm({ onSubmit }) {
       </div>
       <div className="btn-container">
         <button type="submit" className="btn" disabled={submitting}>
-          Register
+          Log in
         </button>
         <div className="m-t-lg">
-          <Link to="/login">Already have an account </Link>
+          <Link to="/register">Don't have an account. Please sign up</Link>
         </div>
       </div>
     </form>

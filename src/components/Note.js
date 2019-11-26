@@ -2,8 +2,8 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import marked from 'marked';
 
-import { TagsInput } from '../forms/TagsInput';
-import { Dialog } from '../ui/Dialog';
+import { Dialog } from './Dialog';
+import { TagsInput } from './TagsInput';
 
 export function Note({ initialNote, onSaveNote, onDeleteNote }) {
   const [note, setNote] = useState({ title: '', content: '', ...initialNote });

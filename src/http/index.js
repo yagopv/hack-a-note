@@ -28,7 +28,10 @@ axios.interceptors.response.use(
     return response;
   },
   function(error) {
-    if (error.response.status === 401) {
+    if (
+      error.response.status === 401 &&
+      error.config.url.indexOf('/auth') === -1
+    ) {
       localStorage.removeItem('currentUser');
       window.location.href = '/login';
     }

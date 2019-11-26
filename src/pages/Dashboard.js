@@ -1,13 +1,9 @@
 import React, { useRef } from 'react';
-import { CategoryList } from '../../components/categories/CategoryList';
-import { NoteList } from '../../components/notes/NoteList';
-import { Note } from '../../components/notes/Note';
-import { Header } from '../../components/ui';
-import { useAuth, useUI, LOGOUT } from '../../shared/context';
-import { useNotes } from './useNotes';
-import { useMedia } from '../../shared/hooks/useMedia';
-import { theme } from '../../shared/theme';
-import { useOnClickOutside } from '../../shared/hooks/useOnClickOutside';
+import { Note, Header, NoteList, CategoryList } from '../components';
+import { useAuth, useUI, LOGOUT } from '../shared/context';
+import { useNotes } from '../shared/hooks/useNotes';
+import { useMedia } from '../shared/hooks/useMedia';
+import { useOnClickOutside } from '../shared/hooks/useOnClickOutside';
 
 export function Dashboard() {
   const [{ user }, dispatch] = useAuth();
@@ -23,7 +19,7 @@ export function Dashboard() {
     filteredNotes,
     filterNotesByText
   } = useNotes();
-  const isMobile = useMedia([theme.breakpoints.md], [false], true);
+  const isMobile = useMedia(['(min-width: 576px)'], [false], true);
   const categoryList = useRef(null);
   useOnClickOutside(categoryList, () => {
     if (uiState.isCategoryMenuOpened) {
@@ -133,11 +129,9 @@ export function Dashboard() {
             />
           )}
           {!filteredNotes[selectedNote] && (
-            <div className="centered-container">
-              <h3 className="no-note-selected">
-                Select a note to start previewing and editing
-              </h3>
-            </div>
+            <h3 className="no-note-selected">
+              Select a note to start previewing and editing
+            </h3>
           )}
         </div>
         {isMobile && uiState.isNoteListMenuOpened && (

@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useMemo, useState } from 'react';
-import { useDebounce } from '../../shared/hooks/useDebounce';
+import { useDebounce } from './useDebounce';
 import http from '../../http';
-import { findTextInNote, orderNotesByDate } from '../../shared/utils';
+import { findTextInNote, orderNotesByDate } from '../utils';
 
 const GET_NOTES = '[NOTES] Get Notes';
 const GET_NOTES_SUCCESS = '[NOTES] Get Notes Success';

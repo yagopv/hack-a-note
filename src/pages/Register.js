@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Header } from '../components/ui';
-import { RegisterForm } from '../components/forms';
+
+import { Header, RegisterForm } from '../components';
 import {
   useAuth,
   REGISTER,

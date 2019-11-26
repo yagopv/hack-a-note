@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useMedia } from '../../shared/hooks/useMedia';
+import { useMedia } from '../shared/hooks/useMedia';
 
 export function Header({ title, tag, user, onToggleMenu, onLogout }) {
   const isMobile = useMedia(['(min-width: 576px)'], [false], true);
