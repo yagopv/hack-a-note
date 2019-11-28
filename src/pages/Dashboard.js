@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Note, Header, NoteList, CategoryList } from '../components';
-import { useAuth, useUI, LOGOUT } from '../shared/context';
+import { useAuth, useUI } from '../shared/context';
 import { useNotes } from '../shared/hooks/useNotes';
 import { useMedia } from '../shared/hooks/useMedia';
 import { useOnClickOutside } from '../shared/hooks/useOnClickOutside';

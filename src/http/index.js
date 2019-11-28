@@ -35,7 +35,7 @@ axios.interceptors.response.use(
       localStorage.removeItem('currentUser');
       window.location.href = '/login';
     }
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   }
 );
 

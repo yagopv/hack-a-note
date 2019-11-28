@@ -31,3 +31,14 @@
 .btn.error:hover {
   color: var(--bright);
 }
+
+.btn[disabled] {
+  opacity: 0.5;
+  background: var(--secondary);
+  color: var(--bright);
+  font-size: 1rem !important;
+  transition: none;
+  font-weight: normal;
+  outline: none;
+  border: none;
+}

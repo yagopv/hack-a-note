@@ -45,3 +45,7 @@ export function orderNotesByDate(a, b) {
   b = new Date(b.updatedAt);
   return a > b ? -1 : a < b ? 1 : 0;
 }
+
+export function isFieldValid(field, errors, formState) {
+  return errors[field] ? 'ko' : formState.touched.includes(field) && 'ok';
+}
