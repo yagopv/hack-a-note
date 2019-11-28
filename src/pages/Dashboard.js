@@ -4,6 +4,7 @@ import { useAuth, useUI } from '../shared/context';
 import { useNotes } from '../shared/hooks/useNotes';
 import { useMedia } from '../shared/hooks/useMedia';
 import { useOnClickOutside } from '../shared/hooks/useOnClickOutside';
+import { MadPumpkin } from '../components/MadPumpkin';
 
 export function Dashboard() {
   const { user, logout } = useAuth();
@@ -145,6 +146,11 @@ export function Dashboard() {
               })
             }
           ></button>
+        )}
+        {isFetching && (
+          <div className="loader">
+            <MadPumpkin />
+          </div>
         )}
       </main>
     </React.Fragment>

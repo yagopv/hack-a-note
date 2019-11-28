@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import http from '../../http';
 
@@ -11,36 +11,12 @@ export const LOGOUT = '[AUTH] Logout';
 
 const AuthContext = React.createContext();
 
-function authReducer(state, action) {
-  switch (action.type) {
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: action.user
-      };
-    case REGISTER_SUCCESS:
-      return { ...state, user: action.user, isAuthenticated: true };
-    case LOGOUT:
-      return {
-        isAuthenticated: false,
-        isFetching: false,
-        user: null
-      };
-    default:
-      return state;
-  }
-}
-
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-const initialState = {
-  isAuthenticated: !!currentUser,
-  user: currentUser
-};
-
 export function AuthProvider({ children }) {
-  let [state, dispatch] = useReducer(authReducer, initialState);
+  const [user, setUser] = useState(currentUser);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!currentUser);
+
   const history = useHistory();
 
   const signIn = useCallback(
@@ -49,7 +25,8 @@ export function AuthProvider({ children }) {
         const {
           data: { user, token }
         } = await http.login(email, password);
-        dispatch({ type: LOGIN_SUCCESS, user });
+        setUser(user);
+        setIsAuthenticated(true);
         if (token) {
           history.push('/');
         }
@@ -57,7 +34,7 @@ export function AuthProvider({ children }) {
         return Promise.reject(error);
       }
     },
-    [dispatch, history]
+    [history]
   );
 
   const signUp = useCallback(
@@ -66,7 +43,8 @@ export function AuthProvider({ children }) {
         const {
           data: { user, token }
         } = await http.register(email, password, fullName);
-        dispatch({ type: REGISTER_SUCCESS, user });
+        setUser(user);
+        setIsAuthenticated(true);
         if (token) {
           history.push('/');
         }
@@ -74,13 +52,18 @@ export function AuthProvider({ children }) {
         return Promise.reject(error);
       }
     },
-    [dispatch, history]
+    [history]
   );
 
-  const logout = () => dispatch({ type: LOGOUT });
+  const logout = () => {
+    setUser(false);
+    setIsAuthenticated(false);
+  };
 
   return (
-    <AuthContext.Provider value={{ ...state, signIn, signUp, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, signIn, signUp, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
