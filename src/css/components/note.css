@@ -19,6 +19,7 @@
 .note .title::placeholder {
   font-family: var(--font-primary);
   opacity: 0.5;
+  color: var(--medium);
 }
 
 .note .content {

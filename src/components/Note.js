@@ -80,7 +80,11 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
         <Link
           to=""
           onClick={() => setShowDialog(true)}
-          style={{ display: 'flex', alignItems: 'center' }}
+          style={{
+            display: 'block',
+            textAlign: 'right',
+            borderBottom: 'none'
+          }}
         >
           Remove
           <button className="icon-button remove"></button>
