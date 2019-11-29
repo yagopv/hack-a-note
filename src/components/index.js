@@ -5,5 +5,3 @@ export { Note } from './Note';
 export { NoteItem } from './NoteItem';
 export { NoteList } from './NoteList';
 export { PrivateRoute } from './PrivateRoute';
-export { RegisterForm } from './RegisterForm';
-export { LoginForm } from './LoginForm';
