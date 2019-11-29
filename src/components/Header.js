@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useMedia } from '../shared/hooks/useMedia';
+import { useLocation } from 'react-router-dom';
 
 export function Header({ title, tag, user, onToggleMenu, onLogout }) {
   const isMobile = useMedia(['(min-width: 576px)'], [false], true);
+  const location = useLocation();
 
   return (
     <header className="header">
       {!isMobile && <h1>{title}</h1>}
-      {isMobile && (
+      {isMobile && location.pathname === '/' && (
         <React.Fragment>
           <div className="header-item">
             <NavButton onClick={onToggleMenu} />
@@ -23,7 +25,7 @@ export function Header({ title, tag, user, onToggleMenu, onLogout }) {
       {user && (
         <div className="header-item right">
           <div>
-            <p className="header-name">Hola {user.name}</p>
+            {!isMobile && <p className="header-name">Hola {user.name}</p>}
             <Link to="" onClick={onLogout}>
               Salir
             </Link>
