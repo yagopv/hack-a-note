@@ -1,4 +1,4 @@
-export { CategoryList } from './CategoryList';
+export { TagList } from './TagList';
 export { Dialog } from './Dialog';
 export { Header } from './Header';
 export { Note } from './Note';

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const UIContext = React.createContext();
 
 const initialState = {
-  isCategoryMenuOpened: false,
+  isTagMenuOpened: false,
   isNoteListMenuOpened: false
 };
 

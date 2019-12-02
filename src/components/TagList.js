@@ -1,31 +1,31 @@
 import React from 'react';
 
 // Naming the forwardRef function we can see it named in Devtools
-const CategoryList = React.forwardRef(function CategoryList(
-  { items, selected, onCategorySelected },
+const TagList = React.forwardRef(function TagList(
+  { items, selected, onTagSelected },
   ref
 ) {
   return (
-    <ul ref={ref} className="category-list p-t-md">
+    <ul ref={ref} className="tag-list p-t-md">
       <li
         key={'all'}
-        onClick={() => onCategorySelected(null)}
+        onClick={() => onTagSelected(null)}
         className={`${selected === null ? 'selected' : ''}`}
       >
-        <p className="category-list-tag">All notes</p>
+        <p className="tag-list-item">All notes</p>
       </li>
       {items &&
         items.map((item, index) => (
           <li
             key={item}
-            onClick={() => onCategorySelected(index)}
+            onClick={() => onTagSelected(index)}
             className={`${selected === index ? 'selected' : ''}`}
           >
-            <p className="category-list-tag"># {item}</p>
+            <p className="tag-list-item"># {item}</p>
           </li>
         ))}
     </ul>
   );
 });
 
-export { CategoryList };
+export { TagList };

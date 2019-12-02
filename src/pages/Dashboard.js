@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Note, Header, NoteList, CategoryList } from '../components';
+import { Note, Header, NoteList, TagList } from '../components';
 import { useAuth, useUI } from '../shared/context';
 import { useNotes } from '../shared/hooks/useNotes';
 import { useMedia } from '../shared/hooks/useMedia';
@@ -22,11 +22,11 @@ export function Dashboard() {
     filterNotesByText
   } = useNotes();
   const isMobile = useMedia(['(min-width: 576px)'], [false], true);
-  const categoryList = useRef(null);
-  useOnClickOutside(categoryList, () => {
-    if (uiState.isCategoryMenuOpened) {
+  const tagList = useRef(null);
+  useOnClickOutside(tagList, () => {
+    if (uiState.isTagMenuOpened) {
       setUIState({
-        isCategoryMenuOpened: false,
+        isTagMenuOpened: false,
         isNoteListMenuOpened: false
       });
     }
@@ -40,7 +40,7 @@ export function Dashboard() {
         user={user}
         onToggleMenu={() =>
           setUIState({
-            isCategoryMenuOpened: !uiState.isCategoryMenuOpened,
+            isTagMenuOpened: !uiState.isTagMenuOpened,
             isNoteListMenuOpened: false
           })
         }
@@ -52,21 +52,21 @@ export function Dashboard() {
       <main id="dashboard">
         <div
           className={`grid ${
-            uiState.isCategoryMenuOpened
+            uiState.isTagMenuOpened
               ? 'menu-opened'
               : uiState.isNoteListMenuOpened
               ? 'notes-opened'
               : ''
           }`}
         >
-          <CategoryList
-            ref={categoryList}
+          <TagList
+            ref={tagList}
             items={tags}
             selected={selectedTag}
-            onCategorySelected={index => {
+            onTagSelected={index => {
               selectTag(index);
               setUIState({
-                isCategoryMenuOpened: false,
+                isTagMenuOpened: false,
                 isNoteListMenuOpened: false
               });
               selectNote(null);
@@ -83,12 +83,12 @@ export function Dashboard() {
                 selectNote(0);
                 setUIState({
                   isNoteListMenuOpened: true,
-                  isCategoryMenuOpened: false
+                  isTagMenuOpened: false
                 });
               }}
             />
             <NoteList
-              isCategoryMenuOpened={uiState.isCategoryMenuOpened}
+              isTagMenuOpened={uiState.isTagMenuOpened}
               notes={filteredNotes}
               mt="md"
               selected={selectedNote}
@@ -96,7 +96,7 @@ export function Dashboard() {
                 selectNote(index);
                 setUIState({
                   isNoteListMenuOpened: true,
-                  isCategoryMenuOpened: false
+                  isTagMenuOpened: false
                 });
               }}
             />
@@ -112,7 +112,7 @@ export function Dashboard() {
                 await deleteNote(id);
                 setUIState({
                   isNoteListMenuOpened: false,
-                  isCategoryMenuOpened: false
+                  isTagMenuOpened: false
                 });
               }}
             />
@@ -130,7 +130,7 @@ export function Dashboard() {
             onClick={() =>
               setUIState({
                 isNoteListMenuOpened: false,
-                isCategoryMenuOpened: false
+                isTagMenuOpened: false
               })
             }
           ></button>

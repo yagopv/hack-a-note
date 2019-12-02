@@ -1,16 +1,9 @@
 import React from 'react';
 import { NoteItem } from './NoteItem';
 
-export function NoteList({
-  onSelectNote,
-  isCategoryMenuOpened,
-  notes,
-  selected
-}) {
+export function NoteList({ onSelectNote, isTagMenuOpened, notes, selected }) {
   return (
-    <div
-      className={`opacity-container ${isCategoryMenuOpened ? 'activated' : ''}`}
-    >
+    <div className={`opacity-container ${isTagMenuOpened ? 'activated' : ''}`}>
       <ul className="m-t-lg">
         {notes.map((note, index) => (
           <li key={note.id} onClick={() => onSelectNote(index)}>
