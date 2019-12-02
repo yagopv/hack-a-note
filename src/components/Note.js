@@ -119,7 +119,13 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
         />
       )}
       {showDialog && (
-        <Dialog onAccept={handleDelete} onCancel={() => setShowDialog(false)}>
+        <Dialog
+          onAccept={() => {
+            handleDelete();
+            setShowDialog(false);
+          }}
+          onCancel={() => setShowDialog(false)}
+        >
           Sure to remove this note ?
         </Dialog>
       )}
