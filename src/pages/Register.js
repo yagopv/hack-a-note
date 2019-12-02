@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, RegisterForm } from '../components';
+import { Header } from '../components';
 import { useAuth } from '../shared/context';
 import { Link } from 'react-router-dom';
 import useForm from 'react-hook-form';

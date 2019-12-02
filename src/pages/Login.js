@@ -30,6 +30,10 @@ export function Login() {
     });
   };
 
+  // export function isFieldValid(field, errors, formState) {
+  //   return errors[field] ? 'ko' : formState.touched.includes(field) && 'ok';
+  // }
+
   return (
     <React.Fragment>
       <Header title="Notes App" />
@@ -90,10 +94,7 @@ export function Login() {
             <button
               type="submit"
               className="btn"
-              disabled={
-                (!formState.isValid && formState.isSubmitted) ||
-                formState.isSubmitting
-              }
+              disabled={formState.isSubmitting}
             >
               Log in
             </button>
