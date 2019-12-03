@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { getFriendlyDate } from '../shared/utils';
 
-export function NoteItem({
+function NoteItem({
   title = 'Untitled Note',
   content = 'No content',
   updatedAt,
@@ -26,3 +26,7 @@ export function NoteItem({
     </div>
   );
 }
+
+NoteItem.displayName = 'NoteItem';
+
+export { NoteItem };

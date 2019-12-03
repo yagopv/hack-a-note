@@ -1,7 +1,7 @@
 import React from 'react';
 import { NoteItem } from './NoteItem';
 
-export function NoteList({ onSelectNote, isTagMenuOpened, notes, selected }) {
+function NoteList({ onSelectNote, isTagMenuOpened, notes, selected }) {
   return (
     <div className={`opacity-container ${isTagMenuOpened ? 'activated' : ''}`}>
       <ul className="m-t-lg">
@@ -14,3 +14,7 @@ export function NoteList({ onSelectNote, isTagMenuOpened, notes, selected }) {
     </div>
   );
 }
+
+NoteList.displayName = 'NoteList';
+
+export { NoteList };

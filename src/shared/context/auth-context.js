@@ -2,13 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import http from '../../http';
 
-export const LOGIN_SUCCESS = '[AUTH] Login Success';
-export const LOGIN_FAILED = '[AUTH] Login Failed';
-export const REGISTER = '[AUTH] Register';
-export const REGISTER_SUCCESS = '[AUTH] Register Success';
-export const REGISTER_FAILED = '[AUTH] Register Failed';
-export const LOGOUT = '[AUTH] Logout';
-
 const AuthContext = React.createContext();
 
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));

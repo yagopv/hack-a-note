@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 // https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
 // Included on the above link - https://daveceddia.com/why-not-modify-react-state-directly/
 
-export function TagsInput({ value = [], onChange }) {
+function TagsInput({ value = [], onChange }) {
   const inputRef = useRef(null);
 
   const handleKeyDown = event => {
@@ -49,3 +49,7 @@ export function TagsInput({ value = [], onChange }) {
     </div>
   );
 }
+
+TagsInput.displayName = 'TagsInput';
+
+export { TagsInput };

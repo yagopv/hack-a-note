@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import useForm from 'react-hook-form';
 import { isFieldValid } from '../shared/utils';
 
-export function Register() {
+function Register() {
   // eslint-disable-next-line no-unused-vars
   const { signUp } = useAuth();
 
@@ -122,3 +122,7 @@ export function Register() {
     </React.Fragment>
   );
 }
+
+Register.displayName = 'Register';
+
+export { Register };

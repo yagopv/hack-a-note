@@ -5,7 +5,7 @@ import { useAuth } from '../shared/context';
 import { Link } from 'react-router-dom';
 import useForm from 'react-hook-form';
 import { isFieldValid } from '../shared/utils';
-export function Login() {
+function Login() {
   // eslint-disable-next-line no-unused-vars
   const { signIn } = useAuth();
   const {
@@ -107,3 +107,7 @@ export function Login() {
     </React.Fragment>
   );
 }
+
+Login.displayName = 'Login';
+
+export { Login };

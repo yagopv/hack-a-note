@@ -13,4 +13,6 @@ function Search({ onSearchTextChanged, onAddNote }) {
   );
 }
 
+Search.displayName = 'Search';
+
 export { Search };

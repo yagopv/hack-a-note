@@ -7,7 +7,7 @@ import { useOnClickOutside } from '../shared/hooks/useOnClickOutside';
 import { MadPumpkin } from '../components/MadPumpkin';
 import { Search } from '../components/Search';
 
-export function Dashboard() {
+function Dashboard() {
   const { user, logout } = useAuth();
   const [uiState, setUIState] = useUI();
   const {
@@ -144,3 +144,7 @@ export function Dashboard() {
     </React.Fragment>
   );
 }
+
+Dashboard.displayName = 'Dashboard';
+
+export { Dashboard };

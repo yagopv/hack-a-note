@@ -28,4 +28,6 @@ const TagList = React.forwardRef(function TagList(
   );
 });
 
+TagList.displayName = 'TagList';
+
 export { TagList };

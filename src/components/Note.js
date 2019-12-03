@@ -5,7 +5,7 @@ import marked from 'marked';
 import { Dialog } from './Dialog';
 import { TagsInput } from './TagsInput';
 
-export function Note({ initialNote, onSaveNote, onDeleteNote }) {
+function Note({ initialNote, onSaveNote, onDeleteNote }) {
   const [note, setNote] = useState({ title: '', content: '', ...initialNote });
   const [editMode, setEditMode] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
@@ -132,3 +132,7 @@ export function Note({ initialNote, onSaveNote, onDeleteNote }) {
     </div>
   );
 }
+
+Note.displayName = 'Note';
+
+export { Note };

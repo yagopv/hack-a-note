@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export function Dialog({ children, onCancel, onAccept }) {
+function Dialog({ children, onCancel, onAccept }) {
   return ReactDOM.createPortal(
     <div className="dialog">
       <div className="dialog-wrapper">
@@ -19,3 +19,7 @@ export function Dialog({ children, onCancel, onAccept }) {
     document.getElementById('root')
   );
 }
+
+Dialog.displayName = 'Dialog';
+
+export { Dialog };

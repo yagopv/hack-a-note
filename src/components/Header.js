@@ -54,3 +54,5 @@ function NavButton({ onClick }) {
     </a>
   );
 }
+
+Header.displayName = 'Header';

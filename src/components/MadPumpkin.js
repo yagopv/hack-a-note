@@ -12,4 +12,6 @@ function MadPumpkin() {
   return <Lottie options={defaultOptions} height={50} width={50} />;
 }
 
+MadPumpkin.displayName = 'MadPumpkin';
+
 export { MadPumpkin };
