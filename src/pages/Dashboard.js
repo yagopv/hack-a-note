@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { Note, Header, NoteList, TagList } from '../components';
 import { useAuth, useUI } from '../shared/context';
 import { useNotes } from '../shared/hooks/useNotes';
-import { useMedia } from '../shared/hooks/useMedia';
 import { useOnClickOutside } from '../shared/hooks/useOnClickOutside';
 import { MadPumpkin } from '../components/MadPumpkin';
 import { Search } from '../components/Search';
+import { useMatchMedia } from '../shared/hooks/useMatchMedia';
 
 function Dashboard() {
   const { user, logout } = useAuth();
@@ -21,7 +21,7 @@ function Dashboard() {
     filteredNotes,
     filterNotesByText
   } = useNotes();
-  const isMobile = useMedia(['(min-width: 576px)'], [false], true);
+  const isMobile = useMatchMedia(['(max-width: 576px)'], [false], true);
   const tagList = useRef(null);
   useOnClickOutside(tagList, () => {
     if (uiState.isTagMenuOpened) {

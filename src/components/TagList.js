@@ -1,10 +1,7 @@
 import React from 'react';
 
 // Naming the forwardRef function we can see it named in Devtools
-const TagList = React.forwardRef(function TagList(
-  { items, selected, onTagSelected },
-  ref
-) {
+function List({ items, selected, onTagSelected }, ref) {
   return (
     <ul ref={ref} className="tag-list p-t-md">
       <li
@@ -26,8 +23,10 @@ const TagList = React.forwardRef(function TagList(
         ))}
     </ul>
   );
-});
+}
 
-TagList.displayName = 'TagList';
+List.displayName = 'TagList';
+
+const TagList = React.forwardRef(List);
 
 export { TagList };

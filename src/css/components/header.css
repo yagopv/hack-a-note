@@ -31,3 +31,7 @@
 .header-name {
   font-size: var(--font-s);
 }
+
+#tags-toggle {
+  border-bottom: none;
+}

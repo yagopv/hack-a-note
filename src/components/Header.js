@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useMedia } from '../shared/hooks/useMedia';
 import { useLocation } from 'react-router-dom';
+import { useMatchMedia } from '../shared/hooks/useMatchMedia';
 
 export function Header({ title, tag, user, onToggleMenu, onLogout }) {
-  const isMobile = useMedia(['(min-width: 576px)'], [false], true);
+  const isMobile = useMatchMedia('(max-width: 576px)');
   const location = useLocation();
 
   return (
@@ -13,7 +13,20 @@ export function Header({ title, tag, user, onToggleMenu, onLogout }) {
       {isMobile && location.pathname === '/' && (
         <React.Fragment>
           <div className="header-item">
-            <NavButton onClick={onToggleMenu} />
+            <a href="#tags" id="tags-toggle" onClick={onToggleMenu}>
+              <svg
+                width="16"
+                height="13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke="#C86818"
+                  strokeWidth="3"
+                  d="M0 1.5h16M0 6.5h16M0 11.5h16"
+                />
+              </svg>
+            </a>
           </div>
           {tag && (
             <div className="header-item centered">
@@ -33,25 +46,6 @@ export function Header({ title, tag, user, onToggleMenu, onLogout }) {
         </div>
       )}
     </header>
-  );
-}
-
-function NavButton({ onClick }) {
-  return (
-    <a href="#tags" id="tags-toggle" onClick={onClick}>
-      <svg
-        width="16"
-        height="13"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke="#C86818"
-          strokeWidth="3"
-          d="M0 1.5h16M0 6.5h16M0 11.5h16"
-        />
-      </svg>
-    </a>
   );
 }
 
